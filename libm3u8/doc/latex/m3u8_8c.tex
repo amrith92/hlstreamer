@@ -1,0 +1,453 @@
+\hypertarget{m3u8_8c}{\section{m3u8.\-c \-File \-Reference}
+\label{m3u8_8c}\index{m3u8.\-c@{m3u8.\-c}}
+}
+{\ttfamily \#include \char`\"{}m3u8.\-h\char`\"{}}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+\-Include dependency graph for m3u8.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{m3u8_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{m3u8_8c_a644ab44d9b947265c4a2d1ce9bba9659}{\-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T}~5
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a3ebff130c4e434fb4bb45838055bc45f}{inf\-\_\-init} (\hyperlink{struct_inf_record}{\-Inf\-Record} $\ast$$\ast$record)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_ae7c918d2e6f16e9c2f250d878e8e93f1}{inf\-\_\-set\-\_\-length} (\hyperlink{struct_inf_record}{\-Inf\-Record} $\ast$$\ast$record, const float length)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a7b96574bccb40cfab055572612c98a9d}{inf\-\_\-set\-\_\-name} (\hyperlink{struct_inf_record}{\-Inf\-Record} $\ast$$\ast$record, const char $\ast$name)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a9d5dafaa7a941b6137a516b916691737}{inf\-\_\-set\-\_\-path} (\hyperlink{struct_inf_record}{\-Inf\-Record} $\ast$$\ast$record, const char $\ast$path)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_aeb71a12e429e0b95ec7062b7e7d0db3f}{inf\-\_\-destroy} (\hyperlink{struct_inf_record}{\-Inf\-Record} $\ast$$\ast$record)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a8365068dcdfc8ef9c90fddefe777b656}{record\-\_\-list\-\_\-init} (\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$$\ast$head)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a20c5e6819c38e8a00e8dbfc076342396}{record\-\_\-list\-\_\-add} (\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$$\ast$cur, \hyperlink{struct_inf_record}{\-Inf\-Record} $\ast$data)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_ade36ba9a6101acd525abcdd97ae8a165}{record\-\_\-list\-\_\-add\-\_\-more} (\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$$\ast$cur, const float length, const char $\ast$name, const char $\ast$path)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_ac958584dc6fd4614b29c5b1b34224e74}{record\-\_\-list\-\_\-remove\-\_\-at} (\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$$\ast$head, uint16\-\_\-t index)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a50a611728c72e54e08d0f61fb23142ee}{record\-\_\-list\-\_\-remove\-\_\-first\-\_\-n} (\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$$\ast$head, uint16\-\_\-t n)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a64839127c5f2cef83b382171bb9e0de8}{record\-\_\-list\-\_\-destroy} (\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$$\ast$head)
+\item 
+\hyperlink{m3u8_8h_a10b575ed914a0da1857ff058a326b7d2}{\-X\-Playlist\-Type} \hyperlink{m3u8_8c_ad82dfd899a2be02f439d1dc63cb677f7}{playlist\-\_\-type\-\_\-from} (const char $\ast$str)
+\item 
+const char $\ast$ \hyperlink{m3u8_8c_a9b3a379c139d5dfcdab715dd455c5d13}{playlist\-\_\-type\-\_\-str} (const \hyperlink{m3u8_8h_a10b575ed914a0da1857ff058a326b7d2}{\-X\-Playlist\-Type} type)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_af31c5959e8dc369ef7b1e79ceab954ca}{playlist\-\_\-write} (\hyperlink{struct_playlist}{\-Playlist} $\ast$playlist, const char $\ast$filename)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a82bc196185ae9937a95c760de8b4c354}{playlist\-\_\-write\-\_\-to} (\hyperlink{struct_playlist}{\-Playlist} $\ast$playlist, \-F\-I\-L\-E $\ast$out)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a0a9eb3550027ce9453dee45efa4006b9}{playlist\-\_\-load} (\hyperlink{struct_playlist}{\-Playlist} $\ast$playlist, const char $\ast$filename)
+\item 
+int8\-\_\-t \hyperlink{m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64}{playlist\-\_\-load\-\_\-from} (\hyperlink{struct_playlist}{\-Playlist} $\ast$playlist, \-F\-I\-L\-E $\ast$in)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{m3u8_8c_a644ab44d9b947265c4a2d1ce9bba9659}{\index{m3u8.\-c@{m3u8.\-c}!\-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T@{\-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T}}
+\index{\-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T@{\-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{\-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T}~5}}\label{m3u8_8c_a644ab44d9b947265c4a2d1ce9bba9659}
+\hyperlink{struct_playlist}{\-Playlist} types number 
+
+\-Definition at line 8 of file m3u8.\-c.
+
+
+
+\-Referenced by playlist\-\_\-type\-\_\-from().
+
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{m3u8_8c_aeb71a12e429e0b95ec7062b7e7d0db3f}{\index{m3u8.\-c@{m3u8.\-c}!inf\-\_\-destroy@{inf\-\_\-destroy}}
+\index{inf\-\_\-destroy@{inf\-\_\-destroy}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{inf\-\_\-destroy}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf inf\-\_\-destroy} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Inf\-Record} $\ast$$\ast$}]{record}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_aeb71a12e429e0b95ec7062b7e7d0db3f}
+\-Safely destroy an \hyperlink{struct_inf_record}{\-Inf\-Record} 
+
+\-Definition at line 92 of file m3u8.\-c.
+
+
+
+\-Referenced by record\-\_\-list\-\_\-destroy().
+
+\hypertarget{m3u8_8c_a3ebff130c4e434fb4bb45838055bc45f}{\index{m3u8.\-c@{m3u8.\-c}!inf\-\_\-init@{inf\-\_\-init}}
+\index{inf\-\_\-init@{inf\-\_\-init}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{inf\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf inf\-\_\-init} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Inf\-Record} $\ast$$\ast$}]{record}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a3ebff130c4e434fb4bb45838055bc45f}
+\-Plain initialization of \hyperlink{struct_inf_record}{\-Inf\-Record} 
+
+\-Definition at line 21 of file m3u8.\-c.
+
+
+
+\-References \-Inf\-Record\-::name.
+
+
+
+\-Referenced by record\-\_\-list\-\_\-add(), and record\-\_\-list\-\_\-add\-\_\-more().
+
+\hypertarget{m3u8_8c_ae7c918d2e6f16e9c2f250d878e8e93f1}{\index{m3u8.\-c@{m3u8.\-c}!inf\-\_\-set\-\_\-length@{inf\-\_\-set\-\_\-length}}
+\index{inf\-\_\-set\-\_\-length@{inf\-\_\-set\-\_\-length}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{inf\-\_\-set\-\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf inf\-\_\-set\-\_\-length} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Inf\-Record} $\ast$$\ast$}]{record, }
+\item[{const float}]{length}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_ae7c918d2e6f16e9c2f250d878e8e93f1}
+\-Sets the length of the media-\/segment this record defines 
+
+\-Definition at line 35 of file m3u8.\-c.
+
+
+
+\-Referenced by record\-\_\-list\-\_\-add(), and record\-\_\-list\-\_\-add\-\_\-more().
+
+\hypertarget{m3u8_8c_a7b96574bccb40cfab055572612c98a9d}{\index{m3u8.\-c@{m3u8.\-c}!inf\-\_\-set\-\_\-name@{inf\-\_\-set\-\_\-name}}
+\index{inf\-\_\-set\-\_\-name@{inf\-\_\-set\-\_\-name}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{inf\-\_\-set\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf inf\-\_\-set\-\_\-name} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Inf\-Record} $\ast$$\ast$}]{record, }
+\item[{const char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a7b96574bccb40cfab055572612c98a9d}
+\-Sets the name of the media segment 
+
+\-Definition at line 45 of file m3u8.\-c.
+
+
+
+\-Referenced by record\-\_\-list\-\_\-add(), and record\-\_\-list\-\_\-add\-\_\-more().
+
+\hypertarget{m3u8_8c_a9d5dafaa7a941b6137a516b916691737}{\index{m3u8.\-c@{m3u8.\-c}!inf\-\_\-set\-\_\-path@{inf\-\_\-set\-\_\-path}}
+\index{inf\-\_\-set\-\_\-path@{inf\-\_\-set\-\_\-path}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{inf\-\_\-set\-\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf inf\-\_\-set\-\_\-path} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Inf\-Record} $\ast$$\ast$}]{record, }
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a9d5dafaa7a941b6137a516b916691737}
+\-Sets the path of the media-\/segment 
+
+\-Definition at line 71 of file m3u8.\-c.
+
+
+
+\-Referenced by record\-\_\-list\-\_\-add(), and record\-\_\-list\-\_\-add\-\_\-more().
+
+\hypertarget{m3u8_8c_a0a9eb3550027ce9453dee45efa4006b9}{\index{m3u8.\-c@{m3u8.\-c}!playlist\-\_\-load@{playlist\-\_\-load}}
+\index{playlist\-\_\-load@{playlist\-\_\-load}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{playlist\-\_\-load}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf playlist\-\_\-load} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist} $\ast$}]{playlist, }
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a0a9eb3550027ce9453dee45efa4006b9}
+\-Read playlist from file \-Parse-\/\-Codes\-: 7 -\/ \-S\-T\-A\-R\-T tag not found/incorrectly placed2 \mbox{[}\#\-E\-X\-T\-M3\-U\mbox{]} 
+
+\-Definition at line 310 of file m3u8.\-c.
+
+
+
+\-References playlist\-\_\-load\-\_\-from().
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{m3u8_8c_a0a9eb3550027ce9453dee45efa4006b9_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64}{\index{m3u8.\-c@{m3u8.\-c}!playlist\-\_\-load\-\_\-from@{playlist\-\_\-load\-\_\-from}}
+\index{playlist\-\_\-load\-\_\-from@{playlist\-\_\-load\-\_\-from}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{playlist\-\_\-load\-\_\-from}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf playlist\-\_\-load\-\_\-from} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist} $\ast$}]{playlist, }
+\item[{\-F\-I\-L\-E $\ast$}]{in}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64}
+\-Read playlist from provided location 
+
+\-Definition at line 332 of file m3u8.\-c.
+
+
+
+\-References \-Playlist\-::cur, \-Playlist\-::head, playlist\-\_\-type\-\_\-from(), record\-\_\-list\-\_\-add\-\_\-more(), record\-\_\-list\-\_\-init(), \-Playlist\-::x\-\_\-media\-\_\-sequence, \-Playlist\-::x\-\_\-target\-\_\-duration, \-Playlist\-::x\-\_\-type, and \-Playlist\-::x\-\_\-version.
+
+
+
+\-Referenced by playlist\-\_\-load().
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{m3u8_8c_ad82dfd899a2be02f439d1dc63cb677f7}{\index{m3u8.\-c@{m3u8.\-c}!playlist\-\_\-type\-\_\-from@{playlist\-\_\-type\-\_\-from}}
+\index{playlist\-\_\-type\-\_\-from@{playlist\-\_\-type\-\_\-from}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{playlist\-\_\-type\-\_\-from}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-X\-Playlist\-Type} {\bf playlist\-\_\-type\-\_\-from} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_ad82dfd899a2be02f439d1dc63cb677f7}
+\-Convert string to playlist type 
+
+\-Definition at line 245 of file m3u8.\-c.
+
+
+
+\-References \-D\-E\-F\-A\-U\-L\-T, and \-P\-L\-A\-Y\-L\-I\-S\-T\-\_\-\-T\-Y\-P\-E\-S\-\_\-\-C\-O\-U\-N\-T.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from().
+
+\hypertarget{m3u8_8c_a9b3a379c139d5dfcdab715dd455c5d13}{\index{m3u8.\-c@{m3u8.\-c}!playlist\-\_\-type\-\_\-str@{playlist\-\_\-type\-\_\-str}}
+\index{playlist\-\_\-type\-\_\-str@{playlist\-\_\-type\-\_\-str}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{playlist\-\_\-type\-\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ {\bf playlist\-\_\-type\-\_\-str} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-X\-Playlist\-Type}}]{type}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a9b3a379c139d5dfcdab715dd455c5d13}
+\-Convert playlist type to string 
+
+\-Definition at line 256 of file m3u8.\-c.
+
+
+
+\-References \-D\-E\-F\-A\-U\-L\-T, \-E\-V\-E\-N\-T, \-L\-I\-V\-E, \-V\-A\-R\-I\-A\-N\-T, and \-V\-O\-D.
+
+
+
+\-Referenced by playlist\-\_\-write\-\_\-to().
+
+\hypertarget{m3u8_8c_af31c5959e8dc369ef7b1e79ceab954ca}{\index{m3u8.\-c@{m3u8.\-c}!playlist\-\_\-write@{playlist\-\_\-write}}
+\index{playlist\-\_\-write@{playlist\-\_\-write}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{playlist\-\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf playlist\-\_\-write} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist} $\ast$}]{playlist, }
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_af31c5959e8dc369ef7b1e79ceab954ca}
+\-Write playlist to file 
+
+\-Definition at line 269 of file m3u8.\-c.
+
+
+
+\-References playlist\-\_\-write\-\_\-to().
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{m3u8_8c_af31c5959e8dc369ef7b1e79ceab954ca_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{m3u8_8c_a82bc196185ae9937a95c760de8b4c354}{\index{m3u8.\-c@{m3u8.\-c}!playlist\-\_\-write\-\_\-to@{playlist\-\_\-write\-\_\-to}}
+\index{playlist\-\_\-write\-\_\-to@{playlist\-\_\-write\-\_\-to}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{playlist\-\_\-write\-\_\-to}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf playlist\-\_\-write\-\_\-to} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist} $\ast$}]{playlist, }
+\item[{\-F\-I\-L\-E $\ast$}]{out}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a82bc196185ae9937a95c760de8b4c354}
+\-Write playlist to provided file 
+
+\-Definition at line 289 of file m3u8.\-c.
+
+
+
+\-References \-Playlist\-::head, \-Inf\-Record\-::length, \-L\-I\-V\-E, \-Inf\-Record\-::name, \-Playlist\-Records\-::next, \-Inf\-Record\-::path, playlist\-\_\-type\-\_\-str(), \-Playlist\-Records\-::record, \-Playlist\-::x\-\_\-media\-\_\-sequence, \-Playlist\-::x\-\_\-target\-\_\-duration, \-Playlist\-::x\-\_\-type, and \-Playlist\-::x\-\_\-version.
+
+
+
+\-Referenced by playlist\-\_\-write().
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{m3u8_8c_a82bc196185ae9937a95c760de8b4c354_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{m3u8_8c_a20c5e6819c38e8a00e8dbfc076342396}{\index{m3u8.\-c@{m3u8.\-c}!record\-\_\-list\-\_\-add@{record\-\_\-list\-\_\-add}}
+\index{record\-\_\-list\-\_\-add@{record\-\_\-list\-\_\-add}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{record\-\_\-list\-\_\-add}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf record\-\_\-list\-\_\-add} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist\-Records} $\ast$$\ast$}]{cur, }
+\item[{{\bf \-Inf\-Record} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a20c5e6819c38e8a00e8dbfc076342396}
+\-Adds a new \hyperlink{struct_inf_record}{\-Inf\-Record} to the playlist records list $\ast$$\ast$ \-This is slightly more expensive than the other signatures of the same 
+
+\-Definition at line 120 of file m3u8.\-c.
+
+
+
+\-References inf\-\_\-init(), inf\-\_\-set\-\_\-length(), inf\-\_\-set\-\_\-name(), inf\-\_\-set\-\_\-path(), \-Inf\-Record\-::length, \-Inf\-Record\-::name, \-Playlist\-Records\-::next, and \-Inf\-Record\-::path.
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{m3u8_8c_a20c5e6819c38e8a00e8dbfc076342396_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{m3u8_8c_ade36ba9a6101acd525abcdd97ae8a165}{\index{m3u8.\-c@{m3u8.\-c}!record\-\_\-list\-\_\-add\-\_\-more@{record\-\_\-list\-\_\-add\-\_\-more}}
+\index{record\-\_\-list\-\_\-add\-\_\-more@{record\-\_\-list\-\_\-add\-\_\-more}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{record\-\_\-list\-\_\-add\-\_\-more}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf record\-\_\-list\-\_\-add\-\_\-more} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist\-Records} $\ast$$\ast$}]{cur, }
+\item[{const float}]{length, }
+\item[{const char $\ast$}]{name, }
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_ade36ba9a6101acd525abcdd97ae8a165}
+\-Adds a new \hyperlink{struct_inf_record}{\-Inf\-Record} to the playlist records list 
+
+\-Definition at line 152 of file m3u8.\-c.
+
+
+
+\-References inf\-\_\-init(), inf\-\_\-set\-\_\-length(), inf\-\_\-set\-\_\-name(), inf\-\_\-set\-\_\-path(), and \-Playlist\-Records\-::next.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from().
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{m3u8_8c_ade36ba9a6101acd525abcdd97ae8a165_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{m3u8_8c_a64839127c5f2cef83b382171bb9e0de8}{\index{m3u8.\-c@{m3u8.\-c}!record\-\_\-list\-\_\-destroy@{record\-\_\-list\-\_\-destroy}}
+\index{record\-\_\-list\-\_\-destroy@{record\-\_\-list\-\_\-destroy}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{record\-\_\-list\-\_\-destroy}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf record\-\_\-list\-\_\-destroy} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist\-Records} $\ast$$\ast$}]{head}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a64839127c5f2cef83b382171bb9e0de8}
+\-Destroys all records in the playlist 
+
+\-Definition at line 228 of file m3u8.\-c.
+
+
+
+\-References inf\-\_\-destroy(), \-Playlist\-Records\-::next, and \-Playlist\-Records\-::record.
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{m3u8_8c_a64839127c5f2cef83b382171bb9e0de8_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{m3u8_8c_a8365068dcdfc8ef9c90fddefe777b656}{\index{m3u8.\-c@{m3u8.\-c}!record\-\_\-list\-\_\-init@{record\-\_\-list\-\_\-init}}
+\index{record\-\_\-list\-\_\-init@{record\-\_\-list\-\_\-init}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{record\-\_\-list\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf record\-\_\-list\-\_\-init} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist\-Records} $\ast$$\ast$}]{head}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a8365068dcdfc8ef9c90fddefe777b656}
+\-Initializes the playlist record list 
+
+\-Definition at line 106 of file m3u8.\-c.
+
+
+
+\-References \-Playlist\-Records\-::next.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from().
+
+\hypertarget{m3u8_8c_ac958584dc6fd4614b29c5b1b34224e74}{\index{m3u8.\-c@{m3u8.\-c}!record\-\_\-list\-\_\-remove\-\_\-at@{record\-\_\-list\-\_\-remove\-\_\-at}}
+\index{record\-\_\-list\-\_\-remove\-\_\-at@{record\-\_\-list\-\_\-remove\-\_\-at}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{record\-\_\-list\-\_\-remove\-\_\-at}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf record\-\_\-list\-\_\-remove\-\_\-at} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist\-Records} $\ast$$\ast$}]{head, }
+\item[{uint16\-\_\-t}]{index}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_ac958584dc6fd4614b29c5b1b34224e74}
+\-Removes record number \mbox{[}index\mbox{]} 
+
+\-Definition at line 184 of file m3u8.\-c.
+
+
+
+\-References \-Playlist\-Records\-::next.
+
+\hypertarget{m3u8_8c_a50a611728c72e54e08d0f61fb23142ee}{\index{m3u8.\-c@{m3u8.\-c}!record\-\_\-list\-\_\-remove\-\_\-first\-\_\-n@{record\-\_\-list\-\_\-remove\-\_\-first\-\_\-n}}
+\index{record\-\_\-list\-\_\-remove\-\_\-first\-\_\-n@{record\-\_\-list\-\_\-remove\-\_\-first\-\_\-n}!m3u8.c@{m3u8.\-c}}
+\subsubsection[{record\-\_\-list\-\_\-remove\-\_\-first\-\_\-n}]{\setlength{\rightskip}{0pt plus 5cm}int8\-\_\-t {\bf record\-\_\-list\-\_\-remove\-\_\-first\-\_\-n} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Playlist\-Records} $\ast$$\ast$}]{head, }
+\item[{uint16\-\_\-t}]{n}
+\end{DoxyParamCaption}
+)}}\label{m3u8_8c_a50a611728c72e54e08d0f61fb23142ee}
+\-Removes the first \mbox{[}n\mbox{]} records from the playlist 
+
+\-Definition at line 206 of file m3u8.\-c.
+
+
+
+\-References \-Playlist\-Records\-::next.
+

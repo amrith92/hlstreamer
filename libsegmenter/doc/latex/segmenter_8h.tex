@@ -1,0 +1,305 @@
+\hypertarget{segmenter_8h}{\section{segmenter.\-h \-File \-Reference}
+\label{segmenter_8h}\index{segmenter.\-h@{segmenter.\-h}}
+}
+{\ttfamily \#include $<$stdint.\-h$>$}\*
+{\ttfamily \#include $<$gst/gst.\-h$>$}\*
+\-Include dependency graph for segmenter.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{segmenter_8h__incl}
+\end{center}
+\end{figure}
+\-This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{segmenter_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Data \-Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__video__bag}{\-\_\-video\-\_\-bag}
+\item 
+struct \hyperlink{struct__audio__bag}{\-\_\-audio\-\_\-bag}
+\item 
+struct \hyperlink{struct__transcoder__data}{\-\_\-transcoder\-\_\-data}
+\item 
+struct \hyperlink{struct__video__params}{\-\_\-video\-\_\-params}
+\item 
+struct \hyperlink{struct__audio__params}{\-\_\-audio\-\_\-params}
+\item 
+struct \hyperlink{struct__params}{\-\_\-params}
+\end{DoxyCompactItemize}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{segmenter_8h_a5af3cc99a04316104410c339a0b2cf00}{\-H\-L\-S\-\_\-\-N\-A\-M\-E}~\char`\"{}hlsegmenter\char`\"{}
+\item 
+\#define \hyperlink{segmenter_8h_af857f548b299baea9b2e7d2505696160}{\-H\-L\-S\-\_\-\-V\-E\-R}~\char`\"{}0.\-1\char`\"{}
+\item 
+\#define \hyperlink{segmenter_8h_ac51ccb923f4c4f470f00c1f9aa6e2c2b}{\-V\-S\-C\-A\-L\-E}~\char`\"{}video/x-\/raw-\/yuv,width=\%d,height=\%d\char`\"{}
+\begin{DoxyCompactList}\small\item\em \-Caps strings. \end{DoxyCompactList}\item 
+\#define \hyperlink{segmenter_8h_a73e314ff0df8aaa7ae86304c3fb5cfb0}{\-V\-R\-A\-T\-E}~\char`\"{}video/x-\/raw-\/yuv, framerate=\%d/1\char`\"{}
+\item 
+\#define \hyperlink{segmenter_8h_a5345a766eaea87e1b0b4229359f44d1b}{\-A\-C\-O\-N\-V}~\char`\"{}audio/x-\/raw-\/int,channels=2\char`\"{}
+\item 
+\#define \hyperlink{segmenter_8h_a2b4357b4592f19ec7a97142a30088d25}{\-A\-R\-E\-S}~\char`\"{}audio/x-\/raw-\/int,rate=\%d,channels=2\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{\-Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct__video__bag}{\-\_\-video\-\_\-bag} \hyperlink{segmenter_8h_a6f94543709a46b063bd7fb0817acfe0e}{\-Video\-Bag}
+\item 
+typedef struct \hyperlink{struct__audio__bag}{\-\_\-audio\-\_\-bag} \hyperlink{segmenter_8h_a91a772b808e575d8b4da9b8e9f3c8cfc}{\-Audio\-Bag}
+\item 
+typedef struct \hyperlink{struct__transcoder__data}{\-\_\-transcoder\-\_\-data} \hyperlink{segmenter_8h_a3b336c486165c4597d9a9ca33733af8b}{\-Transcoder\-Data}
+\item 
+typedef struct \hyperlink{struct__video__params}{\-\_\-video\-\_\-params} \hyperlink{segmenter_8h_a1666894b15eabe395e38f7239af909b5}{\-Video\-Params}
+\item 
+typedef struct \hyperlink{struct__audio__params}{\-\_\-audio\-\_\-params} \hyperlink{segmenter_8h_aec2d7f32ce7a93dcc3c613460ffb70fc}{\-Audio\-Params}
+\item 
+typedef struct \hyperlink{struct__params}{\-\_\-params} \hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params}
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{segmenter_8h_a5ff4a83331533603d092040787b6f1ae}{grab\-\_\-videoscale\-\_\-caps} (char $\ast$buffer, const uint16\-\_\-t width, const uint16\-\_\-t height)
+\item 
+void \hyperlink{segmenter_8h_a2abc6ba2017a01961eaf3981bf806e89}{grab\-\_\-videorate\-\_\-caps} (char $\ast$buffer, const uint8\-\_\-t rate)
+\item 
+void \hyperlink{segmenter_8h_a07f44bea24b85b0d725d379ac5f8decb}{grab\-\_\-audioresample\-\_\-caps} (char $\ast$buffer, const uint16\-\_\-t rate)
+\item 
+const int \hyperlink{segmenter_8h_a4aa0ddbb149a44f343c66205a24b7c15}{validate\-\_\-params} (const \hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params} $\ast$params)
+\item 
+int \hyperlink{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-try} (\hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params} $\ast$params)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{segmenter_8h_a5345a766eaea87e1b0b4229359f44d1b}{\index{segmenter.\-h@{segmenter.\-h}!\-A\-C\-O\-N\-V@{\-A\-C\-O\-N\-V}}
+\index{\-A\-C\-O\-N\-V@{\-A\-C\-O\-N\-V}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-A\-C\-O\-N\-V}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-A\-C\-O\-N\-V}~\char`\"{}audio/x-\/raw-\/int,channels=2\char`\"{}}}\label{segmenter_8h_a5345a766eaea87e1b0b4229359f44d1b}
+
+
+\-Definition at line 17 of file segmenter.\-h.
+
+
+
+\-Referenced by segmenter\-\_\-try().
+
+\hypertarget{segmenter_8h_a2b4357b4592f19ec7a97142a30088d25}{\index{segmenter.\-h@{segmenter.\-h}!\-A\-R\-E\-S@{\-A\-R\-E\-S}}
+\index{\-A\-R\-E\-S@{\-A\-R\-E\-S}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-A\-R\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-A\-R\-E\-S}~\char`\"{}audio/x-\/raw-\/int,rate=\%d,channels=2\char`\"{}}}\label{segmenter_8h_a2b4357b4592f19ec7a97142a30088d25}
+
+
+\-Definition at line 18 of file segmenter.\-h.
+
+
+
+\-Referenced by grab\-\_\-audioresample\-\_\-caps().
+
+\hypertarget{segmenter_8h_a5af3cc99a04316104410c339a0b2cf00}{\index{segmenter.\-h@{segmenter.\-h}!\-H\-L\-S\-\_\-\-N\-A\-M\-E@{\-H\-L\-S\-\_\-\-N\-A\-M\-E}}
+\index{\-H\-L\-S\-\_\-\-N\-A\-M\-E@{\-H\-L\-S\-\_\-\-N\-A\-M\-E}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-H\-L\-S\-\_\-\-N\-A\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-H\-L\-S\-\_\-\-N\-A\-M\-E}~\char`\"{}hlsegmenter\char`\"{}}}\label{segmenter_8h_a5af3cc99a04316104410c339a0b2cf00}
+
+
+\-Definition at line 11 of file segmenter.\-h.
+
+
+
+\-Referenced by segmenter\-\_\-try().
+
+\hypertarget{segmenter_8h_af857f548b299baea9b2e7d2505696160}{\index{segmenter.\-h@{segmenter.\-h}!\-H\-L\-S\-\_\-\-V\-E\-R@{\-H\-L\-S\-\_\-\-V\-E\-R}}
+\index{\-H\-L\-S\-\_\-\-V\-E\-R@{\-H\-L\-S\-\_\-\-V\-E\-R}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-H\-L\-S\-\_\-\-V\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-H\-L\-S\-\_\-\-V\-E\-R}~\char`\"{}0.\-1\char`\"{}}}\label{segmenter_8h_af857f548b299baea9b2e7d2505696160}
+
+
+\-Definition at line 12 of file segmenter.\-h.
+
+
+
+\-Referenced by segmenter\-\_\-try().
+
+\hypertarget{segmenter_8h_a73e314ff0df8aaa7ae86304c3fb5cfb0}{\index{segmenter.\-h@{segmenter.\-h}!\-V\-R\-A\-T\-E@{\-V\-R\-A\-T\-E}}
+\index{\-V\-R\-A\-T\-E@{\-V\-R\-A\-T\-E}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-V\-R\-A\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-V\-R\-A\-T\-E}~\char`\"{}video/x-\/raw-\/yuv, framerate=\%d/1\char`\"{}}}\label{segmenter_8h_a73e314ff0df8aaa7ae86304c3fb5cfb0}
+
+
+\-Definition at line 16 of file segmenter.\-h.
+
+
+
+\-Referenced by grab\-\_\-videorate\-\_\-caps().
+
+\hypertarget{segmenter_8h_ac51ccb923f4c4f470f00c1f9aa6e2c2b}{\index{segmenter.\-h@{segmenter.\-h}!\-V\-S\-C\-A\-L\-E@{\-V\-S\-C\-A\-L\-E}}
+\index{\-V\-S\-C\-A\-L\-E@{\-V\-S\-C\-A\-L\-E}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-V\-S\-C\-A\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-V\-S\-C\-A\-L\-E}~\char`\"{}video/x-\/raw-\/yuv,width=\%d,height=\%d\char`\"{}}}\label{segmenter_8h_ac51ccb923f4c4f470f00c1f9aa6e2c2b}
+
+
+\-Caps strings. 
+
+
+
+\-Definition at line 15 of file segmenter.\-h.
+
+
+
+\-Referenced by grab\-\_\-videoscale\-\_\-caps().
+
+
+
+\subsection{\-Typedef \-Documentation}
+\hypertarget{segmenter_8h_a91a772b808e575d8b4da9b8e9f3c8cfc}{\index{segmenter.\-h@{segmenter.\-h}!\-Audio\-Bag@{\-Audio\-Bag}}
+\index{\-Audio\-Bag@{\-Audio\-Bag}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-Audio\-Bag}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-audio\-\_\-bag}  {\bf \-Audio\-Bag}}}\label{segmenter_8h_a91a772b808e575d8b4da9b8e9f3c8cfc}
+\hypertarget{segmenter_8h_aec2d7f32ce7a93dcc3c613460ffb70fc}{\index{segmenter.\-h@{segmenter.\-h}!\-Audio\-Params@{\-Audio\-Params}}
+\index{\-Audio\-Params@{\-Audio\-Params}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-Audio\-Params}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-audio\-\_\-params}  {\bf \-Audio\-Params}}}\label{segmenter_8h_aec2d7f32ce7a93dcc3c613460ffb70fc}
+\hypertarget{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\index{segmenter.\-h@{segmenter.\-h}!\-Params@{\-Params}}
+\index{\-Params@{\-Params}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-Params}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-params}  {\bf \-Params}}}\label{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}
+\hypertarget{segmenter_8h_a3b336c486165c4597d9a9ca33733af8b}{\index{segmenter.\-h@{segmenter.\-h}!\-Transcoder\-Data@{\-Transcoder\-Data}}
+\index{\-Transcoder\-Data@{\-Transcoder\-Data}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-Transcoder\-Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-transcoder\-\_\-data}  {\bf \-Transcoder\-Data}}}\label{segmenter_8h_a3b336c486165c4597d9a9ca33733af8b}
+\hypertarget{segmenter_8h_a6f94543709a46b063bd7fb0817acfe0e}{\index{segmenter.\-h@{segmenter.\-h}!\-Video\-Bag@{\-Video\-Bag}}
+\index{\-Video\-Bag@{\-Video\-Bag}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-Video\-Bag}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-video\-\_\-bag}  {\bf \-Video\-Bag}}}\label{segmenter_8h_a6f94543709a46b063bd7fb0817acfe0e}
+\hypertarget{segmenter_8h_a1666894b15eabe395e38f7239af909b5}{\index{segmenter.\-h@{segmenter.\-h}!\-Video\-Params@{\-Video\-Params}}
+\index{\-Video\-Params@{\-Video\-Params}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{\-Video\-Params}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-video\-\_\-params}  {\bf \-Video\-Params}}}\label{segmenter_8h_a1666894b15eabe395e38f7239af909b5}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{segmenter_8h_a07f44bea24b85b0d725d379ac5f8decb}{\index{segmenter.\-h@{segmenter.\-h}!grab\-\_\-audioresample\-\_\-caps@{grab\-\_\-audioresample\-\_\-caps}}
+\index{grab\-\_\-audioresample\-\_\-caps@{grab\-\_\-audioresample\-\_\-caps}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{grab\-\_\-audioresample\-\_\-caps}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf grab\-\_\-audioresample\-\_\-caps} (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer, }
+\item[{const uint16\-\_\-t}]{rate}
+\end{DoxyParamCaption}
+)}}\label{segmenter_8h_a07f44bea24b85b0d725d379ac5f8decb}
+\-Grab customized audioresample caps string 
+
+\-Definition at line 31 of file segmenter.\-c.
+
+
+
+\-References \-A\-R\-E\-S.
+
+
+
+\-Referenced by segmenter\-\_\-try().
+
+\hypertarget{segmenter_8h_a2abc6ba2017a01961eaf3981bf806e89}{\index{segmenter.\-h@{segmenter.\-h}!grab\-\_\-videorate\-\_\-caps@{grab\-\_\-videorate\-\_\-caps}}
+\index{grab\-\_\-videorate\-\_\-caps@{grab\-\_\-videorate\-\_\-caps}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{grab\-\_\-videorate\-\_\-caps}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf grab\-\_\-videorate\-\_\-caps} (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer, }
+\item[{const uint8\-\_\-t}]{rate}
+\end{DoxyParamCaption}
+)}}\label{segmenter_8h_a2abc6ba2017a01961eaf3981bf806e89}
+\-Grab customized videorate caps string 
+
+\-Definition at line 22 of file segmenter.\-c.
+
+
+
+\-References \-V\-R\-A\-T\-E.
+
+
+
+\-Referenced by segmenter\-\_\-try().
+
+\hypertarget{segmenter_8h_a5ff4a83331533603d092040787b6f1ae}{\index{segmenter.\-h@{segmenter.\-h}!grab\-\_\-videoscale\-\_\-caps@{grab\-\_\-videoscale\-\_\-caps}}
+\index{grab\-\_\-videoscale\-\_\-caps@{grab\-\_\-videoscale\-\_\-caps}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{grab\-\_\-videoscale\-\_\-caps}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf grab\-\_\-videoscale\-\_\-caps} (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer, }
+\item[{const uint16\-\_\-t}]{width, }
+\item[{const uint16\-\_\-t}]{height}
+\end{DoxyParamCaption}
+)}}\label{segmenter_8h_a5ff4a83331533603d092040787b6f1ae}
+\-Grab customized videoscale caps string 
+
+\-Definition at line 13 of file segmenter.\-c.
+
+
+
+\-References \-V\-S\-C\-A\-L\-E.
+
+
+
+\-Referenced by segmenter\-\_\-try().
+
+\hypertarget{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}{\index{segmenter.\-h@{segmenter.\-h}!segmenter\-\_\-try@{segmenter\-\_\-try}}
+\index{segmenter\-\_\-try@{segmenter\-\_\-try}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{segmenter\-\_\-try}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf segmenter\-\_\-try} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Params} $\ast$}]{params}
+\end{DoxyParamCaption}
+)}}\label{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}
+\-The segmenter must be callable from the server, and as such the following function is the entry-\/point \-Initialize buffer
+
+\-Initialize gstreamer
+
+\-Create elements
+
+\-Create empty pipeline
+
+\-Set properties \-Set the location to transcode \& segment
+
+\-Set the multifilesink properties
+
+\-Set the videorate properties
+
+\-Set the aspectratiocrop properties
+
+\-Set x264enc properties
+
+\-Set ffenc\-\_\-aac properties
+
+\-Build the pipeline.
+
+\-Connect to the pad-\/added signal
+
+\-Start transcoding
+
+\-Listen to the bus
+
+\-Parse message
+
+\-Free resources 
+
+\-Definition at line 45 of file segmenter.\-c.
+
+
+
+\-References \-A\-C\-O\-N\-V, \-\_\-audio\-\_\-bag\-::aconvcaps, \-\_\-audio\-\_\-bag\-::arescaps, \-\_\-video\-\_\-bag\-::aspectratiocrop, \-\_\-params\-::audio\-\_\-props, \-\_\-transcoder\-\_\-data\-::audiobag, \-\_\-audio\-\_\-bag\-::audioconvert, \-\_\-audio\-\_\-bag\-::audioresample, \-\_\-video\-\_\-params\-::bitrate, \-\_\-audio\-\_\-params\-::bitrate, \-B\-U\-F\-S\-I\-Z\-E, \-\_\-audio\-\_\-bag\-::decqueue, \-\_\-audio\-\_\-bag\-::ffenc\-\_\-aac, \-\_\-video\-\_\-bag\-::ffmpegcolourspace, \-\_\-transcoder\-\_\-data\-::filesrc, \-\_\-video\-\_\-params\-::framerate, grab\-\_\-audioresample\-\_\-caps(), grab\-\_\-videorate\-\_\-caps(), grab\-\_\-videoscale\-\_\-caps(), \-\_\-video\-\_\-params\-::height, \-H\-L\-S\-\_\-\-N\-A\-M\-E, \-H\-L\-S\-\_\-\-V\-E\-R, \-\_\-params\-::in, \-\_\-video\-\_\-params\-::keyinterval, \-\_\-transcoder\-\_\-data\-::mpegtsmux, \-\_\-video\-\_\-bag\-::muxqueue, \-\_\-audio\-\_\-bag\-::muxqueue, \-\_\-video\-\_\-params\-::noisereduction, \-\_\-params\-::out, \-\_\-transcoder\-\_\-data\-::pipeline, \-\_\-transcoder\-\_\-data\-::sink, \-\_\-transcoder\-\_\-data\-::source, \-\_\-params\-::video\-\_\-props, \-\_\-transcoder\-\_\-data\-::videobag, \-\_\-video\-\_\-bag\-::videorate, \-\_\-video\-\_\-bag\-::videoscale, \-\_\-video\-\_\-bag\-::vratecaps, \-\_\-video\-\_\-bag\-::vscalecaps, \-\_\-video\-\_\-params\-::width, and \-\_\-video\-\_\-bag\-::x264enc.
+
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{segmenter_8h_a4aa0ddbb149a44f343c66205a24b7c15}{\index{segmenter.\-h@{segmenter.\-h}!validate\-\_\-params@{validate\-\_\-params}}
+\index{validate\-\_\-params@{validate\-\_\-params}!segmenter.h@{segmenter.\-h}}
+\subsubsection[{validate\-\_\-params}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf validate\-\_\-params} (
+\begin{DoxyParamCaption}
+\item[{const {\bf \-Params} $\ast$}]{params}
+\end{DoxyParamCaption}
+)}}\label{segmenter_8h_a4aa0ddbb149a44f343c66205a24b7c15}
+\-Validate incoming parameters 
+
+\-Definition at line 40 of file segmenter.\-c.
+

@@ -1,0 +1,113 @@
+\hypertarget{struct_playlist}{\section{\-Playlist \-Struct \-Reference}
+\label{struct_playlist}\index{\-Playlist@{\-Playlist}}
+}
+
+
+{\ttfamily \#include $<$m3u8.\-h$>$}
+
+
+
+\-Collaboration diagram for \-Playlist\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{struct_playlist__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{\-Data \-Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{m3u8_8h_a10b575ed914a0da1857ff058a326b7d2}{\-X\-Playlist\-Type} \hyperlink{struct_playlist_a37c60895b60bcb1cc626eae5885e0540}{x\-\_\-type}
+\item 
+uint8\-\_\-t \hyperlink{struct_playlist_a6362cba4f7d923dd7687284f0a890017}{x\-\_\-target\-\_\-duration}
+\item 
+uint8\-\_\-t \hyperlink{struct_playlist_adbfa9836e57d677968274360b90147ce}{x\-\_\-version}
+\item 
+uint16\-\_\-t \hyperlink{struct_playlist_a5777a3f8846ff7f63461d4a0bad7ad09}{x\-\_\-media\-\_\-sequence}
+\item 
+\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$ \hyperlink{struct_playlist_adbbc6e0a2881880caf79e9b2d0ee9d09}{head}
+\item 
+\hyperlink{struct_playlist_records}{\-Playlist\-Records} $\ast$ \hyperlink{struct_playlist_a0d3665b271a9105ad516c49c5572c77b}{cur}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Defines a playlist 
+
+\-Definition at line 114 of file m3u8.\-h.
+
+
+
+\subsection{\-Field \-Documentation}
+\hypertarget{struct_playlist_a0d3665b271a9105ad516c49c5572c77b}{\index{\-Playlist@{\-Playlist}!cur@{cur}}
+\index{cur@{cur}!Playlist@{\-Playlist}}
+\subsubsection[{cur}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Playlist\-Records}$\ast$ {\bf cur}}}\label{struct_playlist_a0d3665b271a9105ad516c49c5572c77b}
+
+
+\-Definition at line 121 of file m3u8.\-h.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from().
+
+\hypertarget{struct_playlist_adbbc6e0a2881880caf79e9b2d0ee9d09}{\index{\-Playlist@{\-Playlist}!head@{head}}
+\index{head@{head}!Playlist@{\-Playlist}}
+\subsubsection[{head}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Playlist\-Records}$\ast$ {\bf head}}}\label{struct_playlist_adbbc6e0a2881880caf79e9b2d0ee9d09}
+
+
+\-Definition at line 120 of file m3u8.\-h.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from(), and playlist\-\_\-write\-\_\-to().
+
+\hypertarget{struct_playlist_a5777a3f8846ff7f63461d4a0bad7ad09}{\index{\-Playlist@{\-Playlist}!x\-\_\-media\-\_\-sequence@{x\-\_\-media\-\_\-sequence}}
+\index{x\-\_\-media\-\_\-sequence@{x\-\_\-media\-\_\-sequence}!Playlist@{\-Playlist}}
+\subsubsection[{x\-\_\-media\-\_\-sequence}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t {\bf x\-\_\-media\-\_\-sequence}}}\label{struct_playlist_a5777a3f8846ff7f63461d4a0bad7ad09}
+
+
+\-Definition at line 118 of file m3u8.\-h.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from(), and playlist\-\_\-write\-\_\-to().
+
+\hypertarget{struct_playlist_a6362cba4f7d923dd7687284f0a890017}{\index{\-Playlist@{\-Playlist}!x\-\_\-target\-\_\-duration@{x\-\_\-target\-\_\-duration}}
+\index{x\-\_\-target\-\_\-duration@{x\-\_\-target\-\_\-duration}!Playlist@{\-Playlist}}
+\subsubsection[{x\-\_\-target\-\_\-duration}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t {\bf x\-\_\-target\-\_\-duration}}}\label{struct_playlist_a6362cba4f7d923dd7687284f0a890017}
+
+
+\-Definition at line 116 of file m3u8.\-h.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from(), and playlist\-\_\-write\-\_\-to().
+
+\hypertarget{struct_playlist_a37c60895b60bcb1cc626eae5885e0540}{\index{\-Playlist@{\-Playlist}!x\-\_\-type@{x\-\_\-type}}
+\index{x\-\_\-type@{x\-\_\-type}!Playlist@{\-Playlist}}
+\subsubsection[{x\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-X\-Playlist\-Type} {\bf x\-\_\-type}}}\label{struct_playlist_a37c60895b60bcb1cc626eae5885e0540}
+
+
+\-Definition at line 115 of file m3u8.\-h.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from(), and playlist\-\_\-write\-\_\-to().
+
+\hypertarget{struct_playlist_adbfa9836e57d677968274360b90147ce}{\index{\-Playlist@{\-Playlist}!x\-\_\-version@{x\-\_\-version}}
+\index{x\-\_\-version@{x\-\_\-version}!Playlist@{\-Playlist}}
+\subsubsection[{x\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t {\bf x\-\_\-version}}}\label{struct_playlist_adbfa9836e57d677968274360b90147ce}
+
+
+\-Definition at line 117 of file m3u8.\-h.
+
+
+
+\-Referenced by playlist\-\_\-load\-\_\-from(), and playlist\-\_\-write\-\_\-to().
+
+
+
+\-The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{m3u8_8h}{m3u8.\-h}\end{DoxyCompactItemize}
