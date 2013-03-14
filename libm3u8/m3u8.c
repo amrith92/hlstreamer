@@ -399,3 +399,150 @@ int8_t playlist_load_from(Playlist *playlist, FILE *in)
 
 	return 0;
 }
+
+int8_t index_stream_list_init(IndexStreamRecord **head)
+{
+	if (*head != NULL)
+		return -1;
+
+	*head = (IndexStreamRecord *) malloc(sizeof(IndexStreamRecord));
+
+	if (*head == NULL)
+		return -2;
+
+	(*head)->next = NULL;
+	(*head)->prev = NULL;
+	(*head)->path = NULL;
+	(*head)->codecs = NULL;
+	(*head)->program_id = 1;
+	(*head)->bandwidth = 0;
+
+	return 0;
+}
+
+int8_t index_stream_list_set_program_id(IndexStreamRecord **cur, int8_t program_id)
+{
+	if (*cur == NULL)
+		return -1;
+
+	(*cur)->program_id = program_id;
+
+	return 0;
+}
+
+int8_t index_stream_list_set_bandwidth(IndexStreamRecord **cur, uint64_t bandwidth)
+{
+	if (*cur == NULL)
+		return -1;
+
+	(*cur)->bandwidth = bandwidth;
+
+	return 0;
+}
+
+int8_t index_stream_list_set_codecs(IndexStreamRecord **cur, const char *codecs)
+{
+	if (*cur == NULL)
+		return -1;
+
+	if((*cur)->codecs != NULL) {
+		free ((*cur)->codecs);
+
+		(*cur)->codecs = NULL;
+	}
+
+	(*cur)->codecs = (char *) malloc(strlen(codecs) + 1);
+	strcpy((*cur)->codecs, codecs);
+
+	return 0;
+}
+
+int8_t index_stream_list_set_path(IndexStreamRecord **cur, const char *path)
+{
+	if (*cur == NULL)
+		return -1;
+
+	if ((*cur)->path != NULL) {
+		free ((*cur)->path);
+
+		(*cur)->path = NULL;
+	}
+
+	(*cur)->path = (char *) malloc(strlen(path) + 1);
+	strcpy((*cur)->path, path);
+
+	return 0;
+}
+
+int8_t index_stream_list_add(IndexStreamRecord **cur, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path)
+{
+	if (*cur == NULL)
+		return -1;
+
+	if ((*cur)->prev == NULL && (*cur)->path == NULL) {
+		(*cur)->program_id = program_id;
+		(*cur)->bandwidth = bandwidth;
+
+		if ((*cur)->codecs != NULL) {
+			free ((*cur)->codecs);
+			(*cur)->codecs = NULL;
+		}
+
+		(*cur)->codecs = (char *) malloc(strlen(codecs) + 1);
+		strcpy((*cur)->codecs, codecs);
+
+		(*cur)->path = (char *) malloc(strlen(path) + 1);
+		strcpy((*cur)->path, path);
+	} else {
+		(*cur)->next = (IndexStreamRecord *) malloc(sizeof(IndexStreamRecord));
+
+		if ((*cur)->next == NULL)
+			return -2;
+
+		(*cur)->next->program_id = program_id;
+		(*cur)->next->bandwidth = bandwidth;
+
+		(*cur)->next->codecs = (char *) malloc(strlen(codecs) + 1);
+
+		if ((*cur)->next->codecs == NULL) {
+			free ((*cur)->next);
+			return -3;
+		}
+
+		strcpy((*cur)->next->codecs, codecs);
+
+		(*cur)->next->path = (char *) malloc(strlen(path) + 1);
+
+		if ((*cur)->next->path == NULL) {
+			free ((*cur)->next);
+			return -4;
+		}
+
+		strcpy((*cur)->next->path, path);
+
+		(*cur)->next->prev = *cur;
+		(*cur)->next->next = NULL;
+		*cur = (*cur)->next;
+		(*cur)->prev->next = *cur;
+	}
+
+	return 0;
+}
+
+int8_t index_stream_list_destroy(IndexStreamRecord **head)
+{
+	IndexStreamRecord *tmp = NULL;
+
+	if (*head == NULL)
+		return -1;
+
+	while (*head) {
+		tmp = *head;
+		*head = (*head)->next;
+		free (tmp->path);
+		free (tmp->codecs);
+		free (tmp);
+	}
+
+	return 0;
+}

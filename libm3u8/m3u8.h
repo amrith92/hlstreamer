@@ -143,6 +143,62 @@ extern int8_t playlist_load(Playlist *playlist, const char *filename);
  */
 extern int8_t playlist_load_from(Playlist *playlist, FILE *in);
 
+/**
+ *	Index Stream record
+ */
+typedef _index_stream_record {
+	int8_t program_id;
+	uint64_t bandwidth;
+	char *codecs;
+	char *path;
+
+	struct _index_stream_record *next;
+	struct _index_stream_record *prev;
+} IndexStreamRecord;
+
+/**
+ *	Index Streams File
+ */
+typedef _index_stream_list {
+	IndexStreamRecord *head;
+	IndexStreamRecord *cur;
+} IndexStreamList;
+
+/**
+ *	Initializes new index stream stream
+ */
+extern int8_t index_stream_list_init(IndexStreamRecord **head);
+
+/**
+ *	Set program id
+ */
+extern int8_t index_stream_list_set_program_id(IndexStreamRecord **cur, int8_t program_id);
+
+/**
+ *	Set bandwidth
+ */
+extern int8_t index_stream_list_set_bandwidth(IndexStreamRecord **cur, uint64_t bandwidth);
+
+/**
+ *	Set codecs
+ */
+extern int8_t index_stream_list_set_codecs(IndexStreamRecord **cur, const char *codecs);
+
+/**
+ *	Set path
+ */
+extern int8_t index_stream_list_set_path(IndexStreamRecord **cur, const char *path);
+
+/**
+ *	Add record
+ */
+extern int8_t index_stream_list_add(IndexStreamRecord **cur, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path);
+
+/**
+ *	Destroy index stream list
+ */
+extern int8_t index_stream_list_destroy(IndexStreamRecord **head);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
