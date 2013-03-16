@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define __STDC_FORMAT_MACROS
+#include <inttypes.h>
+
 /**
  *	Playlist types number
  */
@@ -266,6 +269,29 @@ const char *playlist_type_str(const XPlaylistType type)
 	return _playlist_type_defs[0];
 }
 
+int8_t playlist_records_init(Playlist *playlist)
+{
+	int8_t ret = record_list_init(&playlist->head);
+	playlist->cur = playlist->head;
+
+	return ret;
+}
+
+int8_t playlist_records_add(Playlist *playlist, const float length, const char *name, const char *path)
+{
+	int8_t ret = record_list_add_more(&playlist->cur, length, name, path);
+
+	return ret;
+}
+
+int8_t playlist_records_destroy(Playlist *playlist)
+{
+	int8_t ret = record_list_destroy(&playlist->head);
+	playlist->head = playlist->cur = NULL;
+
+	return ret;
+}
+
 int8_t playlist_write(Playlist *playlist, const char *filename)
 {
 	FILE *out = NULL;
@@ -279,7 +305,7 @@ int8_t playlist_write(Playlist *playlist, const char *filename)
 		return -2;
 	}
 
-	ret = playlist_write_to(playlist, out);
+	ret = 8 * playlist_write_to(playlist, out);
 
 	fclose(out);
 
@@ -400,27 +426,7 @@ int8_t playlist_load_from(Playlist *playlist, FILE *in)
 	return 0;
 }
 
-int8_t index_stream_list_init(IndexStreamRecord **head)
-{
-	if (*head != NULL)
-		return -1;
-
-	*head = (IndexStreamRecord *) malloc(sizeof(IndexStreamRecord));
-
-	if (*head == NULL)
-		return -2;
-
-	(*head)->next = NULL;
-	(*head)->prev = NULL;
-	(*head)->path = NULL;
-	(*head)->codecs = NULL;
-	(*head)->program_id = 1;
-	(*head)->bandwidth = 0;
-
-	return 0;
-}
-
-int8_t index_stream_list_set_program_id(IndexStreamRecord **cur, int8_t program_id)
+int8_t index_stream_record_set_program_id(IndexStreamRecord **cur, int8_t program_id)
 {
 	if (*cur == NULL)
 		return -1;
@@ -430,7 +436,7 @@ int8_t index_stream_list_set_program_id(IndexStreamRecord **cur, int8_t program_
 	return 0;
 }
 
-int8_t index_stream_list_set_bandwidth(IndexStreamRecord **cur, uint64_t bandwidth)
+int8_t index_stream_record_set_bandwidth(IndexStreamRecord **cur, uint64_t bandwidth)
 {
 	if (*cur == NULL)
 		return -1;
@@ -440,7 +446,7 @@ int8_t index_stream_list_set_bandwidth(IndexStreamRecord **cur, uint64_t bandwid
 	return 0;
 }
 
-int8_t index_stream_list_set_codecs(IndexStreamRecord **cur, const char *codecs)
+int8_t index_stream_record_set_codecs(IndexStreamRecord **cur, const char *codecs)
 {
 	if (*cur == NULL)
 		return -1;
@@ -457,7 +463,7 @@ int8_t index_stream_list_set_codecs(IndexStreamRecord **cur, const char *codecs)
 	return 0;
 }
 
-int8_t index_stream_list_set_path(IndexStreamRecord **cur, const char *path)
+int8_t index_stream_record_set_path(IndexStreamRecord **cur, const char *path)
 {
 	if (*cur == NULL)
 		return -1;
@@ -474,74 +480,229 @@ int8_t index_stream_list_set_path(IndexStreamRecord **cur, const char *path)
 	return 0;
 }
 
-int8_t index_stream_list_add(IndexStreamRecord **cur, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path)
+int8_t index_stream_list_init(IndexStreamList *list)
 {
-	if (*cur == NULL)
+	list->head = (IndexStreamRecord *) malloc(sizeof(IndexStreamRecord));
+
+	if (list->head == NULL)
 		return -1;
 
-	if ((*cur)->prev == NULL && (*cur)->path == NULL) {
-		(*cur)->program_id = program_id;
-		(*cur)->bandwidth = bandwidth;
+	list->head->next = NULL;
+	list->head->prev = NULL;
+	list->head->path = NULL;
+	list->head->codecs = NULL;
+	list->head->program_id = 1;
+	list->head->bandwidth = 0;
 
-		if ((*cur)->codecs != NULL) {
-			free ((*cur)->codecs);
-			(*cur)->codecs = NULL;
+	list->cur = list->head;
+
+	return 0;
+}
+
+int8_t index_stream_list_add(IndexStreamList *list, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path)
+{
+	if (list == NULL)
+		return -1;
+
+	if (list->head == NULL)
+		return -2;
+
+	if (list->head->path == NULL) {
+		list->head->program_id = program_id;
+		list->head->bandwidth = bandwidth;
+
+		if (list->head->codecs != NULL) {
+			free (list->head->codecs);
+			list->head->codecs = NULL;
 		}
 
-		(*cur)->codecs = (char *) malloc(strlen(codecs) + 1);
-		strcpy((*cur)->codecs, codecs);
+		list->head->codecs = (char *) malloc(strlen(codecs) + 1);
+		strcpy(list->head->codecs, codecs);
 
-		(*cur)->path = (char *) malloc(strlen(path) + 1);
-		strcpy((*cur)->path, path);
+		list->head->path = (char *) malloc(strlen(path) + 1);
+		strcpy(list->head->path, path);
 	} else {
-		(*cur)->next = (IndexStreamRecord *) malloc(sizeof(IndexStreamRecord));
+		list->cur->next = (IndexStreamRecord *) malloc(sizeof(IndexStreamRecord));
 
-		if ((*cur)->next == NULL)
+		if (list->cur->next == NULL)
 			return -2;
 
-		(*cur)->next->program_id = program_id;
-		(*cur)->next->bandwidth = bandwidth;
+		list->cur->next->program_id = program_id;
+		list->cur->next->bandwidth = bandwidth;
 
-		(*cur)->next->codecs = (char *) malloc(strlen(codecs) + 1);
+		list->cur->next->codecs = (char *) malloc(strlen(codecs) + 1);
 
-		if ((*cur)->next->codecs == NULL) {
-			free ((*cur)->next);
+		if (list->cur->next->codecs == NULL) {
+			free (list->cur->next);
 			return -3;
 		}
 
-		strcpy((*cur)->next->codecs, codecs);
+		strcpy(list->cur->next->codecs, codecs);
 
-		(*cur)->next->path = (char *) malloc(strlen(path) + 1);
+		list->cur->next->path = (char *) malloc(strlen(path) + 1);
 
-		if ((*cur)->next->path == NULL) {
-			free ((*cur)->next);
+		if (list->cur->next->path == NULL) {
+			free (list->cur->next);
 			return -4;
 		}
 
-		strcpy((*cur)->next->path, path);
+		strcpy(list->cur->next->path, path);
 
-		(*cur)->next->prev = *cur;
-		(*cur)->next->next = NULL;
-		*cur = (*cur)->next;
-		(*cur)->prev->next = *cur;
+		list->cur->next->prev = list->cur;
+		list->cur->next->next = NULL;
+		list->cur = list->cur->next;
+		list->cur->prev->next = list->cur;
 	}
 
 	return 0;
 }
 
-int8_t index_stream_list_destroy(IndexStreamRecord **head)
+int8_t index_stream_list_destroy(IndexStreamList *list)
 {
 	IndexStreamRecord *tmp = NULL;
 
-	if (*head == NULL)
+	if (list == NULL)
 		return -1;
 
-	while (*head) {
-		tmp = *head;
-		*head = (*head)->next;
-		free (tmp->path);
-		free (tmp->codecs);
+	while (list->head) {
+		tmp = list->head;
+		list->head = list->head->next;
+		if (tmp->path)
+			free (tmp->path);
+		if (tmp->codecs)
+			free (tmp->codecs);
 		free (tmp);
+	}
+
+	return 0;
+}
+
+int8_t index_stream_list_write(IndexStreamList *list, const char *filename)
+{
+	FILE *out = NULL;
+	int ret = 0;
+
+	if (list == NULL)
+		return -1;
+
+	out = fopen(filename, "w");
+
+	if (out == NULL) {
+		return -2;
+	}
+
+	ret = 8 * index_stream_list_write_to(list, out);
+
+	fclose(out);
+
+	return ret;
+}
+
+int8_t index_stream_list_write_to(IndexStreamList *list, FILE *out)
+{
+	IndexStreamRecord *it = NULL;
+
+	if (out == NULL)
+		return -1;
+
+	// Write start tag
+	fprintf(out, "#EXTM3U\n");
+
+	for (it = list->head; it != NULL; it = it->next) {
+		if (it->path) {
+			fprintf(out, "#EXT-X-STREAM-INF:PROGRAM_ID=%d,BANDWIDTH=%" PRIu64, it->program_id, it->bandwidth);
+			if (it->codecs)
+				fprintf(out, ",CODECS=\"%s\"", it->codecs);
+			fprintf(out, "\n%s\n", it->path);
+		}
+	}
+
+	return 0;
+}
+
+int8_t index_stream_list_load(IndexStreamList *list, const char *filename)
+{
+	int8_t ret = 0;
+	FILE *in = NULL;
+
+	in = fopen(filename, "r");
+
+	if (in == NULL)
+		return -1;
+
+	ret = index_stream_list_load_from(list, in);
+
+	fclose(in);
+
+	return ret;
+}
+
+int8_t index_stream_list_load_from(IndexStreamList *list, FILE *in)
+{
+	char buffer[BUFSIZ], *tok = NULL, *codecs = NULL;
+	int8_t program_id = 1;
+	uint64_t bandwidth = 0;
+	size_t len = 0;
+
+	if (in == NULL)
+		return -1;
+
+	// Read in #EXTM3U
+	fscanf(in, "%s", buffer);
+	if (strcasecmp(buffer, "#EXTM3U"))
+		return 7;
+
+	/**
+		Each #EXT-X-STREAM-INF record spans two lines.
+		Read the first line which may have the BANDWIDTH,
+		CODECS, PROGRAM-ID attributes & parse them.
+		The second line ALWAYS holds the PATH attribute.
+	*/
+	while (!feof(in)) {
+		bandwidth = 0;
+		program_id = 1;
+
+		if (codecs)
+			free (codecs);
+
+		if (list->head == NULL)
+			index_stream_list_init(list);
+
+		memset(buffer, 0, BUFSIZ);
+		fgets(buffer, BUFSIZ, in);
+		if ((tok = strchr(buffer, '\n')) != NULL)
+			*tok = 0;
+		if (buffer[0] == 0)
+			continue;
+
+		tok = strtok(buffer, " :");
+
+		while (tok) {
+			if (!strcasecmp(tok, "PROGRAM_ID")) {
+				tok = strtok(NULL, " =,");
+				sscanf(tok, "%" SCNd8, &program_id);
+			} else if (!strcasecmp(tok, "CODECS")) {
+				tok = strtok(NULL, "\"");
+				len = strlen(tok) + 1;
+				codecs = (char *) malloc(len);
+				memset(codecs, 0, len);
+				strcpy(codecs, tok);
+			} else if (!strcasecmp(tok, "BANDWIDTH")) {
+				tok = strtok(NULL, " =,");
+				sscanf(tok, "%" SCNu64, &bandwidth);
+			}
+
+			if (tok == NULL)
+				break;
+
+			tok = strtok(NULL, " =,");
+		}
+
+		memset(buffer, 0, BUFSIZ);
+		fgets(buffer, BUFSIZ, in);
+		if ((tok = strchr(buffer, '\n')) != NULL)
+			*tok = 0;
+		index_stream_list_add(list, program_id, bandwidth, codecs, buffer);
 	}
 
 	return 0;

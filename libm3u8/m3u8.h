@@ -122,6 +122,21 @@ typedef struct _playlist {
 } Playlist;
 
 /**
+ *	Easier access to PlaylistRecords init
+ */
+extern int8_t playlist_records_init(Playlist *playlist);
+
+/**
+ *  Easier access to PlaylistRecords add more
+ */
+extern int8_t playlist_records_add(Playlist *playlist, const float length, const char *name, const char *path);
+
+/**
+ *  Easier access to PlaylistRecords destroy
+ */
+extern int8_t playlist_records_destroy(Playlist *playlist);
+
+/**
  *	Write playlist to file
  */
 extern int8_t playlist_write(Playlist *playlist, const char *filename);
@@ -146,7 +161,7 @@ extern int8_t playlist_load_from(Playlist *playlist, FILE *in);
 /**
  *	Index Stream record
  */
-typedef _index_stream_record {
+typedef struct _index_stream_record {
 	int8_t program_id;
 	uint64_t bandwidth;
 	char *codecs;
@@ -157,9 +172,29 @@ typedef _index_stream_record {
 } IndexStreamRecord;
 
 /**
+ *	Set program id
+ */
+extern int8_t index_stream_record_set_program_id(IndexStreamRecord **cur, int8_t program_id);
+
+/**
+ *	Set bandwidth
+ */
+extern int8_t index_stream_record_set_bandwidth(IndexStreamRecord **cur, uint64_t bandwidth);
+
+/**
+ *	Set codecs
+ */
+extern int8_t index_stream_record_set_codecs(IndexStreamRecord **cur, const char *codecs);
+
+/**
+ *	Set path
+ */
+extern int8_t index_stream_record_set_path(IndexStreamRecord **cur, const char *path);
+
+/**
  *	Index Streams File
  */
-typedef _index_stream_list {
+typedef struct _index_stream_list {
 	IndexStreamRecord *head;
 	IndexStreamRecord *cur;
 } IndexStreamList;
@@ -167,37 +202,37 @@ typedef _index_stream_list {
 /**
  *	Initializes new index stream stream
  */
-extern int8_t index_stream_list_init(IndexStreamRecord **head);
+extern int8_t index_stream_list_init(IndexStreamList *list);
 
 /**
- *	Set program id
+ *	Add new list record
  */
-extern int8_t index_stream_list_set_program_id(IndexStreamRecord **cur, int8_t program_id);
-
-/**
- *	Set bandwidth
- */
-extern int8_t index_stream_list_set_bandwidth(IndexStreamRecord **cur, uint64_t bandwidth);
-
-/**
- *	Set codecs
- */
-extern int8_t index_stream_list_set_codecs(IndexStreamRecord **cur, const char *codecs);
-
-/**
- *	Set path
- */
-extern int8_t index_stream_list_set_path(IndexStreamRecord **cur, const char *path);
-
-/**
- *	Add record
- */
-extern int8_t index_stream_list_add(IndexStreamRecord **cur, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path);
+extern int8_t index_stream_list_add(IndexStreamList *list, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path);
 
 /**
  *	Destroy index stream list
  */
-extern int8_t index_stream_list_destroy(IndexStreamRecord **head);
+extern int8_t index_stream_list_destroy(IndexStreamList *list);
+
+/**
+ *	Write index stream list to file
+ */
+extern int8_t index_stream_list_write(IndexStreamList *list, const char *filename);
+
+/**
+ *	Write index stream list to stream
+ */
+extern int8_t index_stream_list_write_to(IndexStreamList *list, FILE *out);
+
+/**
+ *	Load index stream list from file
+ */
+extern int8_t index_stream_list_load(IndexStreamList *list, const char *filename);
+
+/**
+ *	Load index stream list from stream
+ */
+extern int8_t index_stream_list_load_from(IndexStreamList *list, FILE *in);
 
 #ifdef __cplusplus
 } /* extern "C" */
