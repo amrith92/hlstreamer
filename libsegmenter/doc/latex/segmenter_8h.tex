@@ -3,16 +3,14 @@
 }
 {\ttfamily \#include $<$stdint.\-h$>$}\*
 {\ttfamily \#include $<$gst/gst.\-h$>$}\*
-\-Include dependency graph for segmenter.\-h\-:
-\nopagebreak
+\-Include dependency graph for segmenter.\-h\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=200pt]{segmenter_8h__incl}
 \end{center}
 \end{figure}
-\-This graph shows which files directly or indirectly include this file\-:
-\nopagebreak
+\-This graph shows which files directly or indirectly include this file\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -22,17 +20,17 @@
 \subsection*{\-Data \-Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct__video__bag}{\-\_\-video\-\_\-bag}
+struct \hyperlink{struct_video_bag}{\-Video\-Bag}
 \item 
-struct \hyperlink{struct__audio__bag}{\-\_\-audio\-\_\-bag}
+struct \hyperlink{struct_audio_bag}{\-Audio\-Bag}
 \item 
-struct \hyperlink{struct__transcoder__data}{\-\_\-transcoder\-\_\-data}
+struct \hyperlink{struct_transcoder_data}{\-Transcoder\-Data}
 \item 
-struct \hyperlink{struct__video__params}{\-\_\-video\-\_\-params}
+struct \hyperlink{struct_video_params}{\-Video\-Params}
 \item 
-struct \hyperlink{struct__audio__params}{\-\_\-audio\-\_\-params}
+struct \hyperlink{struct_audio_params}{\-Audio\-Params}
 \item 
-struct \hyperlink{struct__params}{\-\_\-params}
+struct \hyperlink{struct_params}{\-Params}
 \end{DoxyCompactItemize}
 \subsection*{\-Defines}
 \begin{DoxyCompactItemize}
@@ -49,21 +47,6 @@ struct \hyperlink{struct__params}{\-\_\-params}
 \item 
 \#define \hyperlink{segmenter_8h_a2b4357b4592f19ec7a97142a30088d25}{\-A\-R\-E\-S}~\char`\"{}audio/x-\/raw-\/int,rate=\%d,channels=2\char`\"{}
 \end{DoxyCompactItemize}
-\subsection*{\-Typedefs}
-\begin{DoxyCompactItemize}
-\item 
-typedef struct \hyperlink{struct__video__bag}{\-\_\-video\-\_\-bag} \hyperlink{segmenter_8h_a6f94543709a46b063bd7fb0817acfe0e}{\-Video\-Bag}
-\item 
-typedef struct \hyperlink{struct__audio__bag}{\-\_\-audio\-\_\-bag} \hyperlink{segmenter_8h_a91a772b808e575d8b4da9b8e9f3c8cfc}{\-Audio\-Bag}
-\item 
-typedef struct \hyperlink{struct__transcoder__data}{\-\_\-transcoder\-\_\-data} \hyperlink{segmenter_8h_a3b336c486165c4597d9a9ca33733af8b}{\-Transcoder\-Data}
-\item 
-typedef struct \hyperlink{struct__video__params}{\-\_\-video\-\_\-params} \hyperlink{segmenter_8h_a1666894b15eabe395e38f7239af909b5}{\-Video\-Params}
-\item 
-typedef struct \hyperlink{struct__audio__params}{\-\_\-audio\-\_\-params} \hyperlink{segmenter_8h_aec2d7f32ce7a93dcc3c613460ffb70fc}{\-Audio\-Params}
-\item 
-typedef struct \hyperlink{struct__params}{\-\_\-params} \hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params}
-\end{DoxyCompactItemize}
 \subsection*{\-Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -73,9 +56,9 @@ void \hyperlink{segmenter_8h_a2abc6ba2017a01961eaf3981bf806e89}{grab\-\_\-videor
 \item 
 void \hyperlink{segmenter_8h_a07f44bea24b85b0d725d379ac5f8decb}{grab\-\_\-audioresample\-\_\-caps} (char $\ast$buffer, const uint16\-\_\-t rate)
 \item 
-const int \hyperlink{segmenter_8h_a4aa0ddbb149a44f343c66205a24b7c15}{validate\-\_\-params} (const \hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params} $\ast$params)
+const int \hyperlink{segmenter_8h_a4aa0ddbb149a44f343c66205a24b7c15}{validate\-\_\-params} (const \hyperlink{struct_params}{\-Params} $\ast$params)
 \item 
-int \hyperlink{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-try} (\hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params} $\ast$params)
+int \hyperlink{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-try} (\hyperlink{struct_params}{\-Params} $\ast$params)
 \end{DoxyCompactItemize}
 
 
@@ -150,27 +133,6 @@ int \hyperlink{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-tr
 
 \-Referenced by grab\-\_\-videoscale\-\_\-caps().
 
-
-
-\subsection{\-Typedef \-Documentation}
-\hypertarget{segmenter_8h_a91a772b808e575d8b4da9b8e9f3c8cfc}{\index{segmenter.\-h@{segmenter.\-h}!\-Audio\-Bag@{\-Audio\-Bag}}
-\index{\-Audio\-Bag@{\-Audio\-Bag}!segmenter.h@{segmenter.\-h}}
-\subsubsection[{\-Audio\-Bag}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-audio\-\_\-bag}  {\bf \-Audio\-Bag}}}\label{segmenter_8h_a91a772b808e575d8b4da9b8e9f3c8cfc}
-\hypertarget{segmenter_8h_aec2d7f32ce7a93dcc3c613460ffb70fc}{\index{segmenter.\-h@{segmenter.\-h}!\-Audio\-Params@{\-Audio\-Params}}
-\index{\-Audio\-Params@{\-Audio\-Params}!segmenter.h@{segmenter.\-h}}
-\subsubsection[{\-Audio\-Params}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-audio\-\_\-params}  {\bf \-Audio\-Params}}}\label{segmenter_8h_aec2d7f32ce7a93dcc3c613460ffb70fc}
-\hypertarget{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\index{segmenter.\-h@{segmenter.\-h}!\-Params@{\-Params}}
-\index{\-Params@{\-Params}!segmenter.h@{segmenter.\-h}}
-\subsubsection[{\-Params}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-params}  {\bf \-Params}}}\label{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}
-\hypertarget{segmenter_8h_a3b336c486165c4597d9a9ca33733af8b}{\index{segmenter.\-h@{segmenter.\-h}!\-Transcoder\-Data@{\-Transcoder\-Data}}
-\index{\-Transcoder\-Data@{\-Transcoder\-Data}!segmenter.h@{segmenter.\-h}}
-\subsubsection[{\-Transcoder\-Data}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-transcoder\-\_\-data}  {\bf \-Transcoder\-Data}}}\label{segmenter_8h_a3b336c486165c4597d9a9ca33733af8b}
-\hypertarget{segmenter_8h_a6f94543709a46b063bd7fb0817acfe0e}{\index{segmenter.\-h@{segmenter.\-h}!\-Video\-Bag@{\-Video\-Bag}}
-\index{\-Video\-Bag@{\-Video\-Bag}!segmenter.h@{segmenter.\-h}}
-\subsubsection[{\-Video\-Bag}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-video\-\_\-bag}  {\bf \-Video\-Bag}}}\label{segmenter_8h_a6f94543709a46b063bd7fb0817acfe0e}
-\hypertarget{segmenter_8h_a1666894b15eabe395e38f7239af909b5}{\index{segmenter.\-h@{segmenter.\-h}!\-Video\-Params@{\-Video\-Params}}
-\index{\-Video\-Params@{\-Video\-Params}!segmenter.h@{segmenter.\-h}}
-\subsubsection[{\-Video\-Params}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \-\_\-video\-\_\-params}  {\bf \-Video\-Params}}}\label{segmenter_8h_a1666894b15eabe395e38f7239af909b5}
 
 
 \subsection{\-Function \-Documentation}
@@ -254,6 +216,8 @@ int \hyperlink{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-tr
 
 \-Set the multifilesink properties
 
+\-Set the update-\/frequency on progressreport
+
 \-Set the videorate properties
 
 \-Set the aspectratiocrop properties
@@ -278,12 +242,11 @@ int \hyperlink{segmenter_8h_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-tr
 
 
 
-\-References \-A\-C\-O\-N\-V, \-\_\-audio\-\_\-bag\-::aconvcaps, \-\_\-audio\-\_\-bag\-::arescaps, \-\_\-video\-\_\-bag\-::aspectratiocrop, \-\_\-params\-::audio\-\_\-props, \-\_\-transcoder\-\_\-data\-::audiobag, \-\_\-audio\-\_\-bag\-::audioconvert, \-\_\-audio\-\_\-bag\-::audioresample, \-\_\-video\-\_\-params\-::bitrate, \-\_\-audio\-\_\-params\-::bitrate, \-B\-U\-F\-S\-I\-Z\-E, \-\_\-audio\-\_\-bag\-::decqueue, \-\_\-audio\-\_\-bag\-::ffenc\-\_\-aac, \-\_\-video\-\_\-bag\-::ffmpegcolourspace, \-\_\-transcoder\-\_\-data\-::filesrc, \-\_\-video\-\_\-params\-::framerate, grab\-\_\-audioresample\-\_\-caps(), grab\-\_\-videorate\-\_\-caps(), grab\-\_\-videoscale\-\_\-caps(), \-\_\-video\-\_\-params\-::height, \-H\-L\-S\-\_\-\-N\-A\-M\-E, \-H\-L\-S\-\_\-\-V\-E\-R, \-\_\-params\-::in, \-\_\-video\-\_\-params\-::keyinterval, \-\_\-transcoder\-\_\-data\-::mpegtsmux, \-\_\-video\-\_\-bag\-::muxqueue, \-\_\-audio\-\_\-bag\-::muxqueue, \-\_\-video\-\_\-params\-::noisereduction, \-\_\-params\-::out, \-\_\-transcoder\-\_\-data\-::pipeline, \-\_\-transcoder\-\_\-data\-::sink, \-\_\-transcoder\-\_\-data\-::source, \-\_\-params\-::video\-\_\-props, \-\_\-transcoder\-\_\-data\-::videobag, \-\_\-video\-\_\-bag\-::videorate, \-\_\-video\-\_\-bag\-::videoscale, \-\_\-video\-\_\-bag\-::vratecaps, \-\_\-video\-\_\-bag\-::vscalecaps, \-\_\-video\-\_\-params\-::width, and \-\_\-video\-\_\-bag\-::x264enc.
+\-References \-A\-C\-O\-N\-V, \-Audio\-Bag\-::aconvcaps, \-Audio\-Bag\-::arescaps, \-Video\-Bag\-::aspectratiocrop, \-Params\-::audio\-\_\-props, \-Transcoder\-Data\-::audiobag, \-Audio\-Bag\-::audioconvert, \-Audio\-Bag\-::audioresample, \-Video\-Params\-::bitrate, \-Audio\-Params\-::bitrate, \-B\-U\-F\-S\-I\-Z\-E, \-Audio\-Bag\-::decqueue, \-Audio\-Bag\-::ffenc\-\_\-aac, \-Video\-Bag\-::ffmpegcolourspace, \-Transcoder\-Data\-::filesrc, \-Video\-Params\-::framerate, grab\-\_\-audioresample\-\_\-caps(), grab\-\_\-videorate\-\_\-caps(), grab\-\_\-videoscale\-\_\-caps(), \-Video\-Params\-::height, \-H\-L\-S\-\_\-\-N\-A\-M\-E, \-H\-L\-S\-\_\-\-V\-E\-R, \-Params\-::in, \-Video\-Params\-::keyinterval, \-Transcoder\-Data\-::mpegtsmux, \-Video\-Bag\-::muxqueue, \-Audio\-Bag\-::muxqueue, \-Video\-Params\-::noisereduction, \-Params\-::out, \-Transcoder\-Data\-::pipeline, \-Transcoder\-Data\-::progressreport, \-Transcoder\-Data\-::sink, \-Transcoder\-Data\-::source, \-Params\-::video\-\_\-props, \-Transcoder\-Data\-::videobag, \-Video\-Bag\-::videorate, \-Video\-Bag\-::videoscale, \-Video\-Bag\-::vratecaps, \-Video\-Bag\-::vscalecaps, \-Video\-Params\-::width, and \-Video\-Bag\-::x264enc.
 
 
 
-\-Here is the call graph for this function\-:
-\nopagebreak
+\-Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

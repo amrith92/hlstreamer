@@ -96,7 +96,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Defines</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">segmenter.h File Reference</div>  </div>
@@ -108,8 +107,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Include dependency graph for segmenter.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="segmenter_8h__incl.png" border="0" usemap="#segmenter_8h" alt=""/></div>
-<map name="segmenter_8h" id="segmenter_8h">
-</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -123,12 +120,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__video__bag.html">_video_bag</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__audio__bag.html">_audio_bag</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__transcoder__data.html">_transcoder_data</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__video__params.html">_video_params</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__audio__params.html">_audio_params</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__params.html">_params</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_video_bag.html">VideoBag</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_audio_bag.html">AudioBag</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_transcoder_data.html">TranscoderData</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_video_params.html">VideoParams</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_audio_params.html">AudioParams</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_params.html">Params</a></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a5af3cc99a04316104410c339a0b2cf00">HLS_NAME</a>&#160;&#160;&#160;&quot;hlsegmenter&quot;</td></tr>
@@ -138,21 +135,13 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a73e314ff0df8aaa7ae86304c3fb5cfb0">VRATE</a>&#160;&#160;&#160;&quot;video/x-raw-yuv, framerate=%d/1&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a5345a766eaea87e1b0b4229359f44d1b">ACONV</a>&#160;&#160;&#160;&quot;audio/x-raw-int,channels=2&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a2b4357b4592f19ec7a97142a30088d25">ARES</a>&#160;&#160;&#160;&quot;audio/x-raw-int,rate=%d,channels=2&quot;</td></tr>
-<tr><td colspan="2"><h2><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__video__bag.html">_video_bag</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a6f94543709a46b063bd7fb0817acfe0e">VideoBag</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__audio__bag.html">_audio_bag</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a91a772b808e575d8b4da9b8e9f3c8cfc">AudioBag</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__transcoder__data.html">_transcoder_data</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a3b336c486165c4597d9a9ca33733af8b">TranscoderData</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__video__params.html">_video_params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a1666894b15eabe395e38f7239af909b5">VideoParams</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__audio__params.html">_audio_params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#aec2d7f32ce7a93dcc3c613460ffb70fc">AudioParams</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__params.html">_params</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a0562404151eed323a2ff1a4422c7ec19">Params</a></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a5ff4a83331533603d092040787b6f1ae">grab_videoscale_caps</a> (char *buffer, const uint16_t width, const uint16_t height)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a2abc6ba2017a01961eaf3981bf806e89">grab_videorate_caps</a> (char *buffer, const uint8_t rate)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a07f44bea24b85b0d725d379ac5f8decb">grab_audioresample_caps</a> (char *buffer, const uint16_t rate)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a4aa0ddbb149a44f343c66205a24b7c15">validate_params</a> (const <a class="el" href="segmenter_8h.html#a0562404151eed323a2ff1a4422c7ec19">Params</a> *params)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a3179e33ff6d271287f0caed5b1a4de69">segmenter_try</a> (<a class="el" href="segmenter_8h.html#a0562404151eed323a2ff1a4422c7ec19">Params</a> *params)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a4aa0ddbb149a44f343c66205a24b7c15">validate_params</a> (const <a class="el" href="struct_params.html">Params</a> *params)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="segmenter_8h.html#a3179e33ff6d271287f0caed5b1a4de69">segmenter_try</a> (<a class="el" href="struct_params.html">Params</a> *params)</td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="a5345a766eaea87e1b0b4229359f44d1b"></a><!-- doxytag: member="segmenter.h::ACONV" ref="a5345a766eaea87e1b0b4229359f44d1b" args="" -->
@@ -256,85 +245,6 @@ Functions</h2></td></tr>
 <p>Definition at line <a class="el" href="segmenter_8h_source.html#l00015">15</a> of file <a class="el" href="segmenter_8h_source.html">segmenter.h</a>.</p>
 
 <p>Referenced by <a class="el" href="segmenter_8c_source.html#l00013">grab_videoscale_caps()</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Typedef Documentation</h2>
-<a class="anchor" id="a91a772b808e575d8b4da9b8e9f3c8cfc"></a><!-- doxytag: member="segmenter.h::AudioBag" ref="a91a772b808e575d8b4da9b8e9f3c8cfc" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__audio__bag.html">_audio_bag</a>  <a class="el" href="segmenter_8h.html#a91a772b808e575d8b4da9b8e9f3c8cfc">AudioBag</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aec2d7f32ce7a93dcc3c613460ffb70fc"></a><!-- doxytag: member="segmenter.h::AudioParams" ref="aec2d7f32ce7a93dcc3c613460ffb70fc" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__audio__params.html">_audio_params</a>  <a class="el" href="segmenter_8h.html#aec2d7f32ce7a93dcc3c613460ffb70fc">AudioParams</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0562404151eed323a2ff1a4422c7ec19"></a><!-- doxytag: member="segmenter.h::Params" ref="a0562404151eed323a2ff1a4422c7ec19" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__params.html">_params</a>  <a class="el" href="segmenter_8h.html#a0562404151eed323a2ff1a4422c7ec19">Params</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3b336c486165c4597d9a9ca33733af8b"></a><!-- doxytag: member="segmenter.h::TranscoderData" ref="a3b336c486165c4597d9a9ca33733af8b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__transcoder__data.html">_transcoder_data</a>  <a class="el" href="segmenter_8h.html#a3b336c486165c4597d9a9ca33733af8b">TranscoderData</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a6f94543709a46b063bd7fb0817acfe0e"></a><!-- doxytag: member="segmenter.h::VideoBag" ref="a6f94543709a46b063bd7fb0817acfe0e" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__video__bag.html">_video_bag</a>  <a class="el" href="segmenter_8h.html#a6f94543709a46b063bd7fb0817acfe0e">VideoBag</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1666894b15eabe395e38f7239af909b5"></a><!-- doxytag: member="segmenter.h::VideoParams" ref="a1666894b15eabe395e38f7239af909b5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__video__params.html">_video_params</a>  <a class="el" href="segmenter_8h.html#a1666894b15eabe395e38f7239af909b5">VideoParams</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
 
 </div>
 </div>
@@ -454,7 +364,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int <a class="el" href="segmenter_8h.html#a3179e33ff6d271287f0caed5b1a4de69">segmenter_try</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="segmenter_8h.html#a0562404151eed323a2ff1a4422c7ec19">Params</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_params.html">Params</a> *&#160;</td>
           <td class="paramname"><em>params</em></td><td>)</td>
           <td></td>
         </tr>
@@ -468,6 +378,7 @@ Functions</h2></td></tr>
 <p>Create empty pipeline</p>
 <p>Set properties Set the location to transcode &amp; segment</p>
 <p>Set the multifilesink properties</p>
+<p>Set the update-frequency on progressreport</p>
 <p>Set the videorate properties</p>
 <p>Set the aspectratiocrop properties</p>
 <p>Set x264enc properties</p>
@@ -481,7 +392,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="segmenter_8c_source.html#l00045">45</a> of file <a class="el" href="segmenter_8c_source.html">segmenter.c</a>.</p>
 
-<p>References <a class="el" href="segmenter_8h_source.html#l00017">ACONV</a>, <a class="el" href="segmenter_8h_source.html#l00044">_audio_bag::aconvcaps</a>, <a class="el" href="segmenter_8h_source.html#l00046">_audio_bag::arescaps</a>, <a class="el" href="segmenter_8h_source.html#l00026">_video_bag::aspectratiocrop</a>, <a class="el" href="segmenter_8h_source.html#l00084">_params::audio_props</a>, <a class="el" href="segmenter_8h_source.html#l00062">_transcoder_data::audiobag</a>, <a class="el" href="segmenter_8h_source.html#l00043">_audio_bag::audioconvert</a>, <a class="el" href="segmenter_8h_source.html#l00045">_audio_bag::audioresample</a>, <a class="el" href="segmenter_8h_source.html#l00070">_video_params::bitrate</a>, <a class="el" href="segmenter_8h_source.html#l00076">_audio_params::bitrate</a>, <a class="el" href="segmenter_8c_source.html#l00011">BUFSIZE</a>, <a class="el" href="segmenter_8h_source.html#l00042">_audio_bag::decqueue</a>, <a class="el" href="segmenter_8h_source.html#l00047">_audio_bag::ffenc_aac</a>, <a class="el" href="segmenter_8h_source.html#l00021">_video_bag::ffmpegcolourspace</a>, <a class="el" href="segmenter_8h_source.html#l00058">_transcoder_data::filesrc</a>, <a class="el" href="segmenter_8h_source.html#l00071">_video_params::framerate</a>, <a class="el" href="segmenter_8c_source.html#l00031">grab_audioresample_caps()</a>, <a class="el" href="segmenter_8c_source.html#l00022">grab_videorate_caps()</a>, <a class="el" href="segmenter_8c_source.html#l00013">grab_videoscale_caps()</a>, <a class="el" href="segmenter_8h_source.html#l00068">_video_params::height</a>, <a class="el" href="segmenter_8h_source.html#l00011">HLS_NAME</a>, <a class="el" href="segmenter_8h_source.html#l00012">HLS_VER</a>, <a class="el" href="segmenter_8h_source.html#l00081">_params::in</a>, <a class="el" href="segmenter_8h_source.html#l00069">_video_params::keyinterval</a>, <a class="el" href="segmenter_8h_source.html#l00060">_transcoder_data::mpegtsmux</a>, <a class="el" href="segmenter_8h_source.html#l00028">_video_bag::muxqueue</a>, <a class="el" href="segmenter_8h_source.html#l00048">_audio_bag::muxqueue</a>, <a class="el" href="segmenter_8h_source.html#l00072">_video_params::noisereduction</a>, <a class="el" href="segmenter_8h_source.html#l00082">_params::out</a>, <a class="el" href="segmenter_8h_source.html#l00057">_transcoder_data::pipeline</a>, <a class="el" href="segmenter_8h_source.html#l00063">_transcoder_data::sink</a>, <a class="el" href="segmenter_8h_source.html#l00059">_transcoder_data::source</a>, <a class="el" href="segmenter_8h_source.html#l00083">_params::video_props</a>, <a class="el" href="segmenter_8h_source.html#l00061">_transcoder_data::videobag</a>, <a class="el" href="segmenter_8h_source.html#l00024">_video_bag::videorate</a>, <a class="el" href="segmenter_8h_source.html#l00022">_video_bag::videoscale</a>, <a class="el" href="segmenter_8h_source.html#l00025">_video_bag::vratecaps</a>, <a class="el" href="segmenter_8h_source.html#l00023">_video_bag::vscalecaps</a>, <a class="el" href="segmenter_8h_source.html#l00067">_video_params::width</a>, and <a class="el" href="segmenter_8h_source.html#l00027">_video_bag::x264enc</a>.</p>
+<p>References <a class="el" href="segmenter_8h_source.html#l00017">ACONV</a>, <a class="el" href="segmenter_8h_source.html#l00044">AudioBag::aconvcaps</a>, <a class="el" href="segmenter_8h_source.html#l00046">AudioBag::arescaps</a>, <a class="el" href="segmenter_8h_source.html#l00026">VideoBag::aspectratiocrop</a>, <a class="el" href="segmenter_8h_source.html#l00085">Params::audio_props</a>, <a class="el" href="segmenter_8h_source.html#l00063">TranscoderData::audiobag</a>, <a class="el" href="segmenter_8h_source.html#l00043">AudioBag::audioconvert</a>, <a class="el" href="segmenter_8h_source.html#l00045">AudioBag::audioresample</a>, <a class="el" href="segmenter_8h_source.html#l00071">VideoParams::bitrate</a>, <a class="el" href="segmenter_8h_source.html#l00077">AudioParams::bitrate</a>, <a class="el" href="segmenter_8c_source.html#l00011">BUFSIZE</a>, <a class="el" href="segmenter_8h_source.html#l00042">AudioBag::decqueue</a>, <a class="el" href="segmenter_8h_source.html#l00047">AudioBag::ffenc_aac</a>, <a class="el" href="segmenter_8h_source.html#l00021">VideoBag::ffmpegcolourspace</a>, <a class="el" href="segmenter_8h_source.html#l00058">TranscoderData::filesrc</a>, <a class="el" href="segmenter_8h_source.html#l00072">VideoParams::framerate</a>, <a class="el" href="segmenter_8c_source.html#l00031">grab_audioresample_caps()</a>, <a class="el" href="segmenter_8c_source.html#l00022">grab_videorate_caps()</a>, <a class="el" href="segmenter_8c_source.html#l00013">grab_videoscale_caps()</a>, <a class="el" href="segmenter_8h_source.html#l00069">VideoParams::height</a>, <a class="el" href="segmenter_8h_source.html#l00011">HLS_NAME</a>, <a class="el" href="segmenter_8h_source.html#l00012">HLS_VER</a>, <a class="el" href="segmenter_8h_source.html#l00082">Params::in</a>, <a class="el" href="segmenter_8h_source.html#l00070">VideoParams::keyinterval</a>, <a class="el" href="segmenter_8h_source.html#l00060">TranscoderData::mpegtsmux</a>, <a class="el" href="segmenter_8h_source.html#l00028">VideoBag::muxqueue</a>, <a class="el" href="segmenter_8h_source.html#l00048">AudioBag::muxqueue</a>, <a class="el" href="segmenter_8h_source.html#l00073">VideoParams::noisereduction</a>, <a class="el" href="segmenter_8h_source.html#l00083">Params::out</a>, <a class="el" href="segmenter_8h_source.html#l00057">TranscoderData::pipeline</a>, <a class="el" href="segmenter_8h_source.html#l00061">TranscoderData::progressreport</a>, <a class="el" href="segmenter_8h_source.html#l00064">TranscoderData::sink</a>, <a class="el" href="segmenter_8h_source.html#l00059">TranscoderData::source</a>, <a class="el" href="segmenter_8h_source.html#l00084">Params::video_props</a>, <a class="el" href="segmenter_8h_source.html#l00062">TranscoderData::videobag</a>, <a class="el" href="segmenter_8h_source.html#l00024">VideoBag::videorate</a>, <a class="el" href="segmenter_8h_source.html#l00022">VideoBag::videoscale</a>, <a class="el" href="segmenter_8h_source.html#l00025">VideoBag::vratecaps</a>, <a class="el" href="segmenter_8h_source.html#l00023">VideoBag::vscalecaps</a>, <a class="el" href="segmenter_8h_source.html#l00068">VideoParams::width</a>, and <a class="el" href="segmenter_8h_source.html#l00027">VideoBag::x264enc</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -501,7 +412,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">const int <a class="el" href="segmenter_8h.html#a4aa0ddbb149a44f343c66205a24b7c15">validate_params</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="segmenter_8h.html#a0562404151eed323a2ff1a4422c7ec19">Params</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_params.html">Params</a> *&#160;</td>
           <td class="paramname"><em>params</em></td><td>)</td>
           <td></td>
         </tr>
@@ -521,7 +432,7 @@ Here is the call graph for this function:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -534,7 +445,7 @@ Here is the call graph for this function:</div>
     <ul>
       <li class="navelem"><a class="el" href="segmenter_8h.html">segmenter.h</a>      </li>
 
-    <li class="footer">Generated on Wed Jan 23 2013 23:08:34 for libsegmenter by
+    <li class="footer">Generated on Thu May 23 2013 15:19:27 for libsegmenter by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

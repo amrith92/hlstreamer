@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pipeline',['pipeline',['../struct__transcoder__data.html#a310ff227733a8a01cb68a9af5e132751',1,'_transcoder_data']]]
+  ['pipeline',['pipeline',['../struct_transcoder_data.html#a310ff227733a8a01cb68a9af5e132751',1,'TranscoderData']]],
+  ['progressreport',['progressreport',['../struct_transcoder_data.html#a1c5791a8cd24df307c8937e96e165d60',1,'TranscoderData']]]
 ];

@@ -24,6 +24,7 @@ int main()
 	case 201:
 	case 202:
 	case 203:
+	case 204:
 		fprintf(stderr, "Something went wrong. Unable to complete segmentation!\n");
 	break;
 

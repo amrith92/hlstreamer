@@ -67,6 +67,7 @@ int segmenter_try(Params *params)
 	data.filesrc = gst_element_factory_make("filesrc", "filesrc");
 	data.source = gst_element_factory_make("decodebin2", "source");
 	data.mpegtsmux = gst_element_factory_make("mpegtsmux", "muxer");
+	data.progressreport = gst_element_factory_make("progressreport", "[" HLS_NAME " " HLS_VER "]");
 	data.videobag.ffmpegcolourspace = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolourspace");
 	data.videobag.videoscale = gst_element_factory_make("videoscale", "videoscale");
 	grab_videoscale_caps(buffer, params->video_props.width, params->video_props.height);
@@ -93,7 +94,7 @@ int segmenter_try(Params *params)
 	data.pipeline = gst_pipeline_new("hlsegmenter-pipeline");
 
 	if (!data.pipeline || !data.filesrc || !data.source || !data.videobag.ffmpegcolourspace || !data.videobag.videoscale || !data.videobag.vscalecaps
-		|| !data.mpegtsmux || !data.sink || !data.videobag.videorate || !data.videobag.vratecaps || !data.videobag.aspectratiocrop
+		|| !data.mpegtsmux || !data.progressreport || !data.sink || !data.videobag.videorate || !data.videobag.vratecaps || !data.videobag.aspectratiocrop
 		|| !data.videobag.x264enc || !data.videobag.muxqueue || !data.audiobag.decqueue || !data.audiobag.audioconvert || !data.audiobag.aconvcaps
 		|| !data.audiobag.audioresample || !data.audiobag.arescaps || !data.audiobag.ffenc_aac || !data.audiobag.muxqueue) {
 		g_printerr("[%s %s] Not all elements could be created!\n", HLS_NAME, HLS_VER);
@@ -108,6 +109,9 @@ int segmenter_try(Params *params)
 	g_object_set(G_OBJECT(data.sink), "post-messages", TRUE, NULL);
 	g_object_set(G_OBJECT(data.sink), "next-file", 2, NULL);
 	g_object_set(G_OBJECT(data.sink), "location", params->out, NULL);
+
+	/// Set the update-frequency on progressreport
+	g_object_set(G_OBJECT(data.progressreport), "update-freq", 5, NULL);
 
 	/// Set the videorate properties
 	g_object_set(G_OBJECT(data.videobag.videorate), "max-rate", params->video_props.framerate, NULL);
@@ -130,7 +134,7 @@ int segmenter_try(Params *params)
 	g_object_set(G_OBJECT(data.audiobag.ffenc_aac), "bitrate", 40960, NULL);
 
 	/// Build the pipeline.
-	gst_bin_add_many(GST_BIN(data.pipeline), data.filesrc, data.source, data.videobag.ffmpegcolourspace, data.videobag.videoscale, data.videobag.videorate, data.videobag.aspectratiocrop, data.videobag.x264enc, data.videobag.muxqueue, data.audiobag.decqueue, data.audiobag.audioconvert, data.audiobag.audioresample, data.audiobag.ffenc_aac, data.audiobag.muxqueue, data.mpegtsmux, data.sink, NULL);
+	gst_bin_add_many(GST_BIN(data.pipeline), data.filesrc, data.source, data.videobag.ffmpegcolourspace, data.videobag.videoscale, data.videobag.videorate, data.videobag.aspectratiocrop, data.videobag.x264enc, data.videobag.muxqueue, data.audiobag.decqueue, data.audiobag.audioconvert, data.audiobag.audioresample, data.audiobag.ffenc_aac, data.audiobag.muxqueue, data.mpegtsmux, data.progressreport, data.sink, NULL);
 
 	if (!gst_element_link(data.filesrc, data.source)) {
 		g_printerr("[%s %s] File-source could not be linked to demuxer!\n", HLS_NAME, HLS_VER);
@@ -158,9 +162,14 @@ int segmenter_try(Params *params)
 	gst_caps_unref(data.audiobag.aconvcaps);
 	gst_caps_unref(data.audiobag.arescaps);
 
-	if (!gst_element_link(data.mpegtsmux, data.sink)) {
+	if (!gst_element_link(data.mpegtsmux, data.progressreport)) {
 		g_printerr("[%s %s] Muxer could not be linked!\n", HLS_NAME, HLS_VER);
 		return 203;
+	}
+
+	if (!gst_element_link(data.progressreport, data.sink)) {
+		g_printerr("[%s %s] Progress Report could not be linked to sink!\n", HLS_NAME, HLS_VER);
+		return 204;
 	}
 
 	/// Connect to the pad-added signal

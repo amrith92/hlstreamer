@@ -58,6 +58,7 @@ typedef struct _transcoder_data {
 	GstElement *filesrc;
 	GstElement *source;
 	GstElement *mpegtsmux;
+	GstElement *progressreport;
 	VideoBag videobag;
 	AudioBag audiobag;
 	GstElement *sink;

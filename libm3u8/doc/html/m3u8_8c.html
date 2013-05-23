@@ -103,6 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &quot;<a class="el" href="m3u8_8h_source.html">m3u8.h</a>&quot;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;inttypes.h&gt;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for m3u8.c:</div>
 <div class="dyncontent">
@@ -115,6 +116,7 @@ Include dependency graph for m3u8.c:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#aacbb9e1f38be71e22df1584a37c56693">__STDC_FORMAT_MACROS</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a644ab44d9b947265c4a2d1ce9bba9659">PLAYLIST_TYPES_COUNT</a>&#160;&#160;&#160;5</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -131,12 +133,41 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a64839127c5f2cef83b382171bb9e0de8">record_list_destroy</a> (<a class="el" href="struct_playlist_records.html">PlaylistRecords</a> **head)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="m3u8_8h.html#a10b575ed914a0da1857ff058a326b7d2">XPlaylistType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#ad82dfd899a2be02f439d1dc63cb677f7">playlist_type_from</a> (const char *str)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a9b3a379c139d5dfcdab715dd455c5d13">playlist_type_str</a> (const <a class="el" href="m3u8_8h.html#a10b575ed914a0da1857ff058a326b7d2">XPlaylistType</a> type)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a7d1458f2342cd37e4c0a8cf8b2a77749">playlist_records_init</a> (<a class="el" href="struct_playlist.html">Playlist</a> *playlist)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a63b937bd32af0a515b8b26bb8783929f">playlist_records_add</a> (<a class="el" href="struct_playlist.html">Playlist</a> *playlist, const float length, const char *name, const char *path)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a30126ace1bcc0ca542b70685d0b6b3bd">playlist_records_destroy</a> (<a class="el" href="struct_playlist.html">Playlist</a> *playlist)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#af31c5959e8dc369ef7b1e79ceab954ca">playlist_write</a> (<a class="el" href="struct_playlist.html">Playlist</a> *playlist, const char *filename)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a82bc196185ae9937a95c760de8b4c354">playlist_write_to</a> (<a class="el" href="struct_playlist.html">Playlist</a> *playlist, FILE *out)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a0a9eb3550027ce9453dee45efa4006b9">playlist_load</a> (<a class="el" href="struct_playlist.html">Playlist</a> *playlist, const char *filename)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a1673835c7b0f54feaca5f1bb9af95a64">playlist_load_from</a> (<a class="el" href="struct_playlist.html">Playlist</a> *playlist, FILE *in)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a02589807d46b4ce144a3b8a170aebe8f">index_stream_record_set_program_id</a> (<a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **cur, int8_t program_id)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#ab43eaeaa030017f693f5c217494614ce">index_stream_record_set_bandwidth</a> (<a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **cur, uint64_t bandwidth)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#aa160506236d11eeb8793ea94c19e4f38">index_stream_record_set_codecs</a> (<a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **cur, const char *codecs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a2fb8b65c1a3624c4f06067c65e155115">index_stream_record_set_path</a> (<a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **cur, const char *path)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a5155a7e41c2701234d569692dc9550bd">index_stream_list_init</a> (<a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *list)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a5141803bda43d97cb626f1dbb986f289">index_stream_list_add</a> (<a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *list, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a0c4198767d6061cfb7db87fdc18d0dac">index_stream_list_destroy</a> (<a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *list)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a2745b2dfcf1d760328b603592755d489">index_stream_list_write</a> (<a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *list, const char *filename)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a8270d624e46ea6cb24cdbed3a31f6165">index_stream_list_write_to</a> (<a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *list, FILE *out)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#a0dee2689abdeccac617aa9c405df42dc">index_stream_list_load</a> (<a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *list, const char *filename)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="m3u8_8c.html#ab3a0608b65c65f4b91cb9c2b99250cec">index_stream_list_load_from</a> (<a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *list, FILE *in)</td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
+<a class="anchor" id="aacbb9e1f38be71e22df1584a37c56693"></a><!-- doxytag: member="m3u8.c::__STDC_FORMAT_MACROS" ref="aacbb9e1f38be71e22df1584a37c56693" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define <a class="el" href="m3u8_8c.html#aacbb9e1f38be71e22df1584a37c56693">__STDC_FORMAT_MACROS</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00005">5</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a644ab44d9b947265c4a2d1ce9bba9659"></a><!-- doxytag: member="m3u8.c::PLAYLIST_TYPES_COUNT" ref="a644ab44d9b947265c4a2d1ce9bba9659" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -149,13 +180,391 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <p><a class="el" href="struct_playlist.html">Playlist</a> types number </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00008">8</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00011">11</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00245">playlist_type_from()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00248">playlist_type_from()</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a5141803bda43d97cb626f1dbb986f289"></a><!-- doxytag: member="m3u8.c::index_stream_list_add" ref="a5141803bda43d97cb626f1dbb986f289" args="(IndexStreamList *list, int8_t program_id, uint64_t bandwidth, const char *codecs, const char *path)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a5141803bda43d97cb626f1dbb986f289">index_stream_list_add</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>program_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>bandwidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>codecs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Add new list record </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00502">502</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00166">IndexStreamRecord::bandwidth</a>, <a class="el" href="m3u8_8h_source.html#l00167">IndexStreamRecord::codecs</a>, <a class="el" href="m3u8_8h_source.html#l00199">IndexStreamList::cur</a>, <a class="el" href="m3u8_8h_source.html#l00198">IndexStreamList::head</a>, <a class="el" href="m3u8_8h_source.html#l00170">IndexStreamRecord::next</a>, <a class="el" href="m3u8_8h_source.html#l00168">IndexStreamRecord::path</a>, <a class="el" href="m3u8_8h_source.html#l00171">IndexStreamRecord::prev</a>, and <a class="el" href="m3u8_8h_source.html#l00165">IndexStreamRecord::program_id</a>.</p>
+
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00640">index_stream_list_load_from()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0c4198767d6061cfb7db87fdc18d0dac"></a><!-- doxytag: member="m3u8.c::index_stream_list_destroy" ref="a0c4198767d6061cfb7db87fdc18d0dac" args="(IndexStreamList *list)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a0c4198767d6061cfb7db87fdc18d0dac">index_stream_list_destroy</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Destroy index stream list </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00560">560</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00167">IndexStreamRecord::codecs</a>, <a class="el" href="m3u8_8h_source.html#l00198">IndexStreamList::head</a>, <a class="el" href="m3u8_8h_source.html#l00170">IndexStreamRecord::next</a>, and <a class="el" href="m3u8_8h_source.html#l00168">IndexStreamRecord::path</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5155a7e41c2701234d569692dc9550bd"></a><!-- doxytag: member="m3u8.c::index_stream_list_init" ref="a5155a7e41c2701234d569692dc9550bd" args="(IndexStreamList *list)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a5155a7e41c2701234d569692dc9550bd">index_stream_list_init</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Initializes new index stream stream </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00483">483</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00166">IndexStreamRecord::bandwidth</a>, <a class="el" href="m3u8_8h_source.html#l00167">IndexStreamRecord::codecs</a>, <a class="el" href="m3u8_8h_source.html#l00199">IndexStreamList::cur</a>, <a class="el" href="m3u8_8h_source.html#l00198">IndexStreamList::head</a>, <a class="el" href="m3u8_8h_source.html#l00170">IndexStreamRecord::next</a>, <a class="el" href="m3u8_8h_source.html#l00168">IndexStreamRecord::path</a>, <a class="el" href="m3u8_8h_source.html#l00171">IndexStreamRecord::prev</a>, and <a class="el" href="m3u8_8h_source.html#l00165">IndexStreamRecord::program_id</a>.</p>
+
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00640">index_stream_list_load_from()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0dee2689abdeccac617aa9c405df42dc"></a><!-- doxytag: member="m3u8.c::index_stream_list_load" ref="a0dee2689abdeccac617aa9c405df42dc" args="(IndexStreamList *list, const char *filename)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a0dee2689abdeccac617aa9c405df42dc">index_stream_list_load</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Load index stream list from file </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00623">623</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8c_source.html#l00640">index_stream_list_load_from()</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="m3u8_8c_a0dee2689abdeccac617aa9c405df42dc_cgraph.png" border="0" usemap="#m3u8_8c_a0dee2689abdeccac617aa9c405df42dc_cgraph" alt=""/></div>
+<map name="m3u8_8c_a0dee2689abdeccac617aa9c405df42dc_cgraph" id="m3u8_8c_a0dee2689abdeccac617aa9c405df42dc_cgraph">
+<area shape="rect" id="node3" href="m3u8_8c.html#ab3a0608b65c65f4b91cb9c2b99250cec" title="index_stream_list_load_from" alt="" coords="209,32,396,61"/><area shape="rect" id="node5" href="m3u8_8c.html#a5155a7e41c2701234d569692dc9550bd" title="index_stream_list_init" alt="" coords="448,5,595,35"/><area shape="rect" id="node7" href="m3u8_8c.html#a5141803bda43d97cb626f1dbb986f289" title="index_stream_list_add" alt="" coords="445,59,597,88"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3a0608b65c65f4b91cb9c2b99250cec"></a><!-- doxytag: member="m3u8.c::index_stream_list_load_from" ref="ab3a0608b65c65f4b91cb9c2b99250cec" args="(IndexStreamList *list, FILE *in)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#ab3a0608b65c65f4b91cb9c2b99250cec">index_stream_list_load_from</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Load index stream list from stream </p>
+<p>Each #EXT-X-STREAM-INF record spans two lines. Read the first line which may have the BANDWIDTH, CODECS, PROGRAM-ID attributes &amp; parse them. The second line ALWAYS holds the PATH attribute.</p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00640">640</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00198">IndexStreamList::head</a>, <a class="el" href="m3u8_8c_source.html#l00502">index_stream_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00483">index_stream_list_init()</a>.</p>
+
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00623">index_stream_list_load()</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="m3u8_8c_ab3a0608b65c65f4b91cb9c2b99250cec_cgraph.png" border="0" usemap="#m3u8_8c_ab3a0608b65c65f4b91cb9c2b99250cec_cgraph" alt=""/></div>
+<map name="m3u8_8c_ab3a0608b65c65f4b91cb9c2b99250cec_cgraph" id="m3u8_8c_ab3a0608b65c65f4b91cb9c2b99250cec_cgraph">
+<area shape="rect" id="node3" href="m3u8_8c.html#a5141803bda43d97cb626f1dbb986f289" title="index_stream_list_add" alt="" coords="243,5,395,35"/><area shape="rect" id="node5" href="m3u8_8c.html#a5155a7e41c2701234d569692dc9550bd" title="index_stream_list_init" alt="" coords="245,59,392,88"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2745b2dfcf1d760328b603592755d489"></a><!-- doxytag: member="m3u8.c::index_stream_list_write" ref="a2745b2dfcf1d760328b603592755d489" args="(IndexStreamList *list, const char *filename)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a2745b2dfcf1d760328b603592755d489">index_stream_list_write</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Write index stream list to file </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00580">580</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8c_source.html#l00601">index_stream_list_write_to()</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="m3u8_8c_a2745b2dfcf1d760328b603592755d489_cgraph.png" border="0" usemap="#m3u8_8c_a2745b2dfcf1d760328b603592755d489_cgraph" alt=""/></div>
+<map name="m3u8_8c_a2745b2dfcf1d760328b603592755d489_cgraph" id="m3u8_8c_a2745b2dfcf1d760328b603592755d489_cgraph">
+<area shape="rect" id="node3" href="m3u8_8c.html#a8270d624e46ea6cb24cdbed3a31f6165" title="index_stream_list_write_to" alt="" coords="215,5,391,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a8270d624e46ea6cb24cdbed3a31f6165"></a><!-- doxytag: member="m3u8.c::index_stream_list_write_to" ref="a8270d624e46ea6cb24cdbed3a31f6165" args="(IndexStreamList *list, FILE *out)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a8270d624e46ea6cb24cdbed3a31f6165">index_stream_list_write_to</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_list.html">IndexStreamList</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Write index stream list to stream </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00601">601</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00166">IndexStreamRecord::bandwidth</a>, <a class="el" href="m3u8_8h_source.html#l00167">IndexStreamRecord::codecs</a>, <a class="el" href="m3u8_8h_source.html#l00198">IndexStreamList::head</a>, <a class="el" href="m3u8_8h_source.html#l00170">IndexStreamRecord::next</a>, <a class="el" href="m3u8_8h_source.html#l00168">IndexStreamRecord::path</a>, and <a class="el" href="m3u8_8h_source.html#l00165">IndexStreamRecord::program_id</a>.</p>
+
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00580">index_stream_list_write()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab43eaeaa030017f693f5c217494614ce"></a><!-- doxytag: member="m3u8.c::index_stream_record_set_bandwidth" ref="ab43eaeaa030017f693f5c217494614ce" args="(IndexStreamRecord **cur, uint64_t bandwidth)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#ab43eaeaa030017f693f5c217494614ce">index_stream_record_set_bandwidth</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **&#160;</td>
+          <td class="paramname"><em>cur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>bandwidth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set bandwidth </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00439">439</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa160506236d11eeb8793ea94c19e4f38"></a><!-- doxytag: member="m3u8.c::index_stream_record_set_codecs" ref="aa160506236d11eeb8793ea94c19e4f38" args="(IndexStreamRecord **cur, const char *codecs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#aa160506236d11eeb8793ea94c19e4f38">index_stream_record_set_codecs</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **&#160;</td>
+          <td class="paramname"><em>cur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>codecs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set codecs </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00449">449</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2fb8b65c1a3624c4f06067c65e155115"></a><!-- doxytag: member="m3u8.c::index_stream_record_set_path" ref="a2fb8b65c1a3624c4f06067c65e155115" args="(IndexStreamRecord **cur, const char *path)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a2fb8b65c1a3624c4f06067c65e155115">index_stream_record_set_path</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **&#160;</td>
+          <td class="paramname"><em>cur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set path </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00466">466</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a02589807d46b4ce144a3b8a170aebe8f"></a><!-- doxytag: member="m3u8.c::index_stream_record_set_program_id" ref="a02589807d46b4ce144a3b8a170aebe8f" args="(IndexStreamRecord **cur, int8_t program_id)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a02589807d46b4ce144a3b8a170aebe8f">index_stream_record_set_program_id</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_index_stream_record.html">IndexStreamRecord</a> **&#160;</td>
+          <td class="paramname"><em>cur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>program_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Set program id </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00429">429</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aeb71a12e429e0b95ec7062b7e7d0db3f"></a><!-- doxytag: member="m3u8.c::inf_destroy" ref="aeb71a12e429e0b95ec7062b7e7d0db3f" args="(InfRecord **record)" -->
 <div class="memitem">
 <div class="memproto">
@@ -172,9 +581,9 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <p>Safely destroy an <a class="el" href="struct_inf_record.html">InfRecord</a> </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00092">92</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00095">95</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00228">record_list_destroy()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00231">record_list_destroy()</a>.</p>
 
 </div>
 </div>
@@ -194,11 +603,11 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <p>Plain initialization of <a class="el" href="struct_inf_record.html">InfRecord</a> </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00021">21</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00024">24</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
 <p>References <a class="el" href="m3u8_8h_source.html#l00024">InfRecord::name</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00120">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00152">record_list_add_more()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00123">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00155">record_list_add_more()</a>.</p>
 
 </div>
 </div>
@@ -228,9 +637,9 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <p>Sets the length of the media-segment this record defines </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00035">35</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00038">38</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00120">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00152">record_list_add_more()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00123">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00155">record_list_add_more()</a>.</p>
 
 </div>
 </div>
@@ -260,9 +669,9 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <p>Sets the name of the media segment </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00045">45</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00048">48</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00120">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00152">record_list_add_more()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00123">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00155">record_list_add_more()</a>.</p>
 
 </div>
 </div>
@@ -292,9 +701,9 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <p>Sets the path of the media-segment </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00071">71</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00074">74</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00120">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00152">record_list_add_more()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00123">record_list_add()</a>, and <a class="el" href="m3u8_8c_source.html#l00155">record_list_add_more()</a>.</p>
 
 </div>
 </div>
@@ -324,9 +733,9 @@ Functions</h2></td></tr>
 <div class="memdoc">
 <p>Read playlist from file Parse-Codes: 7 - START tag not found/incorrectly placed2 [#EXTM3U] </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00310">310</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00336">336</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8c_source.html#l00332">playlist_load_from()</a>.</p>
+<p>References <a class="el" href="m3u8_8c_source.html#l00358">playlist_load_from()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -365,11 +774,11 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Read playlist from provided location </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00332">332</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00358">358</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8h_source.html#l00121">Playlist::cur</a>, <a class="el" href="m3u8_8h_source.html#l00120">Playlist::head</a>, <a class="el" href="m3u8_8c_source.html#l00245">playlist_type_from()</a>, <a class="el" href="m3u8_8c_source.html#l00152">record_list_add_more()</a>, <a class="el" href="m3u8_8c_source.html#l00106">record_list_init()</a>, <a class="el" href="m3u8_8h_source.html#l00118">Playlist::x_media_sequence</a>, <a class="el" href="m3u8_8h_source.html#l00116">Playlist::x_target_duration</a>, <a class="el" href="m3u8_8h_source.html#l00115">Playlist::x_type</a>, and <a class="el" href="m3u8_8h_source.html#l00117">Playlist::x_version</a>.</p>
+<p>References <a class="el" href="m3u8_8h_source.html#l00121">Playlist::cur</a>, <a class="el" href="m3u8_8h_source.html#l00120">Playlist::head</a>, <a class="el" href="m3u8_8c_source.html#l00248">playlist_type_from()</a>, <a class="el" href="m3u8_8c_source.html#l00155">record_list_add_more()</a>, <a class="el" href="m3u8_8c_source.html#l00109">record_list_init()</a>, <a class="el" href="m3u8_8h_source.html#l00118">Playlist::x_media_sequence</a>, <a class="el" href="m3u8_8h_source.html#l00116">Playlist::x_target_duration</a>, <a class="el" href="m3u8_8h_source.html#l00115">Playlist::x_type</a>, and <a class="el" href="m3u8_8h_source.html#l00117">Playlist::x_version</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00310">playlist_load()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00336">playlist_load()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -377,6 +786,121 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64_cgraph.png" border="0" usemap="#m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64_cgraph" alt=""/></div>
 <map name="m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64_cgraph" id="m3u8_8c_a1673835c7b0f54feaca5f1bb9af95a64_cgraph">
 <area shape="rect" id="node3" href="m3u8_8c.html#ad82dfd899a2be02f439d1dc63cb677f7" title="playlist_type_from" alt="" coords="191,32,319,61"/><area shape="rect" id="node5" href="m3u8_8c.html#ade36ba9a6101acd525abcdd97ae8a165" title="record_list_add_more" alt="" coords="181,85,328,115"/><area shape="rect" id="node15" href="m3u8_8c.html#a8365068dcdfc8ef9c90fddefe777b656" title="record_list_init" alt="" coords="201,139,308,168"/><area shape="rect" id="node7" href="m3u8_8c.html#a3ebff130c4e434fb4bb45838055bc45f" title="inf_init" alt="" coords="399,5,457,35"/><area shape="rect" id="node9" href="m3u8_8c.html#ae7c918d2e6f16e9c2f250d878e8e93f1" title="inf_set_length" alt="" coords="377,59,479,88"/><area shape="rect" id="node11" href="m3u8_8c.html#a7b96574bccb40cfab055572612c98a9d" title="inf_set_name" alt="" coords="379,112,477,141"/><area shape="rect" id="node13" href="m3u8_8c.html#a9d5dafaa7a941b6137a516b916691737" title="inf_set_path" alt="" coords="381,165,475,195"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a63b937bd32af0a515b8b26bb8783929f"></a><!-- doxytag: member="m3u8.c::playlist_records_add" ref="a63b937bd32af0a515b8b26bb8783929f" args="(Playlist *playlist, const float length, const char *name, const char *path)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a63b937bd32af0a515b8b26bb8783929f">playlist_records_add</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_playlist.html">Playlist</a> *&#160;</td>
+          <td class="paramname"><em>playlist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Easier access to <a class="el" href="struct_playlist_records.html">PlaylistRecords</a> add more </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00280">280</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00121">Playlist::cur</a>, and <a class="el" href="m3u8_8c_source.html#l00155">record_list_add_more()</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="m3u8_8c_a63b937bd32af0a515b8b26bb8783929f_cgraph.png" border="0" usemap="#m3u8_8c_a63b937bd32af0a515b8b26bb8783929f_cgraph" alt=""/></div>
+<map name="m3u8_8c_a63b937bd32af0a515b8b26bb8783929f_cgraph" id="m3u8_8c_a63b937bd32af0a515b8b26bb8783929f_cgraph">
+<area shape="rect" id="node3" href="m3u8_8c.html#ade36ba9a6101acd525abcdd97ae8a165" title="record_list_add_more" alt="" coords="195,85,341,115"/><area shape="rect" id="node5" href="m3u8_8c.html#a3ebff130c4e434fb4bb45838055bc45f" title="inf_init" alt="" coords="412,5,471,35"/><area shape="rect" id="node7" href="m3u8_8c.html#ae7c918d2e6f16e9c2f250d878e8e93f1" title="inf_set_length" alt="" coords="391,59,492,88"/><area shape="rect" id="node9" href="m3u8_8c.html#a7b96574bccb40cfab055572612c98a9d" title="inf_set_name" alt="" coords="392,112,491,141"/><area shape="rect" id="node11" href="m3u8_8c.html#a9d5dafaa7a941b6137a516b916691737" title="inf_set_path" alt="" coords="395,165,488,195"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a30126ace1bcc0ca542b70685d0b6b3bd"></a><!-- doxytag: member="m3u8.c::playlist_records_destroy" ref="a30126ace1bcc0ca542b70685d0b6b3bd" args="(Playlist *playlist)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a30126ace1bcc0ca542b70685d0b6b3bd">playlist_records_destroy</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_playlist.html">Playlist</a> *&#160;</td>
+          <td class="paramname"><em>playlist</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Easier access to <a class="el" href="struct_playlist_records.html">PlaylistRecords</a> destroy </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00287">287</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00121">Playlist::cur</a>, <a class="el" href="m3u8_8h_source.html#l00120">Playlist::head</a>, and <a class="el" href="m3u8_8c_source.html#l00231">record_list_destroy()</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="m3u8_8c_a30126ace1bcc0ca542b70685d0b6b3bd_cgraph.png" border="0" usemap="#m3u8_8c_a30126ace1bcc0ca542b70685d0b6b3bd_cgraph" alt=""/></div>
+<map name="m3u8_8c_a30126ace1bcc0ca542b70685d0b6b3bd_cgraph" id="m3u8_8c_a30126ace1bcc0ca542b70685d0b6b3bd_cgraph">
+<area shape="rect" id="node3" href="m3u8_8c.html#a64839127c5f2cef83b382171bb9e0de8" title="record_list_destroy" alt="" coords="217,5,348,35"/><area shape="rect" id="node5" href="m3u8_8c.html#aeb71a12e429e0b95ec7062b7e7d0db3f" title="inf_destroy" alt="" coords="399,5,484,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d1458f2342cd37e4c0a8cf8b2a77749"></a><!-- doxytag: member="m3u8.c::playlist_records_init" ref="a7d1458f2342cd37e4c0a8cf8b2a77749" args="(Playlist *playlist)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t <a class="el" href="m3u8_8h.html#a7d1458f2342cd37e4c0a8cf8b2a77749">playlist_records_init</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_playlist.html">Playlist</a> *&#160;</td>
+          <td class="paramname"><em>playlist</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Easier access to <a class="el" href="struct_playlist_records.html">PlaylistRecords</a> init </p>
+
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00272">272</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+
+<p>References <a class="el" href="m3u8_8h_source.html#l00121">Playlist::cur</a>, <a class="el" href="m3u8_8h_source.html#l00120">Playlist::head</a>, and <a class="el" href="m3u8_8c_source.html#l00109">record_list_init()</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="m3u8_8c_a7d1458f2342cd37e4c0a8cf8b2a77749_cgraph.png" border="0" usemap="#m3u8_8c_a7d1458f2342cd37e4c0a8cf8b2a77749_cgraph" alt=""/></div>
+<map name="m3u8_8c_a7d1458f2342cd37e4c0a8cf8b2a77749_cgraph" id="m3u8_8c_a7d1458f2342cd37e4c0a8cf8b2a77749_cgraph">
+<area shape="rect" id="node3" href="m3u8_8c.html#a8365068dcdfc8ef9c90fddefe777b656" title="record_list_init" alt="" coords="192,5,299,35"/></map>
 </div>
 </p>
 
@@ -398,11 +922,11 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Convert string to playlist type </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00245">245</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00248">248</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8h_source.html#l00098">DEFAULT</a>, and <a class="el" href="m3u8_8c_source.html#l00008">PLAYLIST_TYPES_COUNT</a>.</p>
+<p>References <a class="el" href="m3u8_8h_source.html#l00098">DEFAULT</a>, and <a class="el" href="m3u8_8c_source.html#l00011">PLAYLIST_TYPES_COUNT</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00332">playlist_load_from()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00358">playlist_load_from()</a>.</p>
 
 </div>
 </div>
@@ -422,11 +946,11 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Convert playlist type to string </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00256">256</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00259">259</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
 <p>References <a class="el" href="m3u8_8h_source.html#l00098">DEFAULT</a>, <a class="el" href="m3u8_8h_source.html#l00098">EVENT</a>, <a class="el" href="m3u8_8h_source.html#l00098">LIVE</a>, <a class="el" href="m3u8_8h_source.html#l00098">VARIANT</a>, and <a class="el" href="m3u8_8h_source.html#l00098">VOD</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00289">playlist_write_to()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00315">playlist_write_to()</a>.</p>
 
 </div>
 </div>
@@ -456,9 +980,9 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Write playlist to file </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00269">269</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00295">295</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8c_source.html#l00289">playlist_write_to()</a>.</p>
+<p>References <a class="el" href="m3u8_8c_source.html#l00315">playlist_write_to()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -497,11 +1021,11 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Write playlist to provided file </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00289">289</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00315">315</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8h_source.html#l00120">Playlist::head</a>, <a class="el" href="m3u8_8h_source.html#l00023">InfRecord::length</a>, <a class="el" href="m3u8_8h_source.html#l00098">LIVE</a>, <a class="el" href="m3u8_8h_source.html#l00024">InfRecord::name</a>, <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>, <a class="el" href="m3u8_8h_source.html#l00025">InfRecord::path</a>, <a class="el" href="m3u8_8c_source.html#l00256">playlist_type_str()</a>, <a class="el" href="m3u8_8h_source.html#l00057">PlaylistRecords::record</a>, <a class="el" href="m3u8_8h_source.html#l00118">Playlist::x_media_sequence</a>, <a class="el" href="m3u8_8h_source.html#l00116">Playlist::x_target_duration</a>, <a class="el" href="m3u8_8h_source.html#l00115">Playlist::x_type</a>, and <a class="el" href="m3u8_8h_source.html#l00117">Playlist::x_version</a>.</p>
+<p>References <a class="el" href="m3u8_8h_source.html#l00120">Playlist::head</a>, <a class="el" href="m3u8_8h_source.html#l00023">InfRecord::length</a>, <a class="el" href="m3u8_8h_source.html#l00098">LIVE</a>, <a class="el" href="m3u8_8h_source.html#l00024">InfRecord::name</a>, <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>, <a class="el" href="m3u8_8h_source.html#l00025">InfRecord::path</a>, <a class="el" href="m3u8_8c_source.html#l00259">playlist_type_str()</a>, <a class="el" href="m3u8_8h_source.html#l00057">PlaylistRecords::record</a>, <a class="el" href="m3u8_8h_source.html#l00118">Playlist::x_media_sequence</a>, <a class="el" href="m3u8_8h_source.html#l00116">Playlist::x_target_duration</a>, <a class="el" href="m3u8_8h_source.html#l00115">Playlist::x_type</a>, and <a class="el" href="m3u8_8h_source.html#l00117">Playlist::x_version</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00269">playlist_write()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00295">playlist_write()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -540,9 +1064,9 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Adds a new <a class="el" href="struct_inf_record.html">InfRecord</a> to the playlist records list ** This is slightly more expensive than the other signatures of the same </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00120">120</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00123">123</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8c_source.html#l00021">inf_init()</a>, <a class="el" href="m3u8_8c_source.html#l00035">inf_set_length()</a>, <a class="el" href="m3u8_8c_source.html#l00045">inf_set_name()</a>, <a class="el" href="m3u8_8c_source.html#l00071">inf_set_path()</a>, <a class="el" href="m3u8_8h_source.html#l00023">InfRecord::length</a>, <a class="el" href="m3u8_8h_source.html#l00024">InfRecord::name</a>, <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>, and <a class="el" href="m3u8_8h_source.html#l00025">InfRecord::path</a>.</p>
+<p>References <a class="el" href="m3u8_8c_source.html#l00024">inf_init()</a>, <a class="el" href="m3u8_8c_source.html#l00038">inf_set_length()</a>, <a class="el" href="m3u8_8c_source.html#l00048">inf_set_name()</a>, <a class="el" href="m3u8_8c_source.html#l00074">inf_set_path()</a>, <a class="el" href="m3u8_8h_source.html#l00023">InfRecord::length</a>, <a class="el" href="m3u8_8h_source.html#l00024">InfRecord::name</a>, <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>, and <a class="el" href="m3u8_8h_source.html#l00025">InfRecord::path</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -593,11 +1117,11 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Adds a new <a class="el" href="struct_inf_record.html">InfRecord</a> to the playlist records list </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00152">152</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00155">155</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8c_source.html#l00021">inf_init()</a>, <a class="el" href="m3u8_8c_source.html#l00035">inf_set_length()</a>, <a class="el" href="m3u8_8c_source.html#l00045">inf_set_name()</a>, <a class="el" href="m3u8_8c_source.html#l00071">inf_set_path()</a>, and <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>.</p>
+<p>References <a class="el" href="m3u8_8c_source.html#l00024">inf_init()</a>, <a class="el" href="m3u8_8c_source.html#l00038">inf_set_length()</a>, <a class="el" href="m3u8_8c_source.html#l00048">inf_set_name()</a>, <a class="el" href="m3u8_8c_source.html#l00074">inf_set_path()</a>, and <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00332">playlist_load_from()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00358">playlist_load_from()</a>, and <a class="el" href="m3u8_8c_source.html#l00280">playlist_records_add()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -626,9 +1150,11 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Destroys all records in the playlist </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00228">228</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00231">231</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
-<p>References <a class="el" href="m3u8_8c_source.html#l00092">inf_destroy()</a>, <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>, and <a class="el" href="m3u8_8h_source.html#l00057">PlaylistRecords::record</a>.</p>
+<p>References <a class="el" href="m3u8_8c_source.html#l00095">inf_destroy()</a>, <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>, and <a class="el" href="m3u8_8h_source.html#l00057">PlaylistRecords::record</a>.</p>
+
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00287">playlist_records_destroy()</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -657,11 +1183,11 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Initializes the playlist record list </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00106">106</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00109">109</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
 <p>References <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>.</p>
 
-<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00332">playlist_load_from()</a>.</p>
+<p>Referenced by <a class="el" href="m3u8_8c_source.html#l00358">playlist_load_from()</a>, and <a class="el" href="m3u8_8c_source.html#l00272">playlist_records_init()</a>.</p>
 
 </div>
 </div>
@@ -691,7 +1217,7 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Removes record number [index] </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00184">184</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00187">187</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
 <p>References <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>.</p>
 
@@ -723,7 +1249,7 @@ Here is the call graph for this function:</div>
 <div class="memdoc">
 <p>Removes the first [n] records from the playlist </p>
 
-<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00206">206</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
+<p>Definition at line <a class="el" href="m3u8_8c_source.html#l00209">209</a> of file <a class="el" href="m3u8_8c_source.html">m3u8.c</a>.</p>
 
 <p>References <a class="el" href="m3u8_8h_source.html#l00059">PlaylistRecords::next</a>.</p>
 
@@ -749,7 +1275,7 @@ Here is the call graph for this function:</div>
     <ul>
       <li class="navelem"><a class="el" href="m3u8_8c.html">m3u8.c</a>      </li>
 
-    <li class="footer">Generated on Sun Mar 10 2013 23:30:20 for libm3u8 by
+    <li class="footer">Generated on Sat Mar 16 2013 20:21:36 for libm3u8 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

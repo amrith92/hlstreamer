@@ -2,12 +2,12 @@ var NAVTREEINDEX =
 {
 "index.html":[],
 "annotated.html":[0,0],
-"struct__audio__bag.html":[0,0,0],
-"struct__audio__params.html":[0,0,1],
-"struct__params.html":[0,0,2],
-"struct__transcoder__data.html":[0,0,3],
-"struct__video__bag.html":[0,0,4],
-"struct__video__params.html":[0,0,5],
+"struct_audio_bag.html":[0,0,0],
+"struct_audio_params.html":[0,0,1],
+"struct_params.html":[0,0,2],
+"struct_transcoder_data.html":[0,0,3],
+"struct_video_bag.html":[0,0,4],
+"struct_video_params.html":[0,0,5],
 "classes.html":[0,1],
 "functions.html":[0,2,0],
 "functions_vars.html":[0,2,1],
@@ -16,6 +16,5 @@ var NAVTREEINDEX =
 "segmenter_8h.html":[1,0,1],
 "globals.html":[1,1,0],
 "globals_func.html":[1,1,1],
-"globals_type.html":[1,1,2],
-"globals_defs.html":[1,1,3]
+"globals_defs.html":[1,1,2]
 };

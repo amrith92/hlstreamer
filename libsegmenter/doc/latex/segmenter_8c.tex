@@ -6,8 +6,7 @@
 {\ttfamily \#include $<$stdio.\-h$>$}\*
 {\ttfamily \#include $<$stdlib.\-h$>$}\*
 {\ttfamily \#include $<$string.\-h$>$}\*
-\-Include dependency graph for segmenter.\-c\-:
-\nopagebreak
+\-Include dependency graph for segmenter.\-c\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,9 +27,9 @@ void \hyperlink{segmenter_8c_a2abc6ba2017a01961eaf3981bf806e89}{grab\-\_\-videor
 \item 
 void \hyperlink{segmenter_8c_a07f44bea24b85b0d725d379ac5f8decb}{grab\-\_\-audioresample\-\_\-caps} (char $\ast$buffer, const uint16\-\_\-t rate)
 \item 
-const int \hyperlink{segmenter_8c_a4aa0ddbb149a44f343c66205a24b7c15}{validate\-\_\-params} (const \hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params} $\ast$params)
+const int \hyperlink{segmenter_8c_a4aa0ddbb149a44f343c66205a24b7c15}{validate\-\_\-params} (const \hyperlink{struct_params}{\-Params} $\ast$params)
 \item 
-int \hyperlink{segmenter_8c_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-try} (\hyperlink{segmenter_8h_a0562404151eed323a2ff1a4422c7ec19}{\-Params} $\ast$params)
+int \hyperlink{segmenter_8c_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-try} (\hyperlink{struct_params}{\-Params} $\ast$params)
 \end{DoxyCompactItemize}
 
 
@@ -129,6 +128,8 @@ int \hyperlink{segmenter_8c_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-tr
 
 \-Set the multifilesink properties
 
+\-Set the update-\/frequency on progressreport
+
 \-Set the videorate properties
 
 \-Set the aspectratiocrop properties
@@ -153,12 +154,11 @@ int \hyperlink{segmenter_8c_a3179e33ff6d271287f0caed5b1a4de69}{segmenter\-\_\-tr
 
 
 
-\-References \-A\-C\-O\-N\-V, \-\_\-audio\-\_\-bag\-::aconvcaps, \-\_\-audio\-\_\-bag\-::arescaps, \-\_\-video\-\_\-bag\-::aspectratiocrop, \-\_\-params\-::audio\-\_\-props, \-\_\-transcoder\-\_\-data\-::audiobag, \-\_\-audio\-\_\-bag\-::audioconvert, \-\_\-audio\-\_\-bag\-::audioresample, \-\_\-video\-\_\-params\-::bitrate, \-\_\-audio\-\_\-params\-::bitrate, \-B\-U\-F\-S\-I\-Z\-E, \-\_\-audio\-\_\-bag\-::decqueue, \-\_\-audio\-\_\-bag\-::ffenc\-\_\-aac, \-\_\-video\-\_\-bag\-::ffmpegcolourspace, \-\_\-transcoder\-\_\-data\-::filesrc, \-\_\-video\-\_\-params\-::framerate, grab\-\_\-audioresample\-\_\-caps(), grab\-\_\-videorate\-\_\-caps(), grab\-\_\-videoscale\-\_\-caps(), \-\_\-video\-\_\-params\-::height, \-H\-L\-S\-\_\-\-N\-A\-M\-E, \-H\-L\-S\-\_\-\-V\-E\-R, \-\_\-params\-::in, \-\_\-video\-\_\-params\-::keyinterval, \-\_\-transcoder\-\_\-data\-::mpegtsmux, \-\_\-video\-\_\-bag\-::muxqueue, \-\_\-audio\-\_\-bag\-::muxqueue, \-\_\-video\-\_\-params\-::noisereduction, \-\_\-params\-::out, \-\_\-transcoder\-\_\-data\-::pipeline, \-\_\-transcoder\-\_\-data\-::sink, \-\_\-transcoder\-\_\-data\-::source, \-\_\-params\-::video\-\_\-props, \-\_\-transcoder\-\_\-data\-::videobag, \-\_\-video\-\_\-bag\-::videorate, \-\_\-video\-\_\-bag\-::videoscale, \-\_\-video\-\_\-bag\-::vratecaps, \-\_\-video\-\_\-bag\-::vscalecaps, \-\_\-video\-\_\-params\-::width, and \-\_\-video\-\_\-bag\-::x264enc.
+\-References \-A\-C\-O\-N\-V, \-Audio\-Bag\-::aconvcaps, \-Audio\-Bag\-::arescaps, \-Video\-Bag\-::aspectratiocrop, \-Params\-::audio\-\_\-props, \-Transcoder\-Data\-::audiobag, \-Audio\-Bag\-::audioconvert, \-Audio\-Bag\-::audioresample, \-Video\-Params\-::bitrate, \-Audio\-Params\-::bitrate, \-B\-U\-F\-S\-I\-Z\-E, \-Audio\-Bag\-::decqueue, \-Audio\-Bag\-::ffenc\-\_\-aac, \-Video\-Bag\-::ffmpegcolourspace, \-Transcoder\-Data\-::filesrc, \-Video\-Params\-::framerate, grab\-\_\-audioresample\-\_\-caps(), grab\-\_\-videorate\-\_\-caps(), grab\-\_\-videoscale\-\_\-caps(), \-Video\-Params\-::height, \-H\-L\-S\-\_\-\-N\-A\-M\-E, \-H\-L\-S\-\_\-\-V\-E\-R, \-Params\-::in, \-Video\-Params\-::keyinterval, \-Transcoder\-Data\-::mpegtsmux, \-Video\-Bag\-::muxqueue, \-Audio\-Bag\-::muxqueue, \-Video\-Params\-::noisereduction, \-Params\-::out, \-Transcoder\-Data\-::pipeline, \-Transcoder\-Data\-::progressreport, \-Transcoder\-Data\-::sink, \-Transcoder\-Data\-::source, \-Params\-::video\-\_\-props, \-Transcoder\-Data\-::videobag, \-Video\-Bag\-::videorate, \-Video\-Bag\-::videoscale, \-Video\-Bag\-::vratecaps, \-Video\-Bag\-::vscalecaps, \-Video\-Params\-::width, and \-Video\-Bag\-::x264enc.
 
 
 
-\-Here is the call graph for this function\-:
-\nopagebreak
+\-Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
