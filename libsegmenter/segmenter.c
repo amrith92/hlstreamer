@@ -68,7 +68,7 @@ int segmenter_try(Params *params)
 	data.source = gst_element_factory_make("decodebin2", "source");
 	data.mpegtsmux = gst_element_factory_make("mpegtsmux", "muxer");
 	data.progressreport = gst_element_factory_make("progressreport", "[" HLS_NAME " " HLS_VER "]");
-	data.videobag.ffmpegcolourspace = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolourspace");
+	data.videobag.ffmpegcolourspace = gst_element_factory_make("videoconvert", "ffmpegcolourspace");
 	data.videobag.videoscale = gst_element_factory_make("videoscale", "videoscale");
 	grab_videoscale_caps(buffer, params->video_props.width, params->video_props.height);
 	data.videobag.vscalecaps = gst_caps_from_string(buffer);
