@@ -8,35 +8,6 @@
 extern "C" {
 #endif
 
-#define BUFSIZE 128
-
-void grab_videoscale_caps(char *buffer, const uint16_t width, const uint16_t height)
-{
-	// Sanity checks
-	if (buffer == NULL)
-		return;
-
-	sprintf(buffer, VSCALE, width, height);
-}
-
-void grab_videorate_caps(char *buffer, const uint8_t rate)
-{
-	// Sanity checks
-	if (buffer == NULL)
-		return;
-
-	sprintf(buffer, VRATE, rate);
-}
-
-void grab_audioresample_caps(char *buffer, const uint16_t rate)
-{
-	// Sanity checks
-	if (buffer == NULL)
-		return;
-
-	sprintf(buffer, ARES, rate);
-}
-
 const int validate_params(const Params *params)
 {
 	return 0;
@@ -49,54 +20,39 @@ int segmenter_try(Params *params)
 	GstMessage *msg;
 	GstStateChangeReturn ret;
 	gboolean terminate = FALSE;
-	char *buffer; // caps buffer
 	int retval = 0;
-
-	/// Initialize buffer
-	buffer = (char *) malloc(BUFSIZE * sizeof(char));
-
-	if (buffer == NULL) {
-		fprintf(stderr, "[%s %s] Could not allocate necessary buffers!", HLS_NAME, HLS_VER);
-		return (-1 * BUFSIZE);
-	}
 
 	/// Initialize gstreamer
 	gst_init(NULL, NULL);
 
 	/// Create elements
 	data.filesrc = gst_element_factory_make("filesrc", "filesrc");
-	data.source = gst_element_factory_make("decodebin2", "source");
+	data.source = gst_element_factory_make("decodebin", "source");
 	data.mpegtsmux = gst_element_factory_make("mpegtsmux", "muxer");
 	data.progressreport = gst_element_factory_make("progressreport", "[" HLS_NAME " " HLS_VER "]");
-	data.videobag.ffmpegcolourspace = gst_element_factory_make("videoconvert", "ffmpegcolourspace");
+	data.videobag.videoconvert = gst_element_factory_make("videoconvert", "videoconverter");
 	data.videobag.videoscale = gst_element_factory_make("videoscale", "videoscale");
-	grab_videoscale_caps(buffer, params->video_props.width, params->video_props.height);
-	data.videobag.vscalecaps = gst_caps_from_string(buffer);
+	data.videobag.vscalecaps = gst_caps_from_string(g_strdup_printf(VSCALE, params->video_props.width, params->video_props.height));
 	data.videobag.videorate = gst_element_factory_make("videorate", "videorate");
-	memset(buffer, 0, BUFSIZE);
-	grab_videorate_caps(buffer, params->video_props.framerate);
-	data.videobag.vratecaps = gst_caps_from_string(buffer);
+	data.videobag.vratecaps = gst_caps_from_string(g_strdup_printf(VRATE, params->video_props.framerate));
 	data.videobag.aspectratiocrop = gst_element_factory_make("aspectratiocrop", "aspectratiocrop");
 	data.videobag.x264enc = gst_element_factory_make("x264enc", "x264enc");
 	data.videobag.muxqueue = gst_element_factory_make("queue", "videomuxqueue");
 	data.audiobag.decqueue = gst_element_factory_make("queue", "decqueue");
 	data.audiobag.audioconvert = gst_element_factory_make("audioconvert", "audioconvert");
-	data.audiobag.aconvcaps = gst_caps_from_string(ACONV);
+	data.audiobag.audiorate = gst_element_factory_make("audiorate", "arate");
 	data.audiobag.audioresample = gst_element_factory_make("audioresample", "audioresample");
-	memset(buffer, 0, BUFSIZE);
-	grab_audioresample_caps(buffer, params->audio_props.bitrate); /* 22050 */
-	data.audiobag.arescaps = gst_caps_from_string(buffer);
-	data.audiobag.ffenc_aac = gst_element_factory_make("ffenc_aac", "ffenc_aac");
-	data.audiobag.muxqueue = gst_element_factory_make("queue", "audiomuxqueue");
+	data.audiobag.arescaps = gst_caps_from_string(g_strdup_printf(ARES, params->audio_props.bitrate));
+	data.audiobag.voaacenc = gst_element_factory_make("voaacenc", "audioencoder");
 	data.sink = gst_element_factory_make("multifilesink", "sink");
 
 	/// Create empty pipeline
 	data.pipeline = gst_pipeline_new("hlsegmenter-pipeline");
 
-	if (!data.pipeline || !data.filesrc || !data.source || !data.videobag.ffmpegcolourspace || !data.videobag.videoscale || !data.videobag.vscalecaps
+	if (!data.pipeline || !data.filesrc || !data.source || !data.videobag.videoconvert || !data.videobag.videoscale || !data.videobag.vscalecaps
 		|| !data.mpegtsmux || !data.progressreport || !data.sink || !data.videobag.videorate || !data.videobag.vratecaps || !data.videobag.aspectratiocrop
-		|| !data.videobag.x264enc || !data.videobag.muxqueue || !data.audiobag.decqueue || !data.audiobag.audioconvert || !data.audiobag.aconvcaps
-		|| !data.audiobag.audioresample || !data.audiobag.arescaps || !data.audiobag.ffenc_aac || !data.audiobag.muxqueue) {
+		|| !data.videobag.x264enc || !data.videobag.muxqueue || !data.audiobag.decqueue || !data.audiobag.audioconvert || !data.audiobag.audiorate
+		|| !data.audiobag.audioresample || !data.audiobag.arescaps || !data.audiobag.voaacenc) {
 		g_printerr("[%s %s] Not all elements could be created!\n", HLS_NAME, HLS_VER);
 		return 100;
 	}
@@ -130,11 +86,14 @@ int segmenter_try(Params *params)
 	g_object_set(G_OBJECT(data.videobag.x264enc), "noise-reduction", params->video_props.noisereduction, NULL);
 	g_object_set(G_OBJECT(data.videobag.x264enc), "psy-tune", 1, NULL);
 
-	/// Set ffenc_aac properties
-	g_object_set(G_OBJECT(data.audiobag.ffenc_aac), "bitrate", 40960, NULL);
+	/// Set audiorate properties
+	g_object_set(G_OBJECT(data.audiobag.audiorate), "tolerance", 100000000, NULL);
+
+	/// Set voaacenc properties
+	g_object_set(G_OBJECT(data.audiobag.voaacenc), "bitrate", 40960, NULL);
 
 	/// Build the pipeline.
-	gst_bin_add_many(GST_BIN(data.pipeline), data.filesrc, data.source, data.videobag.ffmpegcolourspace, data.videobag.videoscale, data.videobag.videorate, data.videobag.aspectratiocrop, data.videobag.x264enc, data.videobag.muxqueue, data.audiobag.decqueue, data.audiobag.audioconvert, data.audiobag.audioresample, data.audiobag.ffenc_aac, data.audiobag.muxqueue, data.mpegtsmux, data.progressreport, data.sink, NULL);
+	gst_bin_add_many(GST_BIN(data.pipeline), data.filesrc, data.source, data.videobag.videoconvert, data.videobag.videoscale, data.videobag.videorate, data.videobag.aspectratiocrop, data.videobag.x264enc, data.videobag.muxqueue, data.audiobag.decqueue, data.audiobag.audioconvert, data.audiobag.audiorate, data.audiobag.audioresample, data.audiobag.voaacenc, data.mpegtsmux, data.progressreport, data.sink, NULL);
 
 	if (!gst_element_link(data.filesrc, data.source)) {
 		g_printerr("[%s %s] File-source could not be linked to demuxer!\n", HLS_NAME, HLS_VER);
@@ -142,7 +101,7 @@ int segmenter_try(Params *params)
 		return 200;
 	}
 
-	if (!gst_element_link(data.videobag.ffmpegcolourspace, data.videobag.videoscale) || !gst_element_link_filtered(data.videobag.videoscale, data.videobag.videorate, data.videobag.vscalecaps) || !gst_element_link_filtered(data.videobag.videorate, data.videobag.aspectratiocrop, data.videobag.vratecaps) || !gst_element_link_many(data.videobag.aspectratiocrop, data.videobag.x264enc, data.videobag.muxqueue, data.mpegtsmux, NULL)) {
+	if (!gst_element_link(data.videobag.videoconvert, data.videobag.videoscale) || !gst_element_link_filtered(data.videobag.videoscale, data.videobag.videorate, data.videobag.vscalecaps) || !gst_element_link_filtered(data.videobag.videorate, data.videobag.aspectratiocrop, data.videobag.vratecaps) || !gst_element_link_many(data.videobag.aspectratiocrop, data.videobag.x264enc, data.videobag.muxqueue, data.mpegtsmux, NULL)) {
 		g_printerr("[%s %s] VideoBag elements could not be linked!\n", HLS_NAME, HLS_VER);
 		gst_caps_unref(data.videobag.vscalecaps);
 		gst_caps_unref(data.videobag.vratecaps);
@@ -152,14 +111,12 @@ int segmenter_try(Params *params)
 	gst_caps_unref(data.videobag.vscalecaps);
 	gst_caps_unref(data.videobag.vratecaps);
 
-	if (!gst_element_link(data.audiobag.decqueue, data.audiobag.audioconvert) || !gst_element_link_filtered(data.audiobag.audioconvert, data.audiobag.audioresample, data.audiobag.aconvcaps) || !gst_element_link_filtered(data.audiobag.audioresample, data.audiobag.ffenc_aac, data.audiobag.arescaps) || !gst_element_link_many(data.audiobag.ffenc_aac, data.audiobag.muxqueue, data.mpegtsmux, NULL)) {
+	if (!gst_element_link(data.audiobag.decqueue, data.audiobag.audioconvert) || !gst_element_link(data.audiobag.audioconvert, data.audiobag.audiorate) || !gst_element_link(data.audiobag.audiorate, data.audiobag.audioresample) || !gst_element_link_filtered(data.audiobag.audioresample, data.audiobag.voaacenc, data.audiobag.arescaps) || !gst_element_link_many(data.audiobag.voaacenc, data.mpegtsmux, NULL)) {
 		g_printerr("[%s %s] AudioBag elements could not be linked!\n", HLS_NAME, HLS_VER);
-		gst_caps_unref(data.audiobag.aconvcaps);
 		gst_caps_unref(data.audiobag.arescaps);
 		gst_object_unref(data.pipeline);
 		return 202;
 	}
-	gst_caps_unref(data.audiobag.aconvcaps);
 	gst_caps_unref(data.audiobag.arescaps);
 
 	if (!gst_element_link(data.mpegtsmux, data.progressreport)) {
@@ -240,10 +197,10 @@ static void pad_added_handler(GstElement *src, GstPad *new_pad, TranscoderData *
 	GstStructure *new_pad_struct = NULL;
 	const gchar *new_pad_type = NULL;
 
-	g_print("[%s %s] Recieved new pad '%s' from '%s':\n", HLS_NAME, HLS_VER, GST_PAD_NAME(new_pad), GST_ELEMENT_NAME(src));
+	g_print("[%s %s] Recieved new pad '%s' from: '%s'\n", HLS_NAME, HLS_VER, GST_PAD_NAME(new_pad), GST_ELEMENT_NAME(src));
 
 	/// Check new pad's type
-	new_pad_caps = gst_pad_get_current_caps(new_pad);
+	new_pad_caps = gst_pad_query_caps(new_pad, NULL);
 	new_pad_struct = gst_caps_get_structure(new_pad_caps, 0);
 	new_pad_type = gst_structure_get_name(new_pad_struct);
 
@@ -251,7 +208,7 @@ static void pad_added_handler(GstElement *src, GstPad *new_pad, TranscoderData *
 
 	if (g_str_has_prefix(new_pad_type, "video")) {
 		g_print("[%s %s] Attempting to retrieve VideoBag\n", HLS_NAME, HLS_VER);
-		bag = gst_element_get_static_pad(data->videobag.ffmpegcolourspace, "sink");
+		bag = gst_element_get_static_pad(data->videobag.videoconvert, "sink");
 	} else if (g_str_has_prefix(new_pad_type, "audio")) {
 		g_print("[%s %s] Attempting to retrieve AudioBag\n", HLS_NAME, HLS_VER);
 		bag = gst_element_get_static_pad(data->audiobag.decqueue, "sink");

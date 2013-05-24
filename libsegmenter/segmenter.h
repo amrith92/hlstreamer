@@ -12,13 +12,13 @@ extern "C" {
 #define HLS_VER		"0.1"
 
 /// Caps strings
-#define VSCALE		"video/x-raw-yuv,width=%d,height=%d"
-#define VRATE		"video/x-raw-yuv, framerate=%d/1"
-#define ACONV		"audio/x-raw-int,channels=2"
-#define ARES		"audio/x-raw-int,rate=%d,channels=2"
+#define VSCALE		"video/x-raw,width=%d,height=%d"
+#define VRATE		"video/x-raw, framerate=%d/1"
+//#define ACONV		"audio/x-raw,channels=2"
+#define ARES		"audio/x-raw,rate=%d,channels=2"
 
 typedef struct _video_bag {
-	GstElement *ffmpegcolourspace;
+	GstElement *videoconvert;
 	GstElement *videoscale;
 	GstCaps	   *vscalecaps;
 	GstElement *videorate;
@@ -28,30 +28,15 @@ typedef struct _video_bag {
 	GstElement *muxqueue;
 } VideoBag;
 
-/**
- *	Grab customized videoscale caps string
- */
-extern void grab_videoscale_caps(char *buffer, const uint16_t width, const uint16_t height);
-
-/**
- *	Grab customized videorate caps string
- */
-extern void grab_videorate_caps(char *buffer, const uint8_t rate);
-
 typedef struct _audio_bag {
 	GstElement *decqueue;
 	GstElement *audioconvert;
-	GstCaps    *aconvcaps;
+	GstElement *audiorate;
 	GstElement *audioresample;
 	GstCaps    *arescaps;
-	GstElement *ffenc_aac;
+	GstElement *voaacenc;
 	GstElement *muxqueue;
 } AudioBag;
-
-/**
- *	Grab customized audioresample caps string
- */
-extern void grab_audioresample_caps(char *buffer, const uint16_t rate);
 
 typedef struct _transcoder_data {
 	GstElement *pipeline;
