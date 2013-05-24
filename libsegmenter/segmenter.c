@@ -243,7 +243,7 @@ static void pad_added_handler(GstElement *src, GstPad *new_pad, TranscoderData *
 	g_print("[%s %s] Recieved new pad '%s' from '%s':\n", HLS_NAME, HLS_VER, GST_PAD_NAME(new_pad), GST_ELEMENT_NAME(src));
 
 	/// Check new pad's type
-	new_pad_caps = gst_pad_get_caps(new_pad);
+	new_pad_caps = gst_pad_get_current_caps(new_pad);
 	new_pad_struct = gst_caps_get_structure(new_pad_caps, 0);
 	new_pad_type = gst_structure_get_name(new_pad_struct);
 
