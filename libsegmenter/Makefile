@@ -1,6 +1,6 @@
 CC		= gcc
-C_OPTS	= -Wall -fPIC -c *.c `pkg-config --cflags --libs gstreamer-0.10`
-B_OPTS	= -shared -Wl,-soname,libhlsegmenter.so.0 -o libhlsegmenter.so.0.1 *.o `pkg-config --libs gstreamer-0.10`
+C_OPTS	= -Wall -fPIC -c *.c `pkg-config --cflags --libs gstreamer-1.0`
+B_OPTS	= -shared -Wl,-soname,libhlsegmenter.so.0 -o libhlsegmenter.so.0.1 *.o `pkg-config --libs gstreamer-1.0`
 HEADERS	= *.h
 
 LIB		= libhlsegmenter.so.0.1

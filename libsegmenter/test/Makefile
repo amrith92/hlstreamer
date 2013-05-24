@@ -3,7 +3,7 @@ OPTS	= -Wall
 INC		= -I/opt/includes/hlstreamer
 LIB		= -L/opt/lib/hlstreamer
 LFLAG	= -lhlsegmenter
-EXTRA	= `pkg-config --cflags --libs gstreamer-0.10`
+EXTRA	= `pkg-config --cflags --libs gstreamer-1.0`
 
 MAIN	= main.c
 MAIN_O	= main
