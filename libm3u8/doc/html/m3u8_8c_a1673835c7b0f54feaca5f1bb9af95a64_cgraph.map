@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$m3u8_8c.html#ad82dfd899a2be02f439d1dc63cb677f7" title="playlist_type_from" alt="" coords="191,32,319,61"/>
-<area shape="rect" id="node5" href="$m3u8_8c.html#ade36ba9a6101acd525abcdd97ae8a165" title="record_list_add_more" alt="" coords="181,85,328,115"/>
-<area shape="rect" id="node15" href="$m3u8_8c.html#a8365068dcdfc8ef9c90fddefe777b656" title="record_list_init" alt="" coords="201,139,308,168"/>
-<area shape="rect" id="node7" href="$m3u8_8c.html#a3ebff130c4e434fb4bb45838055bc45f" title="inf_init" alt="" coords="399,5,457,35"/>
-<area shape="rect" id="node9" href="$m3u8_8c.html#ae7c918d2e6f16e9c2f250d878e8e93f1" title="inf_set_length" alt="" coords="377,59,479,88"/>
-<area shape="rect" id="node11" href="$m3u8_8c.html#a7b96574bccb40cfab055572612c98a9d" title="inf_set_name" alt="" coords="379,112,477,141"/>
-<area shape="rect" id="node13" href="$m3u8_8c.html#a9d5dafaa7a941b6137a516b916691737" title="inf_set_path" alt="" coords="381,165,475,195"/>
-</map>

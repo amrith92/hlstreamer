@@ -1,9 +1,0 @@
-var searchData=
-[
-  ['record_5flist_5fadd',['record_list_add',['../m3u8_8c.html#a20c5e6819c38e8a00e8dbfc076342396',1,'record_list_add(PlaylistRecords **cur, InfRecord *data):&#160;m3u8.c'],['../m3u8_8h.html#a20c5e6819c38e8a00e8dbfc076342396',1,'record_list_add(PlaylistRecords **cur, InfRecord *data):&#160;m3u8.c']]],
-  ['record_5flist_5fadd_5fmore',['record_list_add_more',['../m3u8_8c.html#ade36ba9a6101acd525abcdd97ae8a165',1,'record_list_add_more(PlaylistRecords **cur, const float length, const char *name, const char *path):&#160;m3u8.c'],['../m3u8_8h.html#ade36ba9a6101acd525abcdd97ae8a165',1,'record_list_add_more(PlaylistRecords **cur, const float length, const char *name, const char *path):&#160;m3u8.c']]],
-  ['record_5flist_5fdestroy',['record_list_destroy',['../m3u8_8c.html#a64839127c5f2cef83b382171bb9e0de8',1,'record_list_destroy(PlaylistRecords **head):&#160;m3u8.c'],['../m3u8_8h.html#a64839127c5f2cef83b382171bb9e0de8',1,'record_list_destroy(PlaylistRecords **head):&#160;m3u8.c']]],
-  ['record_5flist_5finit',['record_list_init',['../m3u8_8c.html#a8365068dcdfc8ef9c90fddefe777b656',1,'record_list_init(PlaylistRecords **head):&#160;m3u8.c'],['../m3u8_8h.html#a8365068dcdfc8ef9c90fddefe777b656',1,'record_list_init(PlaylistRecords **head):&#160;m3u8.c']]],
-  ['record_5flist_5fremove_5fat',['record_list_remove_at',['../m3u8_8c.html#ac958584dc6fd4614b29c5b1b34224e74',1,'record_list_remove_at(PlaylistRecords **head, uint16_t index):&#160;m3u8.c'],['../m3u8_8h.html#ac958584dc6fd4614b29c5b1b34224e74',1,'record_list_remove_at(PlaylistRecords **head, uint16_t index):&#160;m3u8.c']]],
-  ['record_5flist_5fremove_5ffirst_5fn',['record_list_remove_first_n',['../m3u8_8c.html#a50a611728c72e54e08d0f61fb23142ee',1,'record_list_remove_first_n(PlaylistRecords **head, uint16_t n):&#160;m3u8.c'],['../m3u8_8h.html#a50a611728c72e54e08d0f61fb23142ee',1,'record_list_remove_first_n(PlaylistRecords **head, uint16_t n):&#160;m3u8.c']]]
-];
