@@ -1,9 +1,9 @@
 CXX = clang++
 CXXFLAGS = -pg -Wall -Wextra -std=c++11 -pedantic
 
-INCLUDES = -Igen-cpp/
+INCLUDES = -Igen-cpp/ -I /opt/includes/hlstreamer `pkg-config --cflags gstreamer-1.0`
 
-LFLAGS = -L /usr/lib/ -L ./gen-cpp/
+LFLAGS = -L /usr/lib/ -L ./gen-cpp/ -L /opt/libs/hlstreamer `pkg-config --libs gstreamer-1.0`
 
 LIBS = -lpthread -lthrift
 
