@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,6 +16,10 @@ const int validate_params(const Params *params)
 
 int segmenter_try(Params *params)
 {
+    if (-1 == access(params->in, F_OK | R_OK)) {
+        return -404;
+    }
+
 	TranscoderData data;
 	GstBus *bus;
 	GstMessage *msg;

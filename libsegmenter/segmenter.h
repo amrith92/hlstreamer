@@ -71,7 +71,7 @@ typedef struct _params {
 } Params;
 
 /**
- *	Validate incoming parameters
+ *	TODO: Validate incoming parameters
  */
 extern const int validate_params(const Params *params);
 

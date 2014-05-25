@@ -57,7 +57,7 @@ int8_t generate_snap_of(const char *path, const char *dest_path)
 
 	ret = gst_element_get_state(pipeline, NULL, NULL, 5 * GST_SECOND);
 	if (ret == GST_STATE_CHANGE_FAILURE) {
-		return -201;
+		return -117;
 	}
 
 	gst_element_query_duration(pipeline, GST_FORMAT_TIME, &duration);
@@ -82,7 +82,7 @@ int8_t generate_snap_of(const char *path, const char *dest_path)
 
 		if (!caps) {
 			g_printerr("Could not retrieve snap!");
-			return -301;
+			return -119;
 		}
 
 		s = gst_caps_get_structure(caps, 0);
@@ -91,7 +91,7 @@ int8_t generate_snap_of(const char *path, const char *dest_path)
 
 		if (!res) {
 			g_printerr("Could not figure out snap-dimension!");
-			return -302;
+			return -121;
 		}
 
 		buffer = gst_sample_get_buffer(sample);
