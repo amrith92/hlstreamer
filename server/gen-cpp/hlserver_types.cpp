@@ -23,18 +23,20 @@ const char* _kJobTypeNames[] = {
 const std::map<int, const char*> _JobType_VALUES_TO_NAMES(::apache::thrift::TEnumIterator(3, _kJobTypeValues, _kJobTypeNames), ::apache::thrift::TEnumIterator(-1, NULL, NULL));
 
 int _kJobStatusTypeValues[] = {
+  JobStatusType::INVALID,
   JobStatusType::ACCEPTED,
   JobStatusType::IN_PROGRESS,
   JobStatusType::FINISHED,
   JobStatusType::ERROR
 };
 const char* _kJobStatusTypeNames[] = {
+  "INVALID",
   "ACCEPTED",
   "IN_PROGRESS",
   "FINISHED",
   "ERROR"
 };
-const std::map<int, const char*> _JobStatusType_VALUES_TO_NAMES(::apache::thrift::TEnumIterator(4, _kJobStatusTypeValues, _kJobStatusTypeNames), ::apache::thrift::TEnumIterator(-1, NULL, NULL));
+const std::map<int, const char*> _JobStatusType_VALUES_TO_NAMES(::apache::thrift::TEnumIterator(5, _kJobStatusTypeValues, _kJobStatusTypeNames), ::apache::thrift::TEnumIterator(-1, NULL, NULL));
 
 
 VideoProperties::~VideoProperties() throw() {

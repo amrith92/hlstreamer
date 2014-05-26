@@ -29,9 +29,10 @@ extern const std::map<int, const char*> _JobType_VALUES_TO_NAMES;
 
 struct JobStatusType {
   enum type {
-    ACCEPTED = 1,
-    IN_PROGRESS = 2,
-    FINISHED = 3,
+    INVALID = 1,
+    ACCEPTED = 2,
+    IN_PROGRESS = 3,
+    FINISHED = 4,
     ERROR = 6
   };
 };

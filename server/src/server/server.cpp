@@ -7,10 +7,11 @@
 #include <HLServer.h>
 #include <hlserver_constants.h>
 
-#include <ctime>
 #include <sstream>
-#include <deque>
-#include <segmenter.h>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include "segmenter.hpp"
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -24,26 +25,25 @@ using namespace  ::hlserver;
 
 class HLServerHandler : virtual public HLServerIf
 {
-    typedef std::pair<Job, Params> QueuedJob;
-    std::deque<QueuedJob> jobs_;
-
+    Segmenter *segmenter_;
 public:
-    HLServerHandler()
+    HLServerHandler(Segmenter *segmenter)
     {
-        // Initialize stuff here
+        segmenter_ = segmenter;
     }
 
     virtual ~HLServerHandler()
     {
-        if (jobs_.size() > 0) {
-            jobs_.pop_front();
+        if (segmenter_) {
+            segmenter_ = nullptr;
         }
     }
 
     void segment(JobStatus& _return, const Properties& properties)
     {
+        boost::uuids::uuid id = boost::uuids::random_generator()();
         std::ostringstream oss;
-        oss << g_hlserver_constants.BASE_PATH << time(NULL) << "/%d.ts";
+        oss << g_hlserver_constants.BASE_PATH << "/" << id << "/%d.ts";
         Params p = {
             properties.inFile.c_str(),
             oss.str().c_str(),
@@ -64,10 +64,10 @@ public:
         // Preferrably validate the properties here.
         // Then create a job and add it to the job-queue
         Job job;
-        job.id = time(NULL);
+        job.id = boost::uuids::hash_value(id) >> 1; // This right shift is required to downsize 128-bit UUIDs to 64-bit job-ids
         job.type = JobType::ON_DEMAND;
-        this->jobs_.push_back(std::make_pair(job, p));
-        std::cout << "There are now " << this->jobs_.size() << " jobs in the queue\n";
+
+        _return = segmenter_->add_job(job, p);
     }
 
 };
@@ -82,7 +82,9 @@ int main(int argc, char **argv)
         port = g_hlserver_constants.SERVER_PORT;
     }
 
-    shared_ptr<HLServerHandler> handler(new HLServerHandler());
+    Segmenter segmenter;
+
+    shared_ptr<HLServerHandler> handler(new HLServerHandler(&segmenter));
     shared_ptr<TProcessor> processor(new HLServerProcessor(handler));
     shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
     shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());

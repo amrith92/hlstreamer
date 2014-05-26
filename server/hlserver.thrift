@@ -67,9 +67,10 @@ struct Job {
  *  Encodes job status values
  */
 enum JobStatusType {
-    ACCEPTED = 1,       // Job has been accepted
-    IN_PROGRESS = 2,    // Job is in progress
-    FINISHED = 3,       // Job is successfully completed
+    INVALID = 1,        // Magical Mystery Job
+    ACCEPTED = 2,       // Job has been accepted
+    IN_PROGRESS = 3,    // Job is in progress
+    FINISHED = 4,       // Job is successfully completed
     ERROR = 6,          // was FUCKED, changed it to this :/
 }
 
