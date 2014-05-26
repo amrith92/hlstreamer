@@ -4,8 +4,8 @@
 #include <thrift/transport/TSocket.h>
 #include <thrift/transport/TTransportUtils.h>
 
-#include "gen-cpp/HLServer.h"
-#include "gen-cpp/hlserver_constants.h"
+#include <HLServer.h>
+#include <hlserver_constants.h>
 
 using namespace std;
 using namespace apache::thrift;

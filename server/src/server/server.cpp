@@ -4,8 +4,8 @@
 #include <thrift/server/TThreadPoolServer.h>
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
-#include "gen-cpp/HLServer.h"
-#include "gen-cpp/hlserver_constants.h"
+#include <HLServer.h>
+#include <hlserver_constants.h>
 
 #include <ctime>
 #include <sstream>

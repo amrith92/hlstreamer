@@ -22,10 +22,10 @@ all: $(SERVER) $(CLIENT)
 	@echo hlserver successfully compiled
 
 $(SERVER): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) server.cpp -o $(SERVER) $(OBJS) $(LFLAGS) $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) src/server/server.cpp -o $(SERVER) $(OBJS) $(LFLAGS) $(LIBS)
 
 $(CLIENT): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) client.cpp -o $(CLIENT) $(OBJS) $(LFLAGS) $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) src/client/client.cpp -o $(CLIENT) $(OBJS) $(LFLAGS) $(LIBS)
 
 %.o: %.c
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
