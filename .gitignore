@@ -39,4 +39,8 @@ Thumbs.db
 libsegmenter/doc/*
 libm3u8/doc/*
 
+server/hlclient
+server/hlserver
+*.0.1
+
 *~
