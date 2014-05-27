@@ -6,6 +6,10 @@
 
 #include <HLServer.h>
 #include <hlserver_constants.h>
+#include "../server/types.hpp"
+
+#include <thread>
+#include <chrono>
 
 using namespace std;
 using namespace apache::thrift;
@@ -32,9 +36,18 @@ int main()
         
         try {
             client.segment(status, properties);
-            cout << "Segment called.";
+            cout << "New job <" << status.jobId << "> submitted.\n";
+
+            client.status(status, status.jobId);
+            while (status.type != JobStatusType::FINISHED && status.type != JobStatusType::ERROR) {
+                cout << "Job <" << status.jobId << "> status: " << job_status_type_strings.at(status.type) << "\n" << flush;
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                client.status(status, status.jobId);
+            }
         } catch (TranscodingError &te) {
-            cerr << "Error: " << te.what << "\n";
+            cerr << "Transcoding Error: " << te.what << "\n";
+        } catch (JobError &je) {
+            cerr << "Job Error: " << je.what << "\n";
         }
     } catch(TException &tx) {
         cerr << "Error: " << tx.what() << "\n";

@@ -53,6 +53,8 @@ class JobStatus;
 
 class TranscodingError;
 
+class JobError;
+
 typedef struct _VideoProperties__isset {
   _VideoProperties__isset() : width(false), height(false), keyInterval(false), bitrate(false), framerate(false), noiseReduction(false) {}
   bool width;
@@ -384,6 +386,54 @@ class TranscodingError : public ::apache::thrift::TException {
 };
 
 void swap(TranscodingError &a, TranscodingError &b);
+
+typedef struct _JobError__isset {
+  _JobError__isset() : jobId(false), what(false) {}
+  bool jobId;
+  bool what;
+} _JobError__isset;
+
+class JobError : public ::apache::thrift::TException {
+ public:
+
+  static const char* ascii_fingerprint; // = "727CAEA8265A5DE67DBC931F55CD8753";
+  static const uint8_t binary_fingerprint[16]; // = {0x72,0x7C,0xAE,0xA8,0x26,0x5A,0x5D,0xE6,0x7D,0xBC,0x93,0x1F,0x55,0xCD,0x87,0x53};
+
+  JobError(const JobError&);
+  JobError& operator=(const JobError&);
+  JobError() : jobId(0), what() {
+  }
+
+  virtual ~JobError() throw();
+  int64_t jobId;
+  std::string what;
+
+  _JobError__isset __isset;
+
+  void __set_jobId(const int64_t val);
+
+  void __set_what(const std::string& val);
+
+  bool operator == (const JobError & rhs) const
+  {
+    if (!(jobId == rhs.jobId))
+      return false;
+    if (!(what == rhs.what))
+      return false;
+    return true;
+  }
+  bool operator != (const JobError &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const JobError & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+void swap(JobError &a, JobError &b);
 
 } // namespace
 

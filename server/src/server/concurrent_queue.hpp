@@ -73,6 +73,17 @@ public:
         return queue;
     }
 
+    size_t size()
+    {
+        size_t size = 0;
+
+        std::unique_lock<std::mutex> mlock(mutex_);
+        size = queue_.size();
+        mlock.unlock();
+
+        return size;
+    }
+
 protected:
     std::deque<T> queue_;
     std::mutex mutex_;

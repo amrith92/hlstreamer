@@ -25,18 +25,16 @@ using namespace  ::hlserver;
 
 class HLServerHandler : virtual public HLServerIf
 {
-    Segmenter *segmenter_;
+    Segmenter &segmenter_;
 public:
-    HLServerHandler(Segmenter *segmenter)
+    HLServerHandler(Segmenter &segmenter)
+        : segmenter_(segmenter)
     {
-        segmenter_ = segmenter;
     }
 
     virtual ~HLServerHandler()
     {
-        if (segmenter_) {
-            segmenter_ = nullptr;
-        }
+        // For later
     }
 
     void segment(JobStatus& _return, const Properties& properties)
@@ -67,9 +65,12 @@ public:
         job.id = boost::uuids::hash_value(id) >> 1; // This right shift is required to downsize 128-bit UUIDs to 64-bit job-ids
         job.type = JobType::ON_DEMAND;
 
-        _return = segmenter_->add_job(job, p);
+        _return = segmenter_.add_job(job, p);
     }
 
+    void status(JobStatus& _return, const int64_t jobId) {
+        _return = segmenter_.get_status(jobId);
+    }
 };
 
 int main(int argc, char **argv)
@@ -82,9 +83,10 @@ int main(int argc, char **argv)
         port = g_hlserver_constants.SERVER_PORT;
     }
 
-    Segmenter segmenter;
+    job_queue jobs;
+    Segmenter segmenter(jobs);
 
-    shared_ptr<HLServerHandler> handler(new HLServerHandler(&segmenter));
+    shared_ptr<HLServerHandler> handler(new HLServerHandler(segmenter));
     shared_ptr<TProcessor> processor(new HLServerProcessor(handler));
     shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
     shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());

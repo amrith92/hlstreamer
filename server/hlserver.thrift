@@ -94,8 +94,20 @@ exception TranscodingError {
 }
 
 /**
+ *  Represents an error in a job
+ */
+exception JobError {
+    1: i64 jobId,
+    2: string what
+}
+
+/**
  *  The main service for HLServer. This is largely incomplete.
  */
 service HLServer {
-    JobStatus segment(1:Properties properties) throws (1:TranscodingError te),
+    /// Submit a new file to be segmented
+    JobStatus segment(1:Properties properties) throws (1:TranscodingError te, 2: JobError je),
+
+    /// Check status of job
+    JobStatus status(1:i64 jobId) throws (1:JobError je),
 }

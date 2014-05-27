@@ -16,6 +16,7 @@ class HLServerIf {
  public:
   virtual ~HLServerIf() {}
   virtual void segment(JobStatus& _return, const Properties& properties) = 0;
+  virtual void status(JobStatus& _return, const int64_t jobId) = 0;
 };
 
 class HLServerIfFactory {
@@ -46,6 +47,9 @@ class HLServerNull : virtual public HLServerIf {
  public:
   virtual ~HLServerNull() {}
   void segment(JobStatus& /* _return */, const Properties& /* properties */) {
+    return;
+  }
+  void status(JobStatus& /* _return */, const int64_t /* jobId */) {
     return;
   }
 };
@@ -106,16 +110,17 @@ class HLServer_segment_pargs {
 };
 
 typedef struct _HLServer_segment_result__isset {
-  _HLServer_segment_result__isset() : success(false), te(false) {}
+  _HLServer_segment_result__isset() : success(false), te(false), je(false) {}
   bool success;
   bool te;
+  bool je;
 } _HLServer_segment_result__isset;
 
 class HLServer_segment_result {
  public:
 
-  static const char* ascii_fingerprint; // = "B68C0AB80D65B37D5613299EE73C6030";
-  static const uint8_t binary_fingerprint[16]; // = {0xB6,0x8C,0x0A,0xB8,0x0D,0x65,0xB3,0x7D,0x56,0x13,0x29,0x9E,0xE7,0x3C,0x60,0x30};
+  static const char* ascii_fingerprint; // = "72F4F4149E7DE51D4B34743F62DE8D62";
+  static const uint8_t binary_fingerprint[16]; // = {0x72,0xF4,0xF4,0x14,0x9E,0x7D,0xE5,0x1D,0x4B,0x34,0x74,0x3F,0x62,0xDE,0x8D,0x62};
 
   HLServer_segment_result(const HLServer_segment_result&);
   HLServer_segment_result& operator=(const HLServer_segment_result&);
@@ -125,6 +130,7 @@ class HLServer_segment_result {
   virtual ~HLServer_segment_result() throw();
   JobStatus success;
   TranscodingError te;
+  JobError je;
 
   _HLServer_segment_result__isset __isset;
 
@@ -132,11 +138,15 @@ class HLServer_segment_result {
 
   void __set_te(const TranscodingError& val);
 
+  void __set_je(const JobError& val);
+
   bool operator == (const HLServer_segment_result & rhs) const
   {
     if (!(success == rhs.success))
       return false;
     if (!(te == rhs.te))
+      return false;
+    if (!(je == rhs.je))
       return false;
     return true;
   }
@@ -152,23 +162,149 @@ class HLServer_segment_result {
 };
 
 typedef struct _HLServer_segment_presult__isset {
-  _HLServer_segment_presult__isset() : success(false), te(false) {}
+  _HLServer_segment_presult__isset() : success(false), te(false), je(false) {}
   bool success;
   bool te;
+  bool je;
 } _HLServer_segment_presult__isset;
 
 class HLServer_segment_presult {
  public:
 
-  static const char* ascii_fingerprint; // = "B68C0AB80D65B37D5613299EE73C6030";
-  static const uint8_t binary_fingerprint[16]; // = {0xB6,0x8C,0x0A,0xB8,0x0D,0x65,0xB3,0x7D,0x56,0x13,0x29,0x9E,0xE7,0x3C,0x60,0x30};
+  static const char* ascii_fingerprint; // = "72F4F4149E7DE51D4B34743F62DE8D62";
+  static const uint8_t binary_fingerprint[16]; // = {0x72,0xF4,0xF4,0x14,0x9E,0x7D,0xE5,0x1D,0x4B,0x34,0x74,0x3F,0x62,0xDE,0x8D,0x62};
 
 
   virtual ~HLServer_segment_presult() throw();
   JobStatus* success;
   TranscodingError te;
+  JobError je;
 
   _HLServer_segment_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _HLServer_status_args__isset {
+  _HLServer_status_args__isset() : jobId(false) {}
+  bool jobId;
+} _HLServer_status_args__isset;
+
+class HLServer_status_args {
+ public:
+
+  static const char* ascii_fingerprint; // = "56A59CE7FFAF82BCA8A19FAACDE4FB75";
+  static const uint8_t binary_fingerprint[16]; // = {0x56,0xA5,0x9C,0xE7,0xFF,0xAF,0x82,0xBC,0xA8,0xA1,0x9F,0xAA,0xCD,0xE4,0xFB,0x75};
+
+  HLServer_status_args(const HLServer_status_args&);
+  HLServer_status_args& operator=(const HLServer_status_args&);
+  HLServer_status_args() : jobId(0) {
+  }
+
+  virtual ~HLServer_status_args() throw();
+  int64_t jobId;
+
+  _HLServer_status_args__isset __isset;
+
+  void __set_jobId(const int64_t val);
+
+  bool operator == (const HLServer_status_args & rhs) const
+  {
+    if (!(jobId == rhs.jobId))
+      return false;
+    return true;
+  }
+  bool operator != (const HLServer_status_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const HLServer_status_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class HLServer_status_pargs {
+ public:
+
+  static const char* ascii_fingerprint; // = "56A59CE7FFAF82BCA8A19FAACDE4FB75";
+  static const uint8_t binary_fingerprint[16]; // = {0x56,0xA5,0x9C,0xE7,0xFF,0xAF,0x82,0xBC,0xA8,0xA1,0x9F,0xAA,0xCD,0xE4,0xFB,0x75};
+
+
+  virtual ~HLServer_status_pargs() throw();
+  const int64_t* jobId;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _HLServer_status_result__isset {
+  _HLServer_status_result__isset() : success(false), je(false) {}
+  bool success;
+  bool je;
+} _HLServer_status_result__isset;
+
+class HLServer_status_result {
+ public:
+
+  static const char* ascii_fingerprint; // = "C8C757D8680FB0425CD018E1E37B4E55";
+  static const uint8_t binary_fingerprint[16]; // = {0xC8,0xC7,0x57,0xD8,0x68,0x0F,0xB0,0x42,0x5C,0xD0,0x18,0xE1,0xE3,0x7B,0x4E,0x55};
+
+  HLServer_status_result(const HLServer_status_result&);
+  HLServer_status_result& operator=(const HLServer_status_result&);
+  HLServer_status_result() {
+  }
+
+  virtual ~HLServer_status_result() throw();
+  JobStatus success;
+  JobError je;
+
+  _HLServer_status_result__isset __isset;
+
+  void __set_success(const JobStatus& val);
+
+  void __set_je(const JobError& val);
+
+  bool operator == (const HLServer_status_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    if (!(je == rhs.je))
+      return false;
+    return true;
+  }
+  bool operator != (const HLServer_status_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const HLServer_status_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _HLServer_status_presult__isset {
+  _HLServer_status_presult__isset() : success(false), je(false) {}
+  bool success;
+  bool je;
+} _HLServer_status_presult__isset;
+
+class HLServer_status_presult {
+ public:
+
+  static const char* ascii_fingerprint; // = "C8C757D8680FB0425CD018E1E37B4E55";
+  static const uint8_t binary_fingerprint[16]; // = {0xC8,0xC7,0x57,0xD8,0x68,0x0F,0xB0,0x42,0x5C,0xD0,0x18,0xE1,0xE3,0x7B,0x4E,0x55};
+
+
+  virtual ~HLServer_status_presult() throw();
+  JobStatus* success;
+  JobError je;
+
+  _HLServer_status_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
@@ -202,6 +338,9 @@ class HLServerClient : virtual public HLServerIf {
   void segment(JobStatus& _return, const Properties& properties);
   void send_segment(const Properties& properties);
   void recv_segment(JobStatus& _return);
+  void status(JobStatus& _return, const int64_t jobId);
+  void send_status(const int64_t jobId);
+  void recv_status(JobStatus& _return);
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -218,10 +357,12 @@ class HLServerProcessor : public ::apache::thrift::TDispatchProcessor {
   typedef std::map<std::string, ProcessFunction> ProcessMap;
   ProcessMap processMap_;
   void process_segment(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_status(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   HLServerProcessor(boost::shared_ptr<HLServerIf> iface) :
     iface_(iface) {
     processMap_["segment"] = &HLServerProcessor::process_segment;
+    processMap_["status"] = &HLServerProcessor::process_status;
   }
 
   virtual ~HLServerProcessor() {}
@@ -257,6 +398,16 @@ class HLServerMultiface : virtual public HLServerIf {
       ifaces_[i]->segment(_return, properties);
     }
     ifaces_[i]->segment(_return, properties);
+    return;
+  }
+
+  void status(JobStatus& _return, const int64_t jobId) {
+    size_t sz = ifaces_.size();
+    size_t i = 0;
+    for (; i < (sz - 1); ++i) {
+      ifaces_[i]->status(_return, jobId);
+    }
+    ifaces_[i]->status(_return, jobId);
     return;
   }
 

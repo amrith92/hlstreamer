@@ -771,4 +771,103 @@ TranscodingError& TranscodingError::operator=(const TranscodingError& other13) {
   what = other13.what;
   return *this;
 }
+
+JobError::~JobError() throw() {
+}
+
+
+void JobError::__set_jobId(const int64_t val) {
+  jobId = val;
+}
+
+void JobError::__set_what(const std::string& val) {
+  what = val;
+}
+
+const char* JobError::ascii_fingerprint = "727CAEA8265A5DE67DBC931F55CD8753";
+const uint8_t JobError::binary_fingerprint[16] = {0x72,0x7C,0xAE,0xA8,0x26,0x5A,0x5D,0xE6,0x7D,0xBC,0x93,0x1F,0x55,0xCD,0x87,0x53};
+
+uint32_t JobError::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_I64) {
+          xfer += iprot->readI64(this->jobId);
+          this->__isset.jobId = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->what);
+          this->__isset.what = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t JobError::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  oprot->incrementRecursionDepth();
+  xfer += oprot->writeStructBegin("JobError");
+
+  xfer += oprot->writeFieldBegin("jobId", ::apache::thrift::protocol::T_I64, 1);
+  xfer += oprot->writeI64(this->jobId);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("what", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->what);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  oprot->decrementRecursionDepth();
+  return xfer;
+}
+
+void swap(JobError &a, JobError &b) {
+  using ::std::swap;
+  swap(a.jobId, b.jobId);
+  swap(a.what, b.what);
+  swap(a.__isset, b.__isset);
+}
+
+JobError::JobError(const JobError& other14) {
+  jobId = other14.jobId;
+  what = other14.what;
+}
+JobError& JobError::operator=(const JobError& other15) {
+  jobId = other15.jobId;
+  what = other15.what;
+  return *this;
+}
 } // namespace
