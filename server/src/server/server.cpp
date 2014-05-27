@@ -72,7 +72,7 @@ public:
         _return = segmenter_.get_status(jobId);
     }
 
-    void remove(const int64_t jobId) {
+    void retire(const int64_t jobId) {
         segmenter_.remove_job(jobId);
     }
 };

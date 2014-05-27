@@ -23,7 +23,7 @@ const JobStatus Segmenter::add_job(const Job& job, const Params& params)
 
     std::lock_guard<std::mutex> lock(mutex_);
 
-    jobs_.push(std::make_tuple(status, job, params, false));
+    jobs_.push(std::make_tuple(status, job, params, KEEP_JOB));
     cond_.notify_all();
     return status;
 }
@@ -36,7 +36,7 @@ const JobStatus Segmenter::add_job(Job&& job, Params&& params)
 
     std::lock_guard<std::mutex> lock(mutex_);
 
-    jobs_.push(std::make_tuple(status, job, params, false));
+    jobs_.push(std::make_tuple(status, job, params, KEEP_JOB));
     cond_.notify_all();
     return status;
 }
@@ -52,7 +52,7 @@ void Segmenter::process()
         slock.unlock();
 
         if (std::get<0>(job).type == JobStatusType::FINISHED) {
-            if (std::get<3>(job) == false) {
+            if (std::get<3>(job) == KEEP_JOB) {
                 slock.lock();
                 jobs_.push(job);
                 slock.unlock();
@@ -114,7 +114,7 @@ void Segmenter::remove_job(const int64_t jobId)
 
     for (auto &job : jobs) {
         if (std::get<0>(job).jobId == jobId) {
-            std::get<3>(job) = true; // mark dirty
+            std::get<3>(job) = DELETE_JOB; // mark dirty
         }
     }
 }

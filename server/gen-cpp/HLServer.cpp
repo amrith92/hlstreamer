@@ -441,11 +441,11 @@ uint32_t HLServer_status_presult::read(::apache::thrift::protocol::TProtocol* ip
 }
 
 
-HLServer_remove_args::~HLServer_remove_args() throw() {
+HLServer_retire_args::~HLServer_retire_args() throw() {
 }
 
 
-uint32_t HLServer_remove_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t HLServer_retire_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   uint32_t xfer = 0;
   std::string fname;
@@ -485,10 +485,10 @@ uint32_t HLServer_remove_args::read(::apache::thrift::protocol::TProtocol* iprot
   return xfer;
 }
 
-uint32_t HLServer_remove_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t HLServer_retire_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   oprot->incrementRecursionDepth();
-  xfer += oprot->writeStructBegin("HLServer_remove_args");
+  xfer += oprot->writeStructBegin("HLServer_retire_args");
 
   xfer += oprot->writeFieldBegin("jobId", ::apache::thrift::protocol::T_I64, 1);
   xfer += oprot->writeI64(this->jobId);
@@ -501,14 +501,14 @@ uint32_t HLServer_remove_args::write(::apache::thrift::protocol::TProtocol* opro
 }
 
 
-HLServer_remove_pargs::~HLServer_remove_pargs() throw() {
+HLServer_retire_pargs::~HLServer_retire_pargs() throw() {
 }
 
 
-uint32_t HLServer_remove_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t HLServer_retire_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   oprot->incrementRecursionDepth();
-  xfer += oprot->writeStructBegin("HLServer_remove_pargs");
+  xfer += oprot->writeStructBegin("HLServer_retire_pargs");
 
   xfer += oprot->writeFieldBegin("jobId", ::apache::thrift::protocol::T_I64, 1);
   xfer += oprot->writeI64((*(this->jobId)));
@@ -645,17 +645,17 @@ void HLServerClient::recv_status(JobStatus& _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "status failed: unknown result");
 }
 
-void HLServerClient::remove(const int64_t jobId)
+void HLServerClient::retire(const int64_t jobId)
 {
-  send_remove(jobId);
+  send_retire(jobId);
 }
 
-void HLServerClient::send_remove(const int64_t jobId)
+void HLServerClient::send_retire(const int64_t jobId)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("remove", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("retire", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  HLServer_remove_pargs args;
+  HLServer_retire_pargs args;
   args.jobId = &jobId;
   args.write(oprot_);
 
@@ -800,38 +800,38 @@ void HLServerProcessor::process_status(int32_t seqid, ::apache::thrift::protocol
   }
 }
 
-void HLServerProcessor::process_remove(int32_t, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol*, void* callContext)
+void HLServerProcessor::process_retire(int32_t, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol*, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("HLServer.remove", callContext);
+    ctx = this->eventHandler_->getContext("HLServer.retire", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "HLServer.remove");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "HLServer.retire");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "HLServer.remove");
+    this->eventHandler_->preRead(ctx, "HLServer.retire");
   }
 
-  HLServer_remove_args args;
+  HLServer_retire_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "HLServer.remove", bytes);
+    this->eventHandler_->postRead(ctx, "HLServer.retire", bytes);
   }
 
   try {
-    iface_->remove(args.jobId);
+    iface_->retire(args.jobId);
   } catch (const std::exception&) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "HLServer.remove");
+      this->eventHandler_->handlerError(ctx, "HLServer.retire");
     }
     return;
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->asyncComplete(ctx, "HLServer.remove");
+    this->eventHandler_->asyncComplete(ctx, "HLServer.retire");
   }
 
   return;

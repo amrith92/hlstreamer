@@ -29,7 +29,7 @@ int main()
         transport->open();
 
         Properties properties;
-        properties.inFile = "";
+        properties.inFile = "/home/amrith92/Videos/output.mp4";
         properties.baseUri = "http://aesahaettr/";
 
         JobStatus status;
@@ -40,10 +40,14 @@ int main()
 
             client.status(status, status.jobId);
             while (status.type != JobStatusType::FINISHED && status.type != JobStatusType::ERROR) {
-                cout << "Job <" << status.jobId << "> status: " << job_status_type_strings.at(status.type) << "\n" << flush;
+                cout << "Job <" << status.jobId << "> status: " << job_status_type_strings.at(status.type) << "\n";
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 client.status(status, status.jobId);
             }
+            cout << "Job <" << status.jobId << "> status: " << job_status_type_strings.at(status.type) << "\n";
+
+            client.retire(status.jobId);
+            cout << "Retired job.\n";
         } catch (TranscodingError &te) {
             cerr << "Transcoding Error: " << te.what << "\n";
         } catch (JobError &je) {

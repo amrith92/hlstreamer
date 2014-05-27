@@ -112,5 +112,5 @@ service HLServer {
     JobStatus status(1:i64 jobId) throws (1:JobError je),
 
     /// Delete a job once the client sends this message
-    oneway void remove(1:i64 jobId),
+    oneway void retire(1:i64 jobId),
 }
