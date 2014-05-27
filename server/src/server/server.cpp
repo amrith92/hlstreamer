@@ -71,6 +71,10 @@ public:
     void status(JobStatus& _return, const int64_t jobId) {
         _return = segmenter_.get_status(jobId);
     }
+
+    void remove(const int64_t jobId) {
+        segmenter_.remove_job(jobId);
+    }
 };
 
 int main(int argc, char **argv)

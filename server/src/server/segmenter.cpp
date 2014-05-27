@@ -23,7 +23,7 @@ const JobStatus Segmenter::add_job(const Job& job, const Params& params)
 
     std::lock_guard<std::mutex> lock(mutex_);
 
-    jobs_.push(std::make_tuple(status, job, params));
+    jobs_.push(std::make_tuple(status, job, params, false));
     cond_.notify_all();
     return status;
 }
@@ -36,7 +36,7 @@ const JobStatus Segmenter::add_job(Job&& job, Params&& params)
 
     std::lock_guard<std::mutex> lock(mutex_);
 
-    jobs_.push(std::make_tuple(status, job, params));
+    jobs_.push(std::make_tuple(status, job, params, false));
     cond_.notify_all();
     return status;
 }
@@ -52,9 +52,11 @@ void Segmenter::process()
         slock.unlock();
 
         if (std::get<0>(job).type == JobStatusType::FINISHED) {
-            slock.lock();
-            jobs_.push(job);
-            slock.unlock();
+            if (std::get<3>(job) == false) {
+                slock.lock();
+                jobs_.push(job);
+                slock.unlock();
+            }
             continue;
         }
 
@@ -102,6 +104,19 @@ const JobStatus Segmenter::get_status(int64_t jobId)
     status.type = JobStatusType::INVALID;
     status.jobId = jobId;
     return status;
+}
+
+void Segmenter::remove_job(const int64_t jobId)
+{
+    std::lock_guard<std::mutex> slock(mutex_);
+    
+    auto jobs = jobs_.raw();
+
+    for (auto &job : jobs) {
+        if (std::get<0>(job).jobId == jobId) {
+            std::get<3>(job) = true; // mark dirty
+        }
+    }
 }
 
 } // namespace hlserver

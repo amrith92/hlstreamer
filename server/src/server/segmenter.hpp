@@ -25,6 +25,8 @@ public:
     
     const JobStatus get_status(int64_t jobId);
 
+    void remove_job(int64_t jobId);
+
 private:
     job_queue &jobs_;
     std::thread thread_;

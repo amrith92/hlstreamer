@@ -64,10 +64,10 @@ public:
         return isEmpty;
     }
 
-    inline std::deque<T> raw()
+    inline std::deque<T> &raw()
     {
         std::unique_lock<std::mutex> mlock(mutex_);
-        std::deque<T> queue = queue_;
+        std::deque<T> &queue = queue_;
         mlock.unlock();
 
         return queue;

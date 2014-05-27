@@ -7,7 +7,9 @@
 #include "concurrent_queue.hpp"
 
 namespace hlserver {
-    typedef std::tuple<JobStatus, Job, Params> QueuedJob;
+    // The last parameter decides if the job should be removed
+    // from the queue
+    typedef std::tuple<JobStatus, Job, Params, bool> QueuedJob;
     typedef concurrent_queue<QueuedJob> job_queue;
 
     const std::map<JobStatusType::type, std::string> job_status_type_strings {

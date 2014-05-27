@@ -17,6 +17,7 @@ class HLServerIf {
   virtual ~HLServerIf() {}
   virtual void segment(JobStatus& _return, const Properties& properties) = 0;
   virtual void status(JobStatus& _return, const int64_t jobId) = 0;
+  virtual void remove(const int64_t jobId) = 0;
 };
 
 class HLServerIfFactory {
@@ -50,6 +51,9 @@ class HLServerNull : virtual public HLServerIf {
     return;
   }
   void status(JobStatus& /* _return */, const int64_t /* jobId */) {
+    return;
+  }
+  void remove(const int64_t /* jobId */) {
     return;
   }
 };
@@ -310,6 +314,61 @@ class HLServer_status_presult {
 
 };
 
+typedef struct _HLServer_remove_args__isset {
+  _HLServer_remove_args__isset() : jobId(false) {}
+  bool jobId;
+} _HLServer_remove_args__isset;
+
+class HLServer_remove_args {
+ public:
+
+  static const char* ascii_fingerprint; // = "56A59CE7FFAF82BCA8A19FAACDE4FB75";
+  static const uint8_t binary_fingerprint[16]; // = {0x56,0xA5,0x9C,0xE7,0xFF,0xAF,0x82,0xBC,0xA8,0xA1,0x9F,0xAA,0xCD,0xE4,0xFB,0x75};
+
+  HLServer_remove_args(const HLServer_remove_args&);
+  HLServer_remove_args& operator=(const HLServer_remove_args&);
+  HLServer_remove_args() : jobId(0) {
+  }
+
+  virtual ~HLServer_remove_args() throw();
+  int64_t jobId;
+
+  _HLServer_remove_args__isset __isset;
+
+  void __set_jobId(const int64_t val);
+
+  bool operator == (const HLServer_remove_args & rhs) const
+  {
+    if (!(jobId == rhs.jobId))
+      return false;
+    return true;
+  }
+  bool operator != (const HLServer_remove_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const HLServer_remove_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class HLServer_remove_pargs {
+ public:
+
+  static const char* ascii_fingerprint; // = "56A59CE7FFAF82BCA8A19FAACDE4FB75";
+  static const uint8_t binary_fingerprint[16]; // = {0x56,0xA5,0x9C,0xE7,0xFF,0xAF,0x82,0xBC,0xA8,0xA1,0x9F,0xAA,0xCD,0xE4,0xFB,0x75};
+
+
+  virtual ~HLServer_remove_pargs() throw();
+  const int64_t* jobId;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
 class HLServerClient : virtual public HLServerIf {
  public:
   HLServerClient(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> prot) {
@@ -341,6 +400,8 @@ class HLServerClient : virtual public HLServerIf {
   void status(JobStatus& _return, const int64_t jobId);
   void send_status(const int64_t jobId);
   void recv_status(JobStatus& _return);
+  void remove(const int64_t jobId);
+  void send_remove(const int64_t jobId);
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -358,11 +419,13 @@ class HLServerProcessor : public ::apache::thrift::TDispatchProcessor {
   ProcessMap processMap_;
   void process_segment(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_status(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_remove(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   HLServerProcessor(boost::shared_ptr<HLServerIf> iface) :
     iface_(iface) {
     processMap_["segment"] = &HLServerProcessor::process_segment;
     processMap_["status"] = &HLServerProcessor::process_status;
+    processMap_["remove"] = &HLServerProcessor::process_remove;
   }
 
   virtual ~HLServerProcessor() {}
@@ -409,6 +472,15 @@ class HLServerMultiface : virtual public HLServerIf {
     }
     ifaces_[i]->status(_return, jobId);
     return;
+  }
+
+  void remove(const int64_t jobId) {
+    size_t sz = ifaces_.size();
+    size_t i = 0;
+    for (; i < (sz - 1); ++i) {
+      ifaces_[i]->remove(jobId);
+    }
+    ifaces_[i]->remove(jobId);
   }
 
 };

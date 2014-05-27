@@ -440,6 +440,86 @@ uint32_t HLServer_status_presult::read(::apache::thrift::protocol::TProtocol* ip
   return xfer;
 }
 
+
+HLServer_remove_args::~HLServer_remove_args() throw() {
+}
+
+
+uint32_t HLServer_remove_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_I64) {
+          xfer += iprot->readI64(this->jobId);
+          this->__isset.jobId = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t HLServer_remove_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  oprot->incrementRecursionDepth();
+  xfer += oprot->writeStructBegin("HLServer_remove_args");
+
+  xfer += oprot->writeFieldBegin("jobId", ::apache::thrift::protocol::T_I64, 1);
+  xfer += oprot->writeI64(this->jobId);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  oprot->decrementRecursionDepth();
+  return xfer;
+}
+
+
+HLServer_remove_pargs::~HLServer_remove_pargs() throw() {
+}
+
+
+uint32_t HLServer_remove_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  oprot->incrementRecursionDepth();
+  xfer += oprot->writeStructBegin("HLServer_remove_pargs");
+
+  xfer += oprot->writeFieldBegin("jobId", ::apache::thrift::protocol::T_I64, 1);
+  xfer += oprot->writeI64((*(this->jobId)));
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  oprot->decrementRecursionDepth();
+  return xfer;
+}
+
 void HLServerClient::segment(JobStatus& _return, const Properties& properties)
 {
   send_segment(properties);
@@ -563,6 +643,25 @@ void HLServerClient::recv_status(JobStatus& _return)
     throw result.je;
   }
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "status failed: unknown result");
+}
+
+void HLServerClient::remove(const int64_t jobId)
+{
+  send_remove(jobId);
+}
+
+void HLServerClient::send_remove(const int64_t jobId)
+{
+  int32_t cseqid = 0;
+  oprot_->writeMessageBegin("remove", ::apache::thrift::protocol::T_CALL, cseqid);
+
+  HLServer_remove_pargs args;
+  args.jobId = &jobId;
+  args.write(oprot_);
+
+  oprot_->writeMessageEnd();
+  oprot_->getTransport()->writeEnd();
+  oprot_->getTransport()->flush();
 }
 
 bool HLServerProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
@@ -699,6 +798,43 @@ void HLServerProcessor::process_status(int32_t seqid, ::apache::thrift::protocol
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postWrite(ctx, "HLServer.status", bytes);
   }
+}
+
+void HLServerProcessor::process_remove(int32_t, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol*, void* callContext)
+{
+  void* ctx = NULL;
+  if (this->eventHandler_.get() != NULL) {
+    ctx = this->eventHandler_->getContext("HLServer.remove", callContext);
+  }
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "HLServer.remove");
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->preRead(ctx, "HLServer.remove");
+  }
+
+  HLServer_remove_args args;
+  args.read(iprot);
+  iprot->readMessageEnd();
+  uint32_t bytes = iprot->getTransport()->readEnd();
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->postRead(ctx, "HLServer.remove", bytes);
+  }
+
+  try {
+    iface_->remove(args.jobId);
+  } catch (const std::exception&) {
+    if (this->eventHandler_.get() != NULL) {
+      this->eventHandler_->handlerError(ctx, "HLServer.remove");
+    }
+    return;
+  }
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->asyncComplete(ctx, "HLServer.remove");
+  }
+
+  return;
 }
 
 ::boost::shared_ptr< ::apache::thrift::TProcessor > HLServerProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
