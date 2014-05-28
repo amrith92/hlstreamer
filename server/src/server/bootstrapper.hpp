@@ -2,6 +2,9 @@
 #define BOOTSTRAPPER_HPP
 
 #include <string>
+#include "exceptions.hpp"
+
+using namespace ::hlserver::exceptions;
 
 namespace hlserver {
 
@@ -14,7 +17,7 @@ public:
     Bootstrapper &operator = (const Bootstrapper&) = delete;
 
     /// Add throw() decls
-    void setup();
+    void setup() throw (DirectoryInsufficientPrivilegesError, DirectoryNotFoundError, DirectoryNotWritable, DirectoryNotReadable, DirectoryNotReadableByGroup);
 
 protected:
     const std::string &media_path_;

@@ -5,7 +5,7 @@ INCLUDES = -Igen-cpp/ -I /opt/includes/hlstreamer `pkg-config --cflags gstreamer
 
 LFLAGS = -L /usr/lib/ -L ./gen-cpp/ -L /opt/libs/hlstreamer `pkg-config --libs gstreamer-1.0`
 
-LIBS = -lpthread -lthrift
+LIBS = -lpthread -lthrift -lboost_system -lboost_filesystem
 
 SRCS = $(wildcard ./gen-cpp/*.cpp)
 SERVER_SRCS = $(wildcard ./src/server/*.cpp)

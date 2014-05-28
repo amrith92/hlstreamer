@@ -12,6 +12,7 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include "segmenter.hpp"
+#include "bootstrapper.hpp"
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -22,6 +23,7 @@ using namespace ::apache::thrift::concurrency;
 using boost::shared_ptr;
 
 using namespace  ::hlserver;
+using namespace  ::hlserver::exceptions;
 
 class HLServerHandler : virtual public HLServerIf
 {
@@ -86,6 +88,20 @@ int main(int argc, char **argv)
     } else {
         port = g_hlserver_constants.SERVER_PORT;
     }
+
+    Bootstrapper bootstrapper(g_hlserver_constants.BASE_PATH);
+
+    try
+    {
+        bootstrapper.setup();
+    }
+    catch (const DirectoryError& de)
+    {
+        std::cerr << "[FATAL] " << de.what() << "\n";
+        return 0;
+    }
+
+    std::cout << "pre-flight checks checks out :D\n";
 
     job_queue jobs;
     Segmenter segmenter(jobs);
