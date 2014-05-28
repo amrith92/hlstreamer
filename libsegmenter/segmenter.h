@@ -63,6 +63,13 @@ typedef struct _audio_params {
 	const uint8_t channels;
 } AudioParams;
 
+/**
+ *  Params represents the parameters passed to libsegmenter
+ *  in          => The source file
+ *  out         => The output directory with naming scheme (eg: /path/%d.ts)
+ *  video_props => Video-encoding properties
+ *  audio_props => Audio-encoding properties
+ */
 typedef struct _params {
 	const char *in;
 	const char *out;
