@@ -3,9 +3,9 @@ CXXFLAGS = -g -Wall -Wextra -std=c++11 -pedantic
 
 INCLUDES = -Igen-cpp/ -I /opt/includes/hlstreamer `pkg-config --cflags gstreamer-1.0`
 
-LFLAGS = -L /usr/lib/ -L ./gen-cpp/ -L /opt/libs/hlstreamer `pkg-config --libs gstreamer-1.0`
+LFLAGS = -L /usr/lib/ -L ./gen-cpp/ -L /opt/lib/hlstreamer `pkg-config --libs gstreamer-1.0`
 
-LIBS = -lpthread -lthrift -lboost_system -lboost_filesystem
+LIBS = -lpthread -lthrift -lboost_system -lboost_filesystem -lhlsegmenter
 
 SRCS = $(wildcard ./gen-cpp/*.cpp)
 SERVER_SRCS = $(wildcard ./src/server/*.cpp)

@@ -1,6 +1,9 @@
 #include "segmenter.hpp"
+#include <hlserver_constants.h>
 #include <iostream>
 #include <sstream>
+#include <vector>
+#include <future>
 #include <chrono>
 
 namespace hlserver {
@@ -72,8 +75,8 @@ void Segmenter::process()
         std::ostringstream g1;
         g1 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear1/%d.ts";
         Gear gear1 {
-            std::get<2>(job),
-            g1.str(),
+            std::get<2>(job).c_str(),
+            g1.str().c_str(),
             basic_video_gears[0],
             basic_audio_params
         };
@@ -81,8 +84,8 @@ void Segmenter::process()
         std::ostringstream g2;
         g2 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear2/%d.ts";
         Gear gear2 {
-            std::get<2>(job),
-            g2.str(),
+            std::get<2>(job).c_str(),
+            g2.str().c_str(),
             basic_video_gears[1],
             basic_audio_params
         };
@@ -90,8 +93,8 @@ void Segmenter::process()
         std::ostringstream g3;
         g3 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear3/%d.ts";
         Gear gear3 {
-            std::get<2>(job),
-            g3.str(),
+            std::get<2>(job).c_str(),
+            g3.str().c_str(),
             basic_video_gears[2],
             basic_audio_params
         };
@@ -99,8 +102,8 @@ void Segmenter::process()
         std::ostringstream g4;
         g4 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear4/%d.ts";
         Gear gear4 {
-            std::get<2>(job),
-            g4.str(),
+            std::get<2>(job).c_str(),
+            g4.str().c_str(),
             basic_video_gears[3],
             basic_audio_params
         };
@@ -110,10 +113,27 @@ void Segmenter::process()
         // The architecture provided by apple states that encoding
         // is a separate process and I understand why, but the
         // gstreamer pipeline handles encoding too. It's not cheating :P
-        segmenter_try(&gear1);
-        segmenter_try(&gear2);
-        segmenter_try(&gear3);
-        segmenter_try(&gear4);
+        // The task below basically runs segmenter_try once for
+        // each gear and collects the results of each invocation so as
+        // to test for errors, if any
+        std::packaged_task<std::vector<int>(Gear *, Gear *, Gear *, Gear *)> segment_task
+        ([](Gear *gear1, Gear *gear2, Gear *gear3, Gear *gear4)
+            {
+                std::vector<int> results;
+                results.reserve(4);
+
+                results.push_back(segmenter_try(gear1));
+                results.push_back(segmenter_try(gear2));
+                results.push_back(segmenter_try(gear3));
+                results.push_back(segmenter_try(gear4));
+
+                return results;
+            }
+        );
+
+        auto fut = segment_task.get_future();
+        segment_task(&gear1, &gear2, &gear3, &gear4);
+        std::vector<int> result = fut.get();
 
         std::get<0>(job).type = JobStatusType::FINISHED;
 
