@@ -1,5 +1,6 @@
 #include "segmenter.hpp"
 #include <iostream>
+#include <sstream>
 #include <chrono>
 
 namespace hlserver {
@@ -15,7 +16,7 @@ Segmenter::~Segmenter()
     thread_.join(); // Wait for current process to end before terminating
 }
 
-const JobStatus Segmenter::add_job(const Job& job, const Params& params)
+const JobStatus Segmenter::add_job(const Job& job, const std::string& in_file)
 {
     JobStatus status;
     status.type = JobStatusType::ACCEPTED;
@@ -23,12 +24,12 @@ const JobStatus Segmenter::add_job(const Job& job, const Params& params)
 
     std::lock_guard<std::mutex> lock(mutex_);
 
-    jobs_.push(std::make_tuple(status, job, params, KEEP_JOB));
+    jobs_.push(std::make_tuple(status, job, in_file, KEEP_JOB));
     cond_.notify_all();
     return status;
 }
 
-const JobStatus Segmenter::add_job(Job&& job, Params&& params)
+const JobStatus Segmenter::add_job(Job&& job, std::string&& in_file)
 {
     JobStatus status;
     status.type = JobStatusType::ACCEPTED;
@@ -36,7 +37,7 @@ const JobStatus Segmenter::add_job(Job&& job, Params&& params)
 
     std::lock_guard<std::mutex> lock(mutex_);
 
-    jobs_.push(std::make_tuple(status, job, params, KEEP_JOB));
+    jobs_.push(std::make_tuple(status, job, in_file, KEEP_JOB));
     cond_.notify_all();
     return status;
 }
@@ -67,7 +68,52 @@ void Segmenter::process()
         current_job_status_ = std::get<0>(job);
         slock.unlock();
 
-        std::this_thread::sleep_for(std::chrono::seconds(5)); // simulate processing
+        // Build the "gears"
+        std::ostringstream g1;
+        g1 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear1/%d.ts";
+        Gear gear1 {
+            std::get<2>(job),
+            g1.str(),
+            basic_video_gears[0],
+            basic_audio_params
+        };
+
+        std::ostringstream g2;
+        g2 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear2/%d.ts";
+        Gear gear2 {
+            std::get<2>(job),
+            g2.str(),
+            basic_video_gears[1],
+            basic_audio_params
+        };
+
+        std::ostringstream g3;
+        g3 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear3/%d.ts";
+        Gear gear3 {
+            std::get<2>(job),
+            g3.str(),
+            basic_video_gears[2],
+            basic_audio_params
+        };
+
+        std::ostringstream g4;
+        g4 << g_hlserver_constants.BASE_PATH << "/" << std::get<0>(job).jobId << "-gear4/%d.ts";
+        Gear gear4 {
+            std::get<2>(job),
+            g4.str(),
+            basic_video_gears[3],
+            basic_audio_params
+        };
+
+        // segmenter_try utilizes all cores whilst running, so
+        // I'd prefer calling it serially for each "gear" here
+        // The architecture provided by apple states that encoding
+        // is a separate process and I understand why, but the
+        // gstreamer pipeline handles encoding too. It's not cheating :P
+        segmenter_try(&gear1);
+        segmenter_try(&gear2);
+        segmenter_try(&gear3);
+        segmenter_try(&gear4);
 
         std::get<0>(job).type = JobStatusType::FINISHED;
 

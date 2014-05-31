@@ -39,417 +39,6 @@ const char* _kJobStatusTypeNames[] = {
 const std::map<int, const char*> _JobStatusType_VALUES_TO_NAMES(::apache::thrift::TEnumIterator(5, _kJobStatusTypeValues, _kJobStatusTypeNames), ::apache::thrift::TEnumIterator(-1, NULL, NULL));
 
 
-VideoProperties::~VideoProperties() throw() {
-}
-
-
-void VideoProperties::__set_width(const int16_t val) {
-  width = val;
-}
-
-void VideoProperties::__set_height(const int16_t val) {
-  height = val;
-}
-
-void VideoProperties::__set_keyInterval(const i8 val) {
-  keyInterval = val;
-}
-
-void VideoProperties::__set_bitrate(const int16_t val) {
-  bitrate = val;
-}
-
-void VideoProperties::__set_framerate(const int16_t val) {
-  framerate = val;
-}
-
-void VideoProperties::__set_noiseReduction(const i8 val) {
-  noiseReduction = val;
-}
-
-const char* VideoProperties::ascii_fingerprint = "702A300A7FCCFAD34992E0E52FD1FA78";
-const uint8_t VideoProperties::binary_fingerprint[16] = {0x70,0x2A,0x30,0x0A,0x7F,0xCC,0xFA,0xD3,0x49,0x92,0xE0,0xE5,0x2F,0xD1,0xFA,0x78};
-
-uint32_t VideoProperties::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_I16) {
-          xfer += iprot->readI16(this->width);
-          this->__isset.width = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_I16) {
-          xfer += iprot->readI16(this->height);
-          this->__isset.height = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_BYTE) {
-          xfer += iprot->readByte(this->keyInterval);
-          this->__isset.keyInterval = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 4:
-        if (ftype == ::apache::thrift::protocol::T_I16) {
-          xfer += iprot->readI16(this->bitrate);
-          this->__isset.bitrate = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 5:
-        if (ftype == ::apache::thrift::protocol::T_I16) {
-          xfer += iprot->readI16(this->framerate);
-          this->__isset.framerate = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 6:
-        if (ftype == ::apache::thrift::protocol::T_BYTE) {
-          xfer += iprot->readByte(this->noiseReduction);
-          this->__isset.noiseReduction = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t VideoProperties::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  oprot->incrementRecursionDepth();
-  xfer += oprot->writeStructBegin("VideoProperties");
-
-  xfer += oprot->writeFieldBegin("width", ::apache::thrift::protocol::T_I16, 1);
-  xfer += oprot->writeI16(this->width);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("height", ::apache::thrift::protocol::T_I16, 2);
-  xfer += oprot->writeI16(this->height);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("keyInterval", ::apache::thrift::protocol::T_BYTE, 3);
-  xfer += oprot->writeByte(this->keyInterval);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("bitrate", ::apache::thrift::protocol::T_I16, 4);
-  xfer += oprot->writeI16(this->bitrate);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("framerate", ::apache::thrift::protocol::T_I16, 5);
-  xfer += oprot->writeI16(this->framerate);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("noiseReduction", ::apache::thrift::protocol::T_BYTE, 6);
-  xfer += oprot->writeByte(this->noiseReduction);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  oprot->decrementRecursionDepth();
-  return xfer;
-}
-
-void swap(VideoProperties &a, VideoProperties &b) {
-  using ::std::swap;
-  swap(a.width, b.width);
-  swap(a.height, b.height);
-  swap(a.keyInterval, b.keyInterval);
-  swap(a.bitrate, b.bitrate);
-  swap(a.framerate, b.framerate);
-  swap(a.noiseReduction, b.noiseReduction);
-  swap(a.__isset, b.__isset);
-}
-
-VideoProperties::VideoProperties(const VideoProperties& other0) {
-  width = other0.width;
-  height = other0.height;
-  keyInterval = other0.keyInterval;
-  bitrate = other0.bitrate;
-  framerate = other0.framerate;
-  noiseReduction = other0.noiseReduction;
-}
-VideoProperties& VideoProperties::operator=(const VideoProperties& other1) {
-  width = other1.width;
-  height = other1.height;
-  keyInterval = other1.keyInterval;
-  bitrate = other1.bitrate;
-  framerate = other1.framerate;
-  noiseReduction = other1.noiseReduction;
-  return *this;
-}
-
-AudioProperties::~AudioProperties() throw() {
-}
-
-
-void AudioProperties::__set_bitrate(const int16_t val) {
-  bitrate = val;
-}
-
-void AudioProperties::__set_channels(const i8 val) {
-  channels = val;
-}
-
-const char* AudioProperties::ascii_fingerprint = "2F32B8B152B4427223DB9D670291659B";
-const uint8_t AudioProperties::binary_fingerprint[16] = {0x2F,0x32,0xB8,0xB1,0x52,0xB4,0x42,0x72,0x23,0xDB,0x9D,0x67,0x02,0x91,0x65,0x9B};
-
-uint32_t AudioProperties::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_I16) {
-          xfer += iprot->readI16(this->bitrate);
-          this->__isset.bitrate = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_BYTE) {
-          xfer += iprot->readByte(this->channels);
-          this->__isset.channels = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t AudioProperties::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  oprot->incrementRecursionDepth();
-  xfer += oprot->writeStructBegin("AudioProperties");
-
-  xfer += oprot->writeFieldBegin("bitrate", ::apache::thrift::protocol::T_I16, 1);
-  xfer += oprot->writeI16(this->bitrate);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("channels", ::apache::thrift::protocol::T_BYTE, 2);
-  xfer += oprot->writeByte(this->channels);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  oprot->decrementRecursionDepth();
-  return xfer;
-}
-
-void swap(AudioProperties &a, AudioProperties &b) {
-  using ::std::swap;
-  swap(a.bitrate, b.bitrate);
-  swap(a.channels, b.channels);
-  swap(a.__isset, b.__isset);
-}
-
-AudioProperties::AudioProperties(const AudioProperties& other2) {
-  bitrate = other2.bitrate;
-  channels = other2.channels;
-}
-AudioProperties& AudioProperties::operator=(const AudioProperties& other3) {
-  bitrate = other3.bitrate;
-  channels = other3.channels;
-  return *this;
-}
-
-Properties::~Properties() throw() {
-}
-
-
-void Properties::__set_inFile(const std::string& val) {
-  inFile = val;
-}
-
-void Properties::__set_baseUri(const std::string& val) {
-  baseUri = val;
-}
-
-void Properties::__set_video(const VideoProperties& val) {
-  video = val;
-}
-
-void Properties::__set_audio(const AudioProperties& val) {
-  audio = val;
-}
-
-const char* Properties::ascii_fingerprint = "81AB8A960ED2C0E3679A7B9DA5240FB3";
-const uint8_t Properties::binary_fingerprint[16] = {0x81,0xAB,0x8A,0x96,0x0E,0xD2,0xC0,0xE3,0x67,0x9A,0x7B,0x9D,0xA5,0x24,0x0F,0xB3};
-
-uint32_t Properties::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->inFile);
-          this->__isset.inFile = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->baseUri);
-          this->__isset.baseUri = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->video.read(iprot);
-          this->__isset.video = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 4:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->audio.read(iprot);
-          this->__isset.audio = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t Properties::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  oprot->incrementRecursionDepth();
-  xfer += oprot->writeStructBegin("Properties");
-
-  xfer += oprot->writeFieldBegin("inFile", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->inFile);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("baseUri", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->baseUri);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("video", ::apache::thrift::protocol::T_STRUCT, 3);
-  xfer += this->video.write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldBegin("audio", ::apache::thrift::protocol::T_STRUCT, 4);
-  xfer += this->audio.write(oprot);
-  xfer += oprot->writeFieldEnd();
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  oprot->decrementRecursionDepth();
-  return xfer;
-}
-
-void swap(Properties &a, Properties &b) {
-  using ::std::swap;
-  swap(a.inFile, b.inFile);
-  swap(a.baseUri, b.baseUri);
-  swap(a.video, b.video);
-  swap(a.audio, b.audio);
-  swap(a.__isset, b.__isset);
-}
-
-Properties::Properties(const Properties& other4) {
-  inFile = other4.inFile;
-  baseUri = other4.baseUri;
-  video = other4.video;
-  audio = other4.audio;
-}
-Properties& Properties::operator=(const Properties& other5) {
-  inFile = other5.inFile;
-  baseUri = other5.baseUri;
-  video = other5.video;
-  audio = other5.audio;
-  return *this;
-}
-
 Job::~Job() throw() {
 }
 
@@ -495,9 +84,9 @@ uint32_t Job::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast6;
-          xfer += iprot->readI32(ecast6);
-          this->type = (JobType::type)ecast6;
+          int32_t ecast0;
+          xfer += iprot->readI32(ecast0);
+          this->type = (JobType::type)ecast0;
           this->__isset.type = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -541,13 +130,13 @@ void swap(Job &a, Job &b) {
   swap(a.__isset, b.__isset);
 }
 
-Job::Job(const Job& other7) {
-  id = other7.id;
-  type = other7.type;
+Job::Job(const Job& other1) {
+  id = other1.id;
+  type = other1.type;
 }
-Job& Job::operator=(const Job& other8) {
-  id = other8.id;
-  type = other8.type;
+Job& Job::operator=(const Job& other2) {
+  id = other2.id;
+  type = other2.type;
   return *this;
 }
 
@@ -593,9 +182,9 @@ uint32_t JobStatus::read(::apache::thrift::protocol::TProtocol* iprot) {
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast9;
-          xfer += iprot->readI32(ecast9);
-          this->type = (JobStatusType::type)ecast9;
+          int32_t ecast3;
+          xfer += iprot->readI32(ecast3);
+          this->type = (JobStatusType::type)ecast3;
           this->__isset.type = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -661,15 +250,15 @@ void swap(JobStatus &a, JobStatus &b) {
   swap(a.__isset, b.__isset);
 }
 
-JobStatus::JobStatus(const JobStatus& other10) {
-  type = other10.type;
-  jobId = other10.jobId;
-  message = other10.message;
+JobStatus::JobStatus(const JobStatus& other4) {
+  type = other4.type;
+  jobId = other4.jobId;
+  message = other4.message;
 }
-JobStatus& JobStatus::operator=(const JobStatus& other11) {
-  type = other11.type;
-  jobId = other11.jobId;
-  message = other11.message;
+JobStatus& JobStatus::operator=(const JobStatus& other5) {
+  type = other5.type;
+  jobId = other5.jobId;
+  message = other5.message;
   return *this;
 }
 
@@ -762,13 +351,13 @@ void swap(TranscodingError &a, TranscodingError &b) {
   swap(a.__isset, b.__isset);
 }
 
-TranscodingError::TranscodingError(const TranscodingError& other12) {
-  code = other12.code;
-  what = other12.what;
+TranscodingError::TranscodingError(const TranscodingError& other6) {
+  code = other6.code;
+  what = other6.what;
 }
-TranscodingError& TranscodingError::operator=(const TranscodingError& other13) {
-  code = other13.code;
-  what = other13.what;
+TranscodingError& TranscodingError::operator=(const TranscodingError& other7) {
+  code = other7.code;
+  what = other7.what;
   return *this;
 }
 
@@ -861,13 +450,13 @@ void swap(JobError &a, JobError &b) {
   swap(a.__isset, b.__isset);
 }
 
-JobError::JobError(const JobError& other14) {
-  jobId = other14.jobId;
-  what = other14.what;
+JobError::JobError(const JobError& other8) {
+  jobId = other8.jobId;
+  what = other8.what;
 }
-JobError& JobError::operator=(const JobError& other15) {
-  jobId = other15.jobId;
-  what = other15.what;
+JobError& JobError::operator=(const JobError& other9) {
+  jobId = other9.jobId;
+  what = other9.what;
   return *this;
 }
 } // namespace

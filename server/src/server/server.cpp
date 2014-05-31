@@ -7,7 +7,6 @@
 #include <HLServer.h>
 #include <hlserver_constants.h>
 
-#include <sstream>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
@@ -39,35 +38,17 @@ public:
         // For later
     }
 
-    void segment(JobStatus& _return, const Properties& properties)
+    void segment(JobStatus& _return, const std::string& in_file, const JobType::type job_type = JobType::ON_DEMAND)
     {
         boost::uuids::uuid id = boost::uuids::random_generator()();
-        std::ostringstream oss;
-        oss << g_hlserver_constants.BASE_PATH << "/" << id << "/%d.ts";
-        Params p = {
-            properties.inFile.c_str(),
-            oss.str().c_str(),
-            {
-                static_cast<uint16_t>(properties.video.width),
-                static_cast<uint16_t>(properties.video.height),
-                static_cast<uint8_t>(properties.video.keyInterval),
-                static_cast<uint16_t>(properties.video.bitrate),
-                static_cast<uint16_t>(properties.video.framerate),
-                static_cast<uint8_t>(properties.video.noiseReduction)
-            },
-            {
-                static_cast<uint16_t>(properties.audio.bitrate),
-                static_cast<uint8_t>(properties.audio.channels)
-            }
-        };
 
         // Preferrably validate the properties here.
         // Then create a job and add it to the job-queue
         Job job;
         job.id = boost::uuids::hash_value(id) >> 1; // This right shift is required to downsize 128-bit UUIDs to 64-bit job-ids
-        job.type = JobType::ON_DEMAND;
+        job.type = job_type;
 
-        _return = segmenter_.add_job(job, p);
+        _return = segmenter_.add_job(job, in_file);
     }
 
     void status(JobStatus& _return, const int64_t jobId) {
@@ -125,4 +106,3 @@ int main(int argc, char **argv)
 
     return 0;
 }
-

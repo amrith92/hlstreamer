@@ -34,9 +34,19 @@ uint32_t HLServer_segment_args::read(::apache::thrift::protocol::TProtocol* ipro
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->properties.read(iprot);
-          this->__isset.properties = true;
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->in_file);
+          this->__isset.in_file = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          int32_t ecast10;
+          xfer += iprot->readI32(ecast10);
+          this->job_type = (JobType::type)ecast10;
+          this->__isset.job_type = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -58,8 +68,12 @@ uint32_t HLServer_segment_args::write(::apache::thrift::protocol::TProtocol* opr
   oprot->incrementRecursionDepth();
   xfer += oprot->writeStructBegin("HLServer_segment_args");
 
-  xfer += oprot->writeFieldBegin("properties", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->properties.write(oprot);
+  xfer += oprot->writeFieldBegin("in_file", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->in_file);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("job_type", ::apache::thrift::protocol::T_I32, 2);
+  xfer += oprot->writeI32((int32_t)this->job_type);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -78,8 +92,12 @@ uint32_t HLServer_segment_pargs::write(::apache::thrift::protocol::TProtocol* op
   oprot->incrementRecursionDepth();
   xfer += oprot->writeStructBegin("HLServer_segment_pargs");
 
-  xfer += oprot->writeFieldBegin("properties", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->properties)).write(oprot);
+  xfer += oprot->writeFieldBegin("in_file", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->in_file)));
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("job_type", ::apache::thrift::protocol::T_I32, 2);
+  xfer += oprot->writeI32((int32_t)(*(this->job_type)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -520,19 +538,20 @@ uint32_t HLServer_retire_pargs::write(::apache::thrift::protocol::TProtocol* opr
   return xfer;
 }
 
-void HLServerClient::segment(JobStatus& _return, const Properties& properties)
+void HLServerClient::segment(JobStatus& _return, const std::string& in_file, const JobType::type job_type)
 {
-  send_segment(properties);
+  send_segment(in_file, job_type);
   recv_segment(_return);
 }
 
-void HLServerClient::send_segment(const Properties& properties)
+void HLServerClient::send_segment(const std::string& in_file, const JobType::type job_type)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("segment", ::apache::thrift::protocol::T_CALL, cseqid);
 
   HLServer_segment_pargs args;
-  args.properties = &properties;
+  args.in_file = &in_file;
+  args.job_type = &job_type;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -706,7 +725,7 @@ void HLServerProcessor::process_segment(int32_t seqid, ::apache::thrift::protoco
 
   HLServer_segment_result result;
   try {
-    iface_->segment(result.success, args.properties);
+    iface_->segment(result.success, args.in_file, args.job_type);
     result.__isset.success = true;
   } catch (TranscodingError &te) {
     result.te = te;

@@ -28,14 +28,12 @@ int main()
     try {
         transport->open();
 
-        Properties properties;
-        properties.inFile = "/home/amrith92/Videos/output.mp4";
-        properties.baseUri = "http://aesahaettr/";
+        std::string file = "/home/amrith92/Videos/output.mp4";
 
         JobStatus status;
         
         try {
-            client.segment(status, properties);
+            client.segment(status, file, JobType::ON_DEMAND);
             cout << "New job <" << status.jobId << "> submitted.\n";
 
             client.status(status, status.jobId);

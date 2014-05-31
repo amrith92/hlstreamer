@@ -15,7 +15,7 @@ namespace hlserver {
 class HLServerIf {
  public:
   virtual ~HLServerIf() {}
-  virtual void segment(JobStatus& _return, const Properties& properties) = 0;
+  virtual void segment(JobStatus& _return, const std::string& in_file, const JobType::type job_type) = 0;
   virtual void status(JobStatus& _return, const int64_t jobId) = 0;
   virtual void retire(const int64_t jobId) = 0;
 };
@@ -47,7 +47,7 @@ class HLServerIfSingletonFactory : virtual public HLServerIfFactory {
 class HLServerNull : virtual public HLServerIf {
  public:
   virtual ~HLServerNull() {}
-  void segment(JobStatus& /* _return */, const Properties& /* properties */) {
+  void segment(JobStatus& /* _return */, const std::string& /* in_file */, const JobType::type /* job_type */) {
     return;
   }
   void status(JobStatus& /* _return */, const int64_t /* jobId */) {
@@ -59,31 +59,39 @@ class HLServerNull : virtual public HLServerIf {
 };
 
 typedef struct _HLServer_segment_args__isset {
-  _HLServer_segment_args__isset() : properties(false) {}
-  bool properties;
+  _HLServer_segment_args__isset() : in_file(false), job_type(true) {}
+  bool in_file;
+  bool job_type;
 } _HLServer_segment_args__isset;
 
 class HLServer_segment_args {
  public:
 
-  static const char* ascii_fingerprint; // = "2DE572ECEA7AB226D0CC3047602827E3";
-  static const uint8_t binary_fingerprint[16]; // = {0x2D,0xE5,0x72,0xEC,0xEA,0x7A,0xB2,0x26,0xD0,0xCC,0x30,0x47,0x60,0x28,0x27,0xE3};
+  static const char* ascii_fingerprint; // = "D6FD826D949221396F4FFC3ECCD3D192";
+  static const uint8_t binary_fingerprint[16]; // = {0xD6,0xFD,0x82,0x6D,0x94,0x92,0x21,0x39,0x6F,0x4F,0xFC,0x3E,0xCC,0xD3,0xD1,0x92};
 
   HLServer_segment_args(const HLServer_segment_args&);
   HLServer_segment_args& operator=(const HLServer_segment_args&);
-  HLServer_segment_args() {
+  HLServer_segment_args() : in_file(), job_type((JobType::type)1) {
+    job_type = (JobType::type)1;
+
   }
 
   virtual ~HLServer_segment_args() throw();
-  Properties properties;
+  std::string in_file;
+  JobType::type job_type;
 
   _HLServer_segment_args__isset __isset;
 
-  void __set_properties(const Properties& val);
+  void __set_in_file(const std::string& val);
+
+  void __set_job_type(const JobType::type val);
 
   bool operator == (const HLServer_segment_args & rhs) const
   {
-    if (!(properties == rhs.properties))
+    if (!(in_file == rhs.in_file))
+      return false;
+    if (!(job_type == rhs.job_type))
       return false;
     return true;
   }
@@ -102,12 +110,13 @@ class HLServer_segment_args {
 class HLServer_segment_pargs {
  public:
 
-  static const char* ascii_fingerprint; // = "2DE572ECEA7AB226D0CC3047602827E3";
-  static const uint8_t binary_fingerprint[16]; // = {0x2D,0xE5,0x72,0xEC,0xEA,0x7A,0xB2,0x26,0xD0,0xCC,0x30,0x47,0x60,0x28,0x27,0xE3};
+  static const char* ascii_fingerprint; // = "D6FD826D949221396F4FFC3ECCD3D192";
+  static const uint8_t binary_fingerprint[16]; // = {0xD6,0xFD,0x82,0x6D,0x94,0x92,0x21,0x39,0x6F,0x4F,0xFC,0x3E,0xCC,0xD3,0xD1,0x92};
 
 
   virtual ~HLServer_segment_pargs() throw();
-  const Properties* properties;
+  const std::string* in_file;
+  const JobType::type* job_type;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -394,8 +403,8 @@ class HLServerClient : virtual public HLServerIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void segment(JobStatus& _return, const Properties& properties);
-  void send_segment(const Properties& properties);
+  void segment(JobStatus& _return, const std::string& in_file, const JobType::type job_type);
+  void send_segment(const std::string& in_file, const JobType::type job_type);
   void recv_segment(JobStatus& _return);
   void status(JobStatus& _return, const int64_t jobId);
   void send_status(const int64_t jobId);
@@ -454,13 +463,13 @@ class HLServerMultiface : virtual public HLServerIf {
     ifaces_.push_back(iface);
   }
  public:
-  void segment(JobStatus& _return, const Properties& properties) {
+  void segment(JobStatus& _return, const std::string& in_file, const JobType::type job_type) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->segment(_return, properties);
+      ifaces_[i]->segment(_return, in_file, job_type);
     }
-    ifaces_[i]->segment(_return, properties);
+    ifaces_[i]->segment(_return, in_file, job_type);
     return;
   }
 

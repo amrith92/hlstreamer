@@ -17,8 +17,8 @@ public:
     Segmenter(const Segmenter&) = delete;
     Segmenter& operator =(const Segmenter&) = delete;
 
-    const JobStatus add_job(const Job& job, const Params& params);
-    const JobStatus add_job(Job&& job, Params&& params);
+    const JobStatus add_job(const Job& job, const std::string& in_file);
+    const JobStatus add_job(Job&& job, std::string&& in_file);
 
     /// Processes the jobs in the queue
     void process();

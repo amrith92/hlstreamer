@@ -12,40 +12,6 @@ const i16 SERVER_PORT = 9822
 const string BASE_PATH = "/srv/hlstreamer"
 
 /**
- *  Represents the video properties of the
- *  transcoded media file.
- */
-struct VideoProperties {
-    1: i16 width,
-    2: i16 height,
-    3: i8 keyInterval,
-    4: i16 bitrate,
-    5: i16 framerate,
-    6: i8 noiseReduction,
-}
-
-/**
- *  Represents the properties of the
- *  transcoded media file.
- */
-struct AudioProperties {
-    1: i16 bitrate,
-    2: i8 channels,
-}
-
-/**
- *  Represents the properties of the
- *  transcoding process for a specified
- *  inFile.
- */
-struct Properties {
-    1: string inFile,
-    2: string baseUri, // The base URI prepended to transcoded file
-    3: VideoProperties video,
-    4: AudioProperties audio,
-}
-
-/**
  *  Represents a job type.
  */
 enum JobType {
@@ -106,7 +72,7 @@ exception JobError {
  */
 service HLServer {
     /// Submit a new file to be segmented
-    JobStatus segment(1:Properties properties) throws (1:TranscodingError te, 2: JobError je),
+    JobStatus segment(1: string in_file, 2: JobType job_type = JobType.ON_DEMAND) throws (1:TranscodingError te, 2: JobError je),
 
     /// Check status of job
     JobStatus status(1:i64 jobId) throws (1:JobError je),
