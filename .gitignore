@@ -40,7 +40,10 @@ libsegmenter/doc/*
 libm3u8/doc/*
 
 server/hlclient
+server/hlclient-debug
 server/hlserver
+server/hlserver-debug
+gmon.out
 *.0.1
 
 *~

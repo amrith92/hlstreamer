@@ -28,7 +28,7 @@ int main()
     try {
         transport->open();
 
-        std::string file = "/home/amrith92/Videos/output.mp4";
+        std::string file = "/home/amrith92/Videos/a.mp4";
 
         JobStatus status;
         

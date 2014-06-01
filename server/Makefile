@@ -1,11 +1,12 @@
 CXX = clang++
-CXXFLAGS = -g -Wall -Wextra -std=c++11 -pedantic
+CXXFLAGS = -Wall -Wextra -std=c++11 -pedantic
+CXXFLAGSDEBUG = -pg $(CXXFLAGS)
 
 INCLUDES = -Igen-cpp/ -I /opt/includes/hlstreamer `pkg-config --cflags gstreamer-1.0`
 
 LFLAGS = -L /usr/lib/ -L ./gen-cpp/ -L /opt/lib/hlstreamer `pkg-config --libs gstreamer-1.0`
 
-LIBS = -lpthread -lthrift -lboost_system -lboost_filesystem -lhlsegmenter
+LIBS = -lpthread -lthrift -lboost_system -lboost_filesystem
 
 SRCS = $(wildcard ./gen-cpp/*.cpp)
 SERVER_SRCS = $(wildcard ./src/server/*.cpp)
@@ -23,11 +24,20 @@ default: all
 all: $(SERVER) $(CLIENT)
 	@echo hlserver successfully compiled
 
+debug: $(SERVER)-debug $(CLIENT)-debug
+	@echo hlserver successfully compiled in debug mode
+
 $(SERVER): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(SERVER_SRCS) -o $(SERVER) $(OBJS) $(LFLAGS) $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(SERVER_SRCS) -o $(SERVER) $(OBJS) $(LFLAGS) $(LIBS) -lhlsegmenter
+
+$(SERVER)-debug: $(OBJS)
+	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) $(SERVER_SRCS) -o $(SERVER)-debug $(OBJS) $(LFLAGS) $(LIBS) -lhlsegmenter
 
 $(CLIENT): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(CLIENT_SRCS) -o $(CLIENT) $(OBJS) $(LFLAGS) $(LIBS)
+
+$(CLIENT)-debug: $(OBJS)
+	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) $(CLIENT_SRCS) -o $(CLIENT)-debug $(OBJS) $(LFLAGS) $(LIBS)
 
 %.o: %.c
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
