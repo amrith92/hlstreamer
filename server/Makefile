@@ -1,6 +1,5 @@
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -std=c++11 -pedantic
-CXXFLAGSDEBUG = -pg $(CXXFLAGS)
 
 INCLUDES = -Igen-cpp/ -I /opt/includes/hlstreamer `pkg-config --cflags gstreamer-1.0`
 
@@ -31,19 +30,19 @@ $(SERVER): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(SERVER_SRCS) -o $(SERVER) $(OBJS) $(LFLAGS) $(LIBS) -lhlsegmenter
 
 $(SERVER)-debug: $(OBJS)
-	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) $(SERVER_SRCS) -o $(SERVER)-debug $(OBJS) $(LFLAGS) $(LIBS) -lhlsegmenter
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(SERVER_SRCS) -o $(SERVER)-debug $(OBJS) $(LFLAGS) $(LIBS) -lhlsegmenter -g -pg
 
 $(CLIENT): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(CLIENT_SRCS) -o $(CLIENT) $(OBJS) $(LFLAGS) $(LIBS)
 
 $(CLIENT)-debug: $(OBJS)
-	$(CXX) $(CXXFLAGSDEBUG) $(INCLUDES) $(CLIENT_SRCS) -o $(CLIENT)-debug $(OBJS) $(LFLAGS) $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(CLIENT_SRCS) -o $(CLIENT)-debug $(OBJS) $(LFLAGS) $(LIBS) -g -pg
 
 %.o: %.c
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) ./gen-cpp/*.o ./gen-cpp/*~ ./src/client/*.o ./src/server/*.o ./src/client/*~ ./src/server/*~ $(SERVER) $(CLIENT) *.o
+	$(RM) ./gen-cpp/*.o ./gen-cpp/*~ ./src/client/*.o ./src/server/*.o ./src/client/*~ ./src/server/*~ $(SERVER) $(CLIENT) $(SERVER)-debug $(CLIENT)-debug *.o
 
 depend: $(SRCS)
 	makedepend $(INCLUDES) $^

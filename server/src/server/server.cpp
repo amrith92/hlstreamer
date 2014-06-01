@@ -10,6 +10,8 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include <csignal>
+#include <cstdlib>
 #include "segmenter.hpp"
 #include "bootstrapper.hpp"
 
@@ -62,6 +64,13 @@ public:
 
 int main(int argc, char **argv)
 {
+    std::signal(SIGINT, [] (int signal)
+        {
+            std::cout << "Ctrl+C caught; goodbye!";
+            std::exit(0);
+        }
+    );
+
     int port = 0;
 
     if (argc == 2) {
