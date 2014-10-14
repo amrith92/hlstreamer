@@ -1,0 +1,8 @@
+gst_hls_sink_get_type
+gst_m3u8_playlist_add_entry
+gst_m3u8_playlist_clear
+gst_m3u8_playlist_free
+gst_m3u8_playlist_n_entries
+gst_m3u8_playlist_new
+gst_m3u8_playlist_render
+gst_plugin_desc
