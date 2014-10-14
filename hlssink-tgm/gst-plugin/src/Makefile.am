@@ -20,7 +20,8 @@ libhlstgm_la_SOURCES = gstm3u8playlist.c gsthlssink.c
 libhlstgm_la_CFLAGS = $(GST_PLUGINS_BASE_CFLAGS) $(GST_BASE_CFLAGS) $(GST_CFLAGS) $(GIO_CFLAGS)
 libhlstgm_la_LIBADD = \
 		$(GST_PLUGINS_BASE_LIBS) \
-		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS)
+		-lgstpbutils-1.0 -lgstvideo-1.0 \
+		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS) $(LIBM)
 libhlstgm_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS) -no-undefined
 libhlstgm_la_LIBTOOLFLAGS = --tag=disable-static
 

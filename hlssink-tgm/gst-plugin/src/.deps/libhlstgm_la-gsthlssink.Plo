@@ -323,6 +323,41 @@ libhlstgm_la-gsthlssink.lo: gsthlssink.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gio/gmenuexporter.h \
  /usr/include/glib-2.0/gio/gdbusmenumodel.h \
  /usr/include/glib-2.0/gio/gnotification.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/pbutils.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/gstpluginsbaseversion.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/descriptions.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/missing-plugins.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/install-plugins.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/codec-utils.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/pbutils-enumtypes.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/gstdiscoverer.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/encoding-profile.h \
+ /usr/include/gstreamer-1.0/gst/pbutils/encoding-target.h \
+ /usr/include/gstreamer-1.0/gst/video/video.h \
+ /usr/include/gstreamer-1.0/gst/video/video-format.h \
+ /usr/include/gstreamer-1.0/gst/video/video-enumtypes.h \
+ /usr/include/gstreamer-1.0/gst/video/video-chroma.h \
+ /usr/include/gstreamer-1.0/gst/video/video-color.h \
+ /usr/include/gstreamer-1.0/gst/video/video-info.h \
+ /usr/include/gstreamer-1.0/gst/video/video-frame.h \
+ /usr/include/gstreamer-1.0/gst/video/colorbalancechannel.h \
+ /usr/include/gstreamer-1.0/gst/video/colorbalance.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideodecoder.h \
+ /usr/include/gstreamer-1.0/gst/base/gstadapter.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideoutils.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideoencoder.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideofilter.h \
+ /usr/include/gstreamer-1.0/gst/base/gstbasetransform.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideometa.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideopool.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideosink.h \
+ /usr/include/gstreamer-1.0/gst/base/gstbasesink.h \
+ /usr/include/gstreamer-1.0/gst/video/navigation.h \
+ /usr/include/gstreamer-1.0/gst/video/video-blend.h \
+ /usr/include/gstreamer-1.0/gst/video/video-event.h \
+ /usr/include/gstreamer-1.0/gst/video/videoorientation.h \
+ /usr/include/gstreamer-1.0/gst/video/video-overlay-composition.h \
+ /usr/include/gstreamer-1.0/gst/video/videooverlay.h \
  /usr/include/glib-2.0/glib/gstdio.h /usr/include/glib-2.0/glib/gprintf.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
@@ -1052,6 +1087,76 @@ gstm3u8playlist.h:
 /usr/include/glib-2.0/gio/gdbusmenumodel.h:
 
 /usr/include/glib-2.0/gio/gnotification.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/pbutils.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/gstpluginsbaseversion.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/descriptions.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/missing-plugins.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/install-plugins.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/codec-utils.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/pbutils-enumtypes.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/gstdiscoverer.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/encoding-profile.h:
+
+/usr/include/gstreamer-1.0/gst/pbutils/encoding-target.h:
+
+/usr/include/gstreamer-1.0/gst/video/video.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-format.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-enumtypes.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-chroma.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-color.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-info.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-frame.h:
+
+/usr/include/gstreamer-1.0/gst/video/colorbalancechannel.h:
+
+/usr/include/gstreamer-1.0/gst/video/colorbalance.h:
+
+/usr/include/gstreamer-1.0/gst/video/gstvideodecoder.h:
+
+/usr/include/gstreamer-1.0/gst/base/gstadapter.h:
+
+/usr/include/gstreamer-1.0/gst/video/gstvideoutils.h:
+
+/usr/include/gstreamer-1.0/gst/video/gstvideoencoder.h:
+
+/usr/include/gstreamer-1.0/gst/video/gstvideofilter.h:
+
+/usr/include/gstreamer-1.0/gst/base/gstbasetransform.h:
+
+/usr/include/gstreamer-1.0/gst/video/gstvideometa.h:
+
+/usr/include/gstreamer-1.0/gst/video/gstvideopool.h:
+
+/usr/include/gstreamer-1.0/gst/video/gstvideosink.h:
+
+/usr/include/gstreamer-1.0/gst/base/gstbasesink.h:
+
+/usr/include/gstreamer-1.0/gst/video/navigation.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-blend.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-event.h:
+
+/usr/include/gstreamer-1.0/gst/video/videoorientation.h:
+
+/usr/include/gstreamer-1.0/gst/video/video-overlay-composition.h:
+
+/usr/include/gstreamer-1.0/gst/video/videooverlay.h:
 
 /usr/include/glib-2.0/glib/gstdio.h:
 

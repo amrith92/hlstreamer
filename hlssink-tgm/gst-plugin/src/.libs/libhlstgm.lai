@@ -17,7 +17,7 @@ old_library=''
 inherited_linker_flags=' -pthread'
 
 # Libraries that this one depends upon.
-dependency_libs=' -lgstbase-1.0 -lgstcontroller-1.0 -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0'
+dependency_libs=' -lgstpbutils-1.0 -lgstvideo-1.0 -lgstbase-1.0 -lgstcontroller-1.0 -lgstreamer-1.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''

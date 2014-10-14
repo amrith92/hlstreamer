@@ -122,7 +122,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(plugindir)"
 LTLIBRARIES = $(plugin_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-libhlstgm_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
+libhlstgm_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 am_libhlstgm_la_OBJECTS = libhlstgm_la-gstm3u8playlist.lo \
 	libhlstgm_la-gsthlssink.lo
 libhlstgm_la_OBJECTS = $(am_libhlstgm_la_OBJECTS)
@@ -221,6 +222,8 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = 
 FGREP = /bin/grep -F
+GIO_CFLAGS = -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include  
+GIO_LIBS = -lgio-2.0 -lgobject-2.0 -lglib-2.0  
 GREP = /bin/grep
 GST_CFLAGS = -pthread -I/usr/include/gstreamer-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall
 GST_LIBS = -lgstbase-1.0 -lgstcontroller-1.0 -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0  
@@ -340,7 +343,8 @@ libhlstgm_la_SOURCES = gstm3u8playlist.c gsthlssink.c
 libhlstgm_la_CFLAGS = $(GST_PLUGINS_BASE_CFLAGS) $(GST_BASE_CFLAGS) $(GST_CFLAGS) $(GIO_CFLAGS)
 libhlstgm_la_LIBADD = \
 		$(GST_PLUGINS_BASE_LIBS) \
-		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS)
+		-lgstpbutils-1.0 -lgstvideo-1.0 \
+		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS) $(LIBM)
 
 libhlstgm_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS) -no-undefined
 libhlstgm_la_LIBTOOLFLAGS = --tag=disable-static
