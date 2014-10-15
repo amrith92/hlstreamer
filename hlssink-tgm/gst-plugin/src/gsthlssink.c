@@ -51,7 +51,7 @@
  * <refsect2>
  * <title>Launch line</title>
  * |[
- * gst-launch-1.0 videotestsrc is-live=true ! x264enc ! mpegtsmux ! hlssink max-files=5
+ * gst-launch-1.0 videotestsrc is-live=true ! x264enc ! mpegtsmux ! tgm-hls max-files=5
  * ]|
  * </refsect2>
  */
@@ -79,13 +79,6 @@ GST_DEBUG_CATEGORY_STATIC (gst_hls_sink_debug);
 #define DEFAULT_TARGET_DURATION 15
 #define DEFAULT_PLAYLIST_LENGTH 5
 
-/* Filter signals and args */
-enum
-{
-  /* FILL ME */
-  LAST_SIGNAL
-};
-
 enum
 {
   PROP_0,
@@ -104,8 +97,7 @@ enum
 static GstStaticPadTemplate sink_factory = GST_STATIC_PAD_TEMPLATE ("sink",
     GST_PAD_SINK,
     GST_PAD_ALWAYS,
-    GST_STATIC_CAPS_ANY
-    );
+    GST_STATIC_CAPS_ANY);
 
 #define gst_hls_sink_parent_class parent_class
 G_DEFINE_TYPE (GstHlsSink, gst_hls_sink, GST_TYPE_BIN);
@@ -142,6 +134,9 @@ gst_hls_sink_finalize (GObject * object)
     g_free (sink->location);
     g_free (sink->playlist_location);
     g_free (sink->playlist_root);
+    if (sink->playlist) {
+        gst_m3u8_playlist_free (sink->playlist);
+    }
 
     G_OBJECT_CLASS (parent_class)->finalize ((GObject *) sink);
 }
@@ -159,9 +154,9 @@ gst_hls_sink_class_init (GstHlsSinkClass * klass)
     bin_class = (GstBinClass *) klass;
 
     gst_element_class_set_static_metadata(gstelement_class,
-            "HTTP Live Streaming sink",
+            "HTTP Live Streaming Server bin",
             "Sink",
-            "HTTP Live Streaming sink",
+            "HTTP Live Streaming Server bin",
             "Amrith Nayak <amrith92@gmail.com>");
 
     gst_element_class_add_pad_template (gstelement_class,
@@ -567,40 +562,30 @@ gst_hls_sink_ghost_buffer_probe (GstPad * pad, GstPadProbeInfo * info,
  * initialize the plug-in itself
  * register the element factories and other features
  */
-static gboolean
-hlssink_init (GstPlugin * hlssink)
+gboolean
+gst_hls_sink_plugin_init (GstPlugin * plugin)
 {
   /* debug category for fltering log messages
    *
-   * exchange the string 'Template hlssink' with your description
    */
-  GST_DEBUG_CATEGORY_INIT (gst_hls_sink_debug, "hlssink",
-      0, "HTTP Live Streaming sink");
+  GST_DEBUG_CATEGORY_INIT (gst_hls_sink_debug, "tgm-hls",
+      0, "HlsSink");
 
-  return gst_element_register (hlssink, "hlssink", GST_RANK_NONE,
-      GST_TYPE_HLSSINK);
+  return gst_element_register (plugin, "tgm-hls", GST_RANK_NONE,
+      GST_TYPE_HLS_SINK);
 }
 
-/* PACKAGE: this is usually set by autotools depending on some _INIT macro
- * in configure.ac and then written into and defined in config.h, but we can
- * just set it ourselves here in case someone doesn't use autotools to
- * compile this code. GST_PLUGIN_DEFINE needs PACKAGE to be defined.
- */
-#ifndef PACKAGE
-#define PACKAGE "tgmhlssink"
-#endif
-
-/* gstreamer looks for this structure to register hlssinks
- *
+/**
+ *  Plugin definition
  */
 GST_PLUGIN_DEFINE (
     GST_VERSION_MAJOR,
     GST_VERSION_MINOR,
     hlssink,
-    "HTTP Live Streaming Server bin",
-    hlssink_init,
+    "HTTP Live Streaming Server",
+    gst_hls_sink_plugin_init,
     VERSION,
     "LGPL",
-    "GStreamer",
-    "http://gstreamer.net/"
+    "thegeekmachine",
+    "http://thegeekpa.wordpress.com"
 )

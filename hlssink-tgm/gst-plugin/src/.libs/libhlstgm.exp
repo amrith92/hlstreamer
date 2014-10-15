@@ -1,4 +1,5 @@
 gst_hls_sink_get_type
+gst_hls_sink_plugin_init
 gst_m3u8_playlist_add_entry
 gst_m3u8_playlist_clear
 gst_m3u8_playlist_free

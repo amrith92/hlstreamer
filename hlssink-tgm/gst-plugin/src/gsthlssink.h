@@ -52,17 +52,18 @@
 G_BEGIN_DECLS
 
 /* #defines don't like whitespacey bits */
-#define GST_TYPE_HLSSINK \
+#define GST_TYPE_HLS_SINK \
   (gst_hls_sink_get_type())
-#define GST_HLSSINK(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_HLSSINK,GstHlsSink))
-#define GST_HLS_SINK_CAST(obj) ((GstHlsSink *) obj)
-#define GST_HLSSINK_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_HLSSINK,GstHlsSinkClass))
-#define GST_IS_HLSSINK(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_HLSSINK))
-#define GST_IS_HLSSINK_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_HLSSINK))
+#define GST_HLS_SINK(obj) \
+    (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_HLS_SINK,GstHlsSink))
+#define GST_HLS_SINK_CAST(obj) \
+    ((GstHlsSink *) obj)
+#define GST_HLS_SINK_CLASS(klass) \
+    (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_HLS_SINK,GstHlsSinkClass))
+#define GST_IS_HLS_SINK(obj) \
+    (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_HLS_SINK))
+#define GST_IS_HLS_SINK_CLASS(obj) \
+    (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_HLS_SINK))
 
 typedef struct _GstHlsSink      GstHlsSink;
 typedef struct _GstHlsSinkClass GstHlsSinkClass;
