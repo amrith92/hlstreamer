@@ -1,7 +1,6 @@
 /*
  * GStreamer
- * Copyright (C) 2005 Thomas Vander Stichele <thomas@apestaart.org>
- * Copyright (C) 2005 Ronald S. Bultje <rbultje@ronald.bitfreak.net>
+ * Copyright (C) 2011 Alessandro Decina <alessandro.d@gmail.com>
  * Copyright (C) 2014 Amrith Nayak <amrith92@gmail.com>
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a
