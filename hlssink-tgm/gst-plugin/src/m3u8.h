@@ -46,12 +46,13 @@
 #define __M3U8_H
 
 #include <glib.h>
+#include <gst/gst.h>
 
 G_BEGIN_DECLS
 
 typedef struct _GstM3U8 GstM3U8;
 typedef struct _GstM3U8MediaFile GstM3U8MediaFile;
-typedef strut _GstM3U8Client GstM3U8Client;
+typedef struct _GstM3U8Client GstM3U8Client;
 
 #define GST_M3U8(m) ((GstM3U8 *) m)
 #define GST_M3U8_MEDIA_FILE(f) ((GstM3U8MediaFile *) f)
@@ -59,32 +60,40 @@ typedef strut _GstM3U8Client GstM3U8Client;
 #define GST_M3U8_CLIENT_LOCK(c) g_mutex_lock (&c->lock);
 #define GST_M3U8_CLIENT_UNLOCK(c) g_mutex_unlock (&c->lock);
 
-#define GSST_M3U8_CLIENT_IS_LIVE(c) ((! (c)->current || (c)->current->endlist) ? FALSE : TRUE)
+#define GST_M3U8_CLIENT_IS_LIVE(c) ((! (c)->current || (c)->current->endlist) ? FALSE : TRUE)
 
 struct _GstM3U8
 {
-    gchar *uri;
+    gchar *uri;                     /* actually downloaded URI */
+    gchar *base_uri;                /* URI to use as base for resolving relative
+                                       URIs. This will be different to URI in
+                                       case of redirects */
 
-    gboolean endlist;
+    gchar *name;                    /* This will be the "name" of the playlist,
+                                       the original relative/absolute URI in a
+                                       variant playlist */
+
+    gboolean endlist;               /* if ENDLIST has been reached */
     gint version;                   /* last EXT-X-VERSION */
     GstClockTime targetduration;    /* last EXT-X-TARGETDURATION */
-    gchar *allowcache;              /* last EXT-X-ALLOWCACHE */
-    gchar *key;
-
+    gboolean allowcache;            /* last EXT-X-ALLOWCACHE */
 
     gint bandwidth;
     gint program_id;
     gchar *codecs;
     gint width;
     gint height;
+    gboolean iframe;
     GList *files;
 
     /*< private >*/
     gchar *last_data;
-    GList *lists;
-    GList *current_variant;
-    GstM3U8 *parent;
-    guint mediasequence; /* EXT-X-MEDIA-SEQUENCE & increased with new media file */
+    GList *lists;                   /* list of GstM3U8 from the main playlist */
+    GList *iframe_lists;            /* I-frame lists from the main playlist */
+    GList *current_variant;         /* Current variant playlist used */
+    GstM3U8 *parent;                /* main playlist (if any) */
+    gint64 mediasequence;           /* EXT-X-MEDIA-SEQUENCE & increased with
+                                       new media file */
 };
 
 struct _GstM3U8MediaFile
@@ -92,8 +101,8 @@ struct _GstM3U8MediaFile
     gchar *title;
     GstClockTime duration;
     gchar *uri;
-    guint sequence;
-    gboolean discontinuity;
+    gint64 sequence;                /* The sequence number of this file */
+    gboolean discontinuity;         /* This file marks a discontinuity */
     gchar *key;
     guint8 iv[16];
     gint64 offset, size;
@@ -104,25 +113,28 @@ struct _GstM3U8Client
     GstM3U8 *main;
     GstM3U8 *current;
     guint update_failed_count;
-    gint sequence;
-    GstClockTime sequence_position;
+    gint64 sequence;                /* The next sequence for this client */
+    GstClockTime sequence_position; /* position of this sequence */
     GMutex lock;
 };
 
-GstM3U8Client *gst_m3u8_client_new (const gchar * uri);
+GstM3U8Client *gst_m3u8_client_new (const gchar * uri, const gchar * base_uri);
 void gst_m3u8_client_free (GstM3U8Client * client);
 gboolean gst_m3u8_client_update (GstM3U8Client * client, gchar * data);
+gboolean gst_m3u8_client_update_variant_playlist (GstM3U8Client * client,
+    gchar * data, const gchar * uri, const gchar * base_uri);
 void gst_m3u8_client_set_current (GstM3U8Client * client, GstM3U8 * m3u8);
 gboolean gst_m3u8_client_get_next_fragment (
     GstM3U8Client * client,
-    gboolean * discontinuity, const gchar ** uri, GstClockTime * duration,
+    gboolean * discontinuity, gchar ** uri, GstClockTime * duration,
     GstClockTime * timestamp, gint64 * range_start, gint64 * range_end,
-    const gchar ** key, const guint8 ** iv);
-void gst_m3u8_client_advance_fragment (GstM3U8Client * client);
+    gchar ** key, guint8 ** iv, gboolean forward);
+void gst_m3u8_client_advance_fragment (GstM3U8Client * client, gboolean forward);
 GstClockTime gst_m3u8_client_get_duration (GstM3U8Client * client);
 GstClockTime gst_m3u8_client_get_target_duration (GstM3U8Client * client);
-const gchar * gst_m3u8_client_get_uri (GstM3U8Client * client);
-const gchar * get_m3u8_client_get_current_uri (GstM3U8Client * client);
+gchar * gst_m3u8_client_get_uri (GstM3U8Client * client);
+gchar * gst_m3u8_client_get_current_uri (GstM3U8Client * client);
+gboolean gst_m3u8_client_has_main (GstM3U8Client * client);
 gboolean gst_m3u8_client_has_variant_playlist (GstM3U8Client * client);
 gboolean gst_m3u8_client_is_live (GstM3U8Client * client);
 GList * gst_m3u8_client_get_playlist_for_bitrate (

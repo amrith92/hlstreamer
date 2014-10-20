@@ -1,5 +1,6 @@
-libhlstgm_la-gsthlssink.lo: gsthlssink.c /usr/include/stdc-predef.h \
- ../config.h /home/amrith92/gst/master/gstreamer/gst/gst.h \
+libhlstgm_la-gsttgmhlsplugin.lo: gsttgmhlsplugin.c \
+ /usr/include/stdc-predef.h ../config.h \
+ /home/amrith92/gst/master/gstreamer/gst/gst.h \
  /usr/include/glib-2.0/glib.h /usr/include/glib-2.0/glib/galloca.h \
  /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h \
@@ -188,8 +189,15 @@ libhlstgm_la-gsthlssink.lo: gsthlssink.c /usr/include/stdc-predef.h \
  /home/amrith92/gst/master/gstreamer/gst/gsttypefindfactory.h \
  /home/amrith92/gst/master/gstreamer/gst/gstutils.h \
  /home/amrith92/gst/master/gstreamer/gst/gstparse.h \
- /home/amrith92/gst/master/gstreamer/gst/gstcompat.h gsthlssink.h \
- gstm3u8playlist.h /usr/include/glib-2.0/gio/gio.h \
+ /home/amrith92/gst/master/gstreamer/gst/gstcompat.h gsthlsdemux.h \
+ /home/amrith92/gst/master/gstreamer/libs/gst/base/gstadapter.h m3u8.h \
+ /home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/uridownloader/gsturidownloader.h \
+ /home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/uridownloader/gstfragment.h \
+ /usr/include/nettle/aes.h /usr/include/nettle/nettle-types.h \
+ /usr/include/nettle/nettle-stdint.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/nettle/cbc.h \
+ gsthlssink.h gstm3u8playlist.h /usr/include/glib-2.0/gio/gio.h \
  /usr/include/glib-2.0/gio/giotypes.h \
  /usr/include/glib-2.0/gio/gioenums.h /usr/include/glib-2.0/gio/gaction.h \
  /usr/include/glib-2.0/gio/gactiongroup.h \
@@ -328,55 +336,7 @@ libhlstgm_la-gsthlssink.lo: gsthlssink.c /usr/include/stdc-predef.h \
  /usr/include/glib-2.0/gio/gmenumodel.h /usr/include/glib-2.0/gio/gmenu.h \
  /usr/include/glib-2.0/gio/gmenuexporter.h \
  /usr/include/glib-2.0/gio/gdbusmenumodel.h \
- /usr/include/glib-2.0/gio/gnotification.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/pbutils.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/gstpluginsbaseversion.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/descriptions.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/missing-plugins.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/install-plugins.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/codec-utils.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/pbutils-enumtypes.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/gstdiscoverer.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/encoding-profile.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/encoding-target.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-format.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-enumtypes.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-tile.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-chroma.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-color.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-info.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-frame.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-converter.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/colorbalancechannel.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/colorbalance.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideodecoder.h \
- /home/amrith92/gst/master/gstreamer/libs/gst/base/gstadapter.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideoutils.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideoencoder.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideofilter.h \
- /home/amrith92/gst/master/gstreamer/libs/gst/base/gstbasetransform.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideometa.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideopool.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideosink.h \
- /home/amrith92/gst/master/gstreamer/libs/gst/base/gstbasesink.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/navigation.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-blend.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-event.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/videoorientation.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-overlay-composition.h \
- /home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/videooverlay.h \
- /usr/include/glib-2.0/glib/gstdio.h /usr/include/glib-2.0/glib/gprintf.h \
- /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
- /usr/include/wchar.h /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h \
- /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/memory.h \
- /usr/include/string.h /usr/include/x86_64-linux-gnu/bits/string.h \
- /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/string3.h
+ /usr/include/glib-2.0/gio/gnotification.h
 
 /usr/include/stdc-predef.h:
 
@@ -808,6 +768,30 @@ libhlstgm_la-gsthlssink.lo: gsthlssink.c /usr/include/stdc-predef.h \
 
 /home/amrith92/gst/master/gstreamer/gst/gstcompat.h:
 
+gsthlsdemux.h:
+
+/home/amrith92/gst/master/gstreamer/libs/gst/base/gstadapter.h:
+
+m3u8.h:
+
+/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/uridownloader/gsturidownloader.h:
+
+/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/uridownloader/gstfragment.h:
+
+/usr/include/nettle/aes.h:
+
+/usr/include/nettle/nettle-types.h:
+
+/usr/include/nettle/nettle-stdint.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/nettle/cbc.h:
+
 gsthlssink.h:
 
 gstm3u8playlist.h:
@@ -1107,113 +1091,3 @@ gstm3u8playlist.h:
 /usr/include/glib-2.0/gio/gdbusmenumodel.h:
 
 /usr/include/glib-2.0/gio/gnotification.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/pbutils.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/gstpluginsbaseversion.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/descriptions.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/missing-plugins.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/install-plugins.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/codec-utils.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/pbutils-enumtypes.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/gstdiscoverer.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/encoding-profile.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils/encoding-target.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-format.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-enumtypes.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-tile.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-chroma.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-color.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-info.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-frame.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-converter.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/colorbalancechannel.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/colorbalance.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideodecoder.h:
-
-/home/amrith92/gst/master/gstreamer/libs/gst/base/gstadapter.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideoutils.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideoencoder.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideofilter.h:
-
-/home/amrith92/gst/master/gstreamer/libs/gst/base/gstbasetransform.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideometa.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideopool.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/gstvideosink.h:
-
-/home/amrith92/gst/master/gstreamer/libs/gst/base/gstbasesink.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/navigation.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-blend.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-event.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/videoorientation.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/video-overlay-composition.h:
-
-/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video/videooverlay.h:
-
-/usr/include/glib-2.0/glib/gstdio.h:
-
-/usr/include/glib-2.0/glib/gprintf.h:
-
-/usr/include/stdio.h:
-
-/usr/include/libio.h:
-
-/usr/include/_G_config.h:
-
-/usr/include/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
-
-/usr/include/x86_64-linux-gnu/sys/stat.h:
-
-/usr/include/x86_64-linux-gnu/bits/stat.h:
-
-/usr/include/memory.h:
-
-/usr/include/string.h:
-
-/usr/include/x86_64-linux-gnu/bits/string.h:
-
-/usr/include/x86_64-linux-gnu/bits/string2.h:
-
-/usr/include/stdlib.h:
-
-/usr/include/x86_64-linux-gnu/bits/string3.h:

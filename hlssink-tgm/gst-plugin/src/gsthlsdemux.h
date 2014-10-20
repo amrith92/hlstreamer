@@ -119,7 +119,7 @@ struct _GstHlsDemux
 
     /* Updates task */
     GstTask *updates_task;
-    GRecMutex *updates_lock;
+    GRecMutex updates_lock;
     gint64 next_update;             /* Time of the next update */
     gboolean stop_updates_task;
     GMutex updates_timed_lock;

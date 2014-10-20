@@ -8,7 +8,7 @@ dnl required versions of gstreamer and plugins-base
 GST_REQUIRED=1.0.0
 GSTPB_REQUIRED=1.0.0
 
-AC_CONFIG_SRCDIR([src/gsthlssink.c])
+AC_CONFIG_SRCDIR([src/gsttgmhlsplugin.c])
 AC_CONFIG_HEADERS([config.h])
 
 dnl required version of automake
@@ -44,7 +44,6 @@ dnl for libgstrtsp-1.0: gstreamer-rtsp-1.0 >= $GST_REQUIRED
 dnl etc.
 PKG_CHECK_MODULES(GST, [
   gstreamer-1.0 >= $GST_REQUIRED
-  gstreamer-base-1.0 >= $GST_REQUIRED
   gstreamer-controller-1.0 >= $GST_REQUIRED
 ], [
   AC_SUBST(GST_CFLAGS)
@@ -59,6 +58,54 @@ PKG_CHECK_MODULES(GST, [
   ])
 ])
 
+PKG_CHECK_MODULES(GST_BASE, [
+  gstreamer-base-1.0 >= $GST_REQUIRED
+], [
+  AC_SUBST(GST_BASE_CFLAGS)
+  AC_SUBST(GST_BASE_LIBS)
+], [
+  AC_MSG_ERROR([
+    You need to install or upgrade the GStreamer base library
+    development packages on your system.
+  ])
+])
+
+PKG_CHECK_MODULES(GST_PLUGINS_BASE, [
+  gstreamer-plugins-base-1.0 >= $GST_REQUIRED
+], [
+  AC_SUBST(GST_PLUGINS_BASE_CFLAGS)
+  AC_SUBST(GST_PLUGINS_BASE_LIBS)
+], [
+  AC_MSG_ERROR([
+    You need to install or upgrade the GStreamer base plugins
+    development packages on your system.
+  ])
+])
+
+PKG_CHECK_MODULES(GST_PLUGINS_GOOD, [
+  gstreamer-plugins-good-1.0 >= $GST_REQUIRED
+], [
+  AC_SUBST(GST_PLUGINS_GOOD_CFLAGS)
+  AC_SUBST(GST_PLUGINS_GOOD_LIBS)
+], [
+  AC_MSG_ERROR([
+    You need to install or upgrade the GStreamer good plugins
+    development packages on your system.
+  ])
+])
+
+PKG_CHECK_MODULES(GST_PLUGINS_BAD, [
+  gstreamer-plugins-bad-1.0 >= $GST_REQUIRED
+], [
+  AC_SUBST(GST_PLUGINS_BAD_CFLAGS)
+  AC_SUBST(GST_PLUGINS_BAD_LIBS)
+], [
+  AC_MSG_ERROR([
+    You need to install or upgrade the GStreamer bad plugins
+    development packages on your system.
+  ])
+])
+
 PKG_CHECK_MODULES(GIO, [
     gio-2.0 >= 2.0
 ], [
@@ -70,6 +117,22 @@ PKG_CHECK_MODULES(GIO, [
         libraries. The minimum version required is 2.0.
     ])
 ])
+
+PKG_CHECK_MODULES(NETTLE, nettle,
+    [
+        AC_DEFINE(HAVE_NETTLE, 1, [Define if nettle is available])
+    ], [
+        AM_PATH_LIBGCRYPT([1.2.0],
+        [
+            AC_DEFINE(HAVE_LIBGCRYPT, 1, [Define if libgcrypt is available])
+        ], [
+            PKG_CHECK_MODULES(OPENSSL, openssl,
+            [
+                AC_DEFINE(HAVE_OPENSSL, 1, [Define if openssl is available])
+            ])
+        ])
+    ]
+)
 
 
 dnl check if compiler understands -Wall (if yes, add -Wall to GST_CFLAGS)

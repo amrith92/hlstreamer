@@ -123,9 +123,14 @@ am__installdirs = "$(DESTDIR)$(plugindir)"
 LTLIBRARIES = $(plugin_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libhlstgm_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
-am_libhlstgm_la_OBJECTS = libhlstgm_la-gstm3u8playlist.lo \
-	libhlstgm_la-gsthlssink.lo
+	$(am__DEPENDENCIES_1) \
+	~/gst/master/gst-plugins-bad/gst-libs/gst/uridownloader/libgsturidownloader-1.0.la \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+am_libhlstgm_la_OBJECTS = libhlstgm_la-m3u8.lo \
+	libhlstgm_la-gsthlsdemux.lo libhlstgm_la-gsttgmhlsplugin.lo \
+	libhlstgm_la-gstm3u8playlist.lo libhlstgm_la-gsthlssink.lo
 libhlstgm_la_OBJECTS = $(am_libhlstgm_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -225,8 +230,16 @@ FGREP = /bin/grep -F
 GIO_CFLAGS = -pthread -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include  
 GIO_LIBS = -lgio-2.0 -lgobject-2.0 -lglib-2.0  
 GREP = /bin/grep
-GST_CFLAGS = -pthread -I/usr/include/gstreamer-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall
-GST_LIBS = -lgstbase-1.0 -lgstcontroller-1.0 -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0  
+GST_BASE_CFLAGS = -pthread -I/home/amrith92/gst/master/gstreamer/libs -I/home/amrith92/gst/master/gstreamer -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include  
+GST_BASE_LIBS = /home/amrith92/gst/master/gstreamer/libs/gst/base/libgstbase-1.0.la /home/amrith92/gst/master/gstreamer/gst/libgstreamer-1.0.la -lgobject-2.0 -lglib-2.0  
+GST_CFLAGS = -pthread -I/home/amrith92/gst/master/gstreamer -I/home/amrith92/gst/master/gstreamer/libs -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include   -Wall
+GST_LIBS = /home/amrith92/gst/master/gstreamer/gst/libgstreamer-1.0.la /home/amrith92/gst/master/gstreamer/libs/gst/controller/libgstcontroller-1.0.la -lgobject-2.0 -lglib-2.0  
+GST_PLUGINS_BAD_CFLAGS = -pthread -I/home/amrith92/gst/master/gstreamer -I/home/amrith92/gst/master/gstreamer/libs -I/home/amrith92/gst/master/gst-plugins-bad/gst-libs -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include  
+GST_PLUGINS_BAD_LIBS = /home/amrith92/gst/master/gstreamer/gst/libgstreamer-1.0.la -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/basecamerabinsrc -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/codecparsers -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/egl -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/insertbin -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/interfaces -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/mpegts -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/signalprocessor -L/home/amrith92/gst/master/gst-plugins-bad/gst-libs/gst/video -lgobject-2.0 -lglib-2.0  
+GST_PLUGINS_BASE_CFLAGS = -pthread -I/home/amrith92/gst/master/gstreamer -I/home/amrith92/gst/master/gstreamer/libs -I/home/amrith92/gst/master/gst-plugins-base/gst-libs -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include  
+GST_PLUGINS_BASE_LIBS = /home/amrith92/gst/master/gstreamer/gst/libgstreamer-1.0.la -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/allocators -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/app -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/audio -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/fft -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/riff -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/rtp -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/rtsp -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/sdp -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/tag -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video -lgobject-2.0 -lglib-2.0  
+GST_PLUGINS_GOOD_CFLAGS = -pthread -I/home/amrith92/gst/master/gstreamer -I/home/amrith92/gst/master/gstreamer/libs -I/home/amrith92/gst/master/gst-plugins-base/gst-libs -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include  
+GST_PLUGINS_GOOD_LIBS = /home/amrith92/gst/master/gstreamer/gst/libgstreamer-1.0.la -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/allocators -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/app -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/audio -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/fft -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/pbutils -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/riff -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/rtp -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/rtsp -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/sdp -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/tag -L/home/amrith92/gst/master/gst-plugins-base/gst-libs/gst/video -lgobject-2.0 -lglib-2.0  
 GST_PLUGIN_LDFLAGS = -module -avoid-version -export-symbols-regex _*\(gst_\|Gst\|GST_\).*
 HAVE_PKGCONFIG =  
 INSTALL = /usr/bin/install -c
@@ -236,6 +249,9 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
+LIBGCRYPT_CFLAGS = 
+LIBGCRYPT_CONFIG = 
+LIBGCRYPT_LIBS = 
 LIBOBJS = 
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -246,10 +262,14 @@ MAINT =
 MAKEINFO = ${SHELL} /home/amrith92/hlserver/hlssink-tgm/gst-plugin/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
+NETTLE_CFLAGS =  
+NETTLE_LIBS = -lnettle  
 NM = /usr/bin/nm -B
 NMEDIT = 
 OBJDUMP = objdump
 OBJEXT = o
+OPENSSL_CFLAGS = 
+OPENSSL_LIBS = 
 OTOOL = 
 OTOOL64 = 
 PACKAGE = tgm-hls
@@ -262,7 +282,7 @@ PACKAGE_VERSION = 1.0.0
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = 
+PKG_CONFIG_PATH = /home/amrith92/gst/master/gst-devtools/validate/pkgconfig:/home/amrith92/gst/master/totem-pl-parser:/home/amrith92/gst/master/clutter-gst:/home/amrith92/gst/master/prefix/lib/pkgconfig:/home/amrith92/gst/master/gstreamer/pkgconfig:/home/amrith92/gst/master/gst-plugins-base/pkgconfig:/home/amrith92/gst/master/gst-plugins-good/pkgconfig:/home/amrith92/gst/master/gst-plugins-ugly/pkgconfig:/home/amrith92/gst/master/gst-plugins-bad/pkgconfig:/home/amrith92/gst/master/gst-libav/pkgconfig:/home/amrith92/gst/master/gst-ffmpeg/pkgconfig:/home/amrith92/gst/master/gst-python/pkgconfig:/home/amrith92/gst/master/gst-rtsp-server/pkgconfig:/home/amrith92/gst/master/gst-editing-services/pkgconfig:/home/amrith92/gst/master/gstreamer-sharp/pkgconfig:/home/amrith92/gst/master/gstreamer-vaapi/pkgconfig:/home/amrith92/gst/master/orc:/home/amrith92/gst/master/farsight2:/home/amrith92/gst/master/libnice/nice
 RANLIB = ranlib
 SED = /bin/sed
 SET_MAKE = 
@@ -337,21 +357,33 @@ plugin_LTLIBRARIES = libhlstgm.la
 ##############################################################################
 
 # sources used to compile this plug-in
-libhlstgm_la_SOURCES = gstm3u8playlist.c gsthlssink.c
+libhlstgm_la_SOURCES = \
+		m3u8.c \
+		gsthlsdemux.c \
+		gsttgmhlsplugin.c \
+		gstm3u8playlist.c \
+		gsthlssink.c
+
 
 # compiler and linker flags used to compile this plugin, set in configure.ac
-libhlstgm_la_CFLAGS = $(GST_PLUGINS_BASE_CFLAGS) $(GST_BASE_CFLAGS) $(GST_CFLAGS) $(GIO_CFLAGS)
+libhlstgm_la_CFLAGS = $(GST_PLUGINS_BAD_CFLAGS) $(GST_PLUGINS_BASE_CFLAGS) $(GST_BASE_CFLAGS) $(GST_CFLAGS) $(GIO_CFLAGS) $(LIBGCRYPT_CFLAGS) $(NETTLE_CFLAGS)
 libhlstgm_la_LIBADD = \
+		$(GST_PLUGINS_BAD_LIBS) \
 		$(GST_PLUGINS_BASE_LIBS) \
+		~/gst/master/gst-plugins-bad/gst-libs/gst/uridownloader/libgsturidownloader-1.0.la \
 		-lgstpbutils-1.0 -lgstvideo-1.0 \
-		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS) $(LIBM)
+		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS) $(LIBM) \
+		$(LIBGCRYPT_LIBS) $(NETTLE_LIBS) $(OPENSSL_LIBS)
 
 libhlstgm_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS) -no-undefined
 libhlstgm_la_LIBTOOLFLAGS = --tag=disable-static
 
 # headers we need but don't want installed
 noinst_HEADERS = \
-		gsthlssink.h
+		gsthlsdemux.h \
+		m3u8.h \
+		gsthlssink.h \
+		gstm3u8playlist.h
 
 all: all-am
 
@@ -432,8 +464,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/libhlstgm_la-gsthlsdemux.Plo
 include ./$(DEPDIR)/libhlstgm_la-gsthlssink.Plo
 include ./$(DEPDIR)/libhlstgm_la-gstm3u8playlist.Plo
+include ./$(DEPDIR)/libhlstgm_la-gsttgmhlsplugin.Plo
+include ./$(DEPDIR)/libhlstgm_la-m3u8.Plo
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -455,6 +490,27 @@ include ./$(DEPDIR)/libhlstgm_la-gstm3u8playlist.Plo
 #	$(AM_V_CC)source='$<' object='$@' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(LTCOMPILE) -c -o $@ $<
+
+libhlstgm_la-m3u8.lo: m3u8.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libhlstgm_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libhlstgm_la_CFLAGS) $(CFLAGS) -MT libhlstgm_la-m3u8.lo -MD -MP -MF $(DEPDIR)/libhlstgm_la-m3u8.Tpo -c -o libhlstgm_la-m3u8.lo `test -f 'm3u8.c' || echo '$(srcdir)/'`m3u8.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libhlstgm_la-m3u8.Tpo $(DEPDIR)/libhlstgm_la-m3u8.Plo
+#	$(AM_V_CC)source='m3u8.c' object='libhlstgm_la-m3u8.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libhlstgm_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libhlstgm_la_CFLAGS) $(CFLAGS) -c -o libhlstgm_la-m3u8.lo `test -f 'm3u8.c' || echo '$(srcdir)/'`m3u8.c
+
+libhlstgm_la-gsthlsdemux.lo: gsthlsdemux.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libhlstgm_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libhlstgm_la_CFLAGS) $(CFLAGS) -MT libhlstgm_la-gsthlsdemux.lo -MD -MP -MF $(DEPDIR)/libhlstgm_la-gsthlsdemux.Tpo -c -o libhlstgm_la-gsthlsdemux.lo `test -f 'gsthlsdemux.c' || echo '$(srcdir)/'`gsthlsdemux.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libhlstgm_la-gsthlsdemux.Tpo $(DEPDIR)/libhlstgm_la-gsthlsdemux.Plo
+#	$(AM_V_CC)source='gsthlsdemux.c' object='libhlstgm_la-gsthlsdemux.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libhlstgm_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libhlstgm_la_CFLAGS) $(CFLAGS) -c -o libhlstgm_la-gsthlsdemux.lo `test -f 'gsthlsdemux.c' || echo '$(srcdir)/'`gsthlsdemux.c
+
+libhlstgm_la-gsttgmhlsplugin.lo: gsttgmhlsplugin.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libhlstgm_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libhlstgm_la_CFLAGS) $(CFLAGS) -MT libhlstgm_la-gsttgmhlsplugin.lo -MD -MP -MF $(DEPDIR)/libhlstgm_la-gsttgmhlsplugin.Tpo -c -o libhlstgm_la-gsttgmhlsplugin.lo `test -f 'gsttgmhlsplugin.c' || echo '$(srcdir)/'`gsttgmhlsplugin.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libhlstgm_la-gsttgmhlsplugin.Tpo $(DEPDIR)/libhlstgm_la-gsttgmhlsplugin.Plo
+#	$(AM_V_CC)source='gsttgmhlsplugin.c' object='libhlstgm_la-gsttgmhlsplugin.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libhlstgm_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libhlstgm_la_CFLAGS) $(CFLAGS) -c -o libhlstgm_la-gsttgmhlsplugin.lo `test -f 'gsttgmhlsplugin.c' || echo '$(srcdir)/'`gsttgmhlsplugin.c
 
 libhlstgm_la-gstm3u8playlist.lo: gstm3u8playlist.c
 	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(libhlstgm_la_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libhlstgm_la_CFLAGS) $(CFLAGS) -MT libhlstgm_la-gstm3u8playlist.lo -MD -MP -MF $(DEPDIR)/libhlstgm_la-gstm3u8playlist.Tpo -c -o libhlstgm_la-gstm3u8playlist.lo `test -f 'gstm3u8playlist.c' || echo '$(srcdir)/'`gstm3u8playlist.c
@@ -683,7 +739,6 @@ uninstall-am: uninstall-pluginLTLIBRARIES
 	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
 	uninstall-pluginLTLIBRARIES
 
-		gstm3u8playlist.h
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

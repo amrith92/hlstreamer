@@ -14,18 +14,28 @@ plugin_LTLIBRARIES = libhlstgm.la
 ##############################################################################
 
 # sources used to compile this plug-in
-libhlstgm_la_SOURCES = gstm3u8playlist.c gsthlssink.c
+libhlstgm_la_SOURCES = \
+		m3u8.c \
+		gsthlsdemux.c \
+		gsttgmhlsplugin.c \
+		gstm3u8playlist.c \
+		gsthlssink.c
 
 # compiler and linker flags used to compile this plugin, set in configure.ac
-libhlstgm_la_CFLAGS = $(GST_PLUGINS_BASE_CFLAGS) $(GST_BASE_CFLAGS) $(GST_CFLAGS) $(GIO_CFLAGS)
+libhlstgm_la_CFLAGS = $(GST_PLUGINS_BAD_CFLAGS) $(GST_PLUGINS_BASE_CFLAGS) $(GST_BASE_CFLAGS) $(GST_CFLAGS) $(GIO_CFLAGS) $(LIBGCRYPT_CFLAGS) $(NETTLE_CFLAGS)
 libhlstgm_la_LIBADD = \
+		$(GST_PLUGINS_BAD_LIBS) \
 		$(GST_PLUGINS_BASE_LIBS) \
+		~/gst/master/gst-plugins-bad/gst-libs/gst/uridownloader/libgsturidownloader-1.0.la \
 		-lgstpbutils-1.0 -lgstvideo-1.0 \
-		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS) $(LIBM)
+		$(GST_BASE_LIBS) $(GST_LIBS) $(GIO_LIBS) $(LIBM) \
+		$(LIBGCRYPT_LIBS) $(NETTLE_LIBS) $(OPENSSL_LIBS)
 libhlstgm_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS) -no-undefined
 libhlstgm_la_LIBTOOLFLAGS = --tag=disable-static
 
 # headers we need but don't want installed
 noinst_HEADERS = \
-		gsthlssink.h
+		gsthlsdemux.h \
+		m3u8.h \
+		gsthlssink.h \
 		gstm3u8playlist.h

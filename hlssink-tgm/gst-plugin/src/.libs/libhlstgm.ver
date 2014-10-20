@@ -1,6 +1,23 @@
 { global:
+gst_hls_demux_get_type;
 gst_hls_sink_get_type;
 gst_hls_sink_plugin_init;
+gst_m3u8_client_advance_fragment;
+gst_m3u8_client_free;
+gst_m3u8_client_get_current_fragment_duration;
+gst_m3u8_client_get_current_uri;
+gst_m3u8_client_get_duration;
+gst_m3u8_client_get_next_fragment;
+gst_m3u8_client_get_playlist_for_bitrate;
+gst_m3u8_client_get_target_duration;
+gst_m3u8_client_get_uri;
+gst_m3u8_client_has_main;
+gst_m3u8_client_has_variant_playlist;
+gst_m3u8_client_is_live;
+gst_m3u8_client_new;
+gst_m3u8_client_set_current;
+gst_m3u8_client_update;
+gst_m3u8_client_update_variant_playlist;
 gst_m3u8_playlist_add_entry;
 gst_m3u8_playlist_clear;
 gst_m3u8_playlist_free;
